@@ -1,0 +1,18 @@
+{
+  "transpileOnly": true,
+  "compilerOptions": {
+    "outDir": "dist",
+    "target": "ESNext",
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "module": "CommonJS",
+    "sourceMap": true
+  },
+  "include": [
+    "server.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    ".vscode"
+  ]
+}
