@@ -1,12 +1,19 @@
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import schemaParser from "../lib/schemaParser";
 
-const Sample = ({ host, method, defaultPathKey, requestBody }) => {
+interface SampleProps {
+  host: string
+  method: string
+  defaultPathKey: string
+  requestBody: any
+}
+
+const Sample = ({ host, method, defaultPathKey, requestBody }: SampleProps) => {
   const style = {
     background: '#f6f8fa',
     margin: 0,
     padding: '15px',
-    fontSize: '.75rem',
+    fontSize: '.85rem',
     fontFamily: 'monospace',
     lineHeight: '.75rem'
   };
