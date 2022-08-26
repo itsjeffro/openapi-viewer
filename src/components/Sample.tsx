@@ -1,5 +1,4 @@
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import schemaParser from "../lib/schemaParser";
 import { Card, CardHeader } from './../components/Card';
 import exampleBuilder from "../lib/exampleBuilder";
 
