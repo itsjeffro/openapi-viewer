@@ -1,15 +1,5 @@
-:root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
+$font-size-small: .85em;
+$font-size-base: 1em;
 
 * {
   margin: 0;
@@ -21,7 +11,9 @@ html, body {
 }
 
 body {
-  font-size: .9rem;
+  font-size: $font-size-base;
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a {
@@ -50,6 +42,18 @@ hr {
   border-bottom-width: thin;
 }
 
+ul {
+  padding-left: 1rem;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-size: $font-size-base;
+}
+
 /** **/
 
 #root {
@@ -68,7 +72,7 @@ hr {
   padding: 20px 30px;
 
   h1 {
-    font-size: 16px;
+    font-size: $font-size-base;
     font-weight: 500;
   }
 }
@@ -78,6 +82,10 @@ hr {
   border-right: 1px solid #ddd;
   width: 320px;
   min-width: 320px;
+
+  ul {
+    padding: 0;
+  }
 
   &__heading {
     padding: 25px 20px;
@@ -99,7 +107,7 @@ hr {
 
 .section {
   padding: 30px;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
 
   h2 {
@@ -177,19 +185,47 @@ hr {
   overflow: hidden;
 
   &__header {
-    padding: 10px 15px;
+    padding: 12px 15px;
     border-bottom: 1px solid #ddd;
   }
 
   &__body {
     padding: 15px;
   }
+
+  &__nav-tab {
+    padding: 20px 10px;
+    margin-right: 10px;
+    border: 0;
+    cursor: pointer;
+    background: transparent;
+    border-bottom: 2px solid transparent;
+  }
+}
+
+.card__header {
+  &.card__nav {
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+}
+
+.card__nav-tab {
+  &.active {
+    border-color: #ff2f00;
+  }
+  &.active:hover {
+    border-color: #c92b07;
+  }
+  &:hover {
+    border-color: #ddd;
+  }
 }
 
 .card__body {
   &.markdown {
     font-family: monospace;
-    font-size: .80rem;
+    font-size: $font-size-small;
     background: #f6f8fa;
     line-height: 1.2rem;
     padding: 10px 15px;
@@ -212,7 +248,7 @@ hr {
   line-height: 1.5rem;
   display: inline-block;
   border-radius: 5px;
-  font-size: .85rem;
+  font-size: $font-size-small;
 
   &__grey {
     background: #eeefef;
@@ -222,4 +258,14 @@ hr {
     background: #0c5ecc;
     color: #fff;
   }
+}
+
+.label__http-code {
+  margin-right: 10px;
+}
+
+.form-input {
+  border: 1px solid #ddd;
+  padding: 5px 8px;
+  border-radius: 4px;
 }
