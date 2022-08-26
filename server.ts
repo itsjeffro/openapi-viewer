@@ -7,13 +7,21 @@ import SwaggerParser from "@apidevtools/swagger-parser";
 async function createServer(isProd = process.env.NODE_ENV === "production") {
   const app = express()
 
-  const vite = await createViteServer({
-    server: { middlewareMode: true },
-    appType: "custom",
-    logLevel: !isProd ? "error" : "info",
-  });
+  let vite;
 
-  app.use(vite.middlewares);
+  if (!isProd) {
+    vite = await createViteServer({
+      server: { middlewareMode: true },
+      appType: "custom",
+      logLevel: !isProd ? "error" : "info",
+    });
+
+    app.use(vite.middlewares);
+  }
+
+  if (isProd) {
+    app.use(express.static(path.join(__dirname, "/dist")));
+  }
 
   app.get('/api/openapi', async (req, res) => {
     const yaml = path.join(__dirname, 'storage/openapi/test.yml');
@@ -26,11 +34,12 @@ async function createServer(isProd = process.env.NODE_ENV === "production") {
   app.get("*", async (req, res) => {
     try {
       if (isProd) {
-        res.sendFile(path.join(__dirname, 'index.html'));
+        res.sendFile(path.join(__dirname, '/dist/index.html'));
       } else {
         const url = req.originalUrl
 
         let template = fs.readFileSync(path.resolve('index.html'), 'utf-8')
+
         template = await vite.transformIndexHtml(url, template)
 
         const { render } = await vite.ssrLoadModule('/src/entry-server.tsx')
