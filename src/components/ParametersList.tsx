@@ -1,10 +1,10 @@
-const ParametersList = ({ requestBody, parameters }) => {
+const ParametersList = ({ requestBody, parameters }: any) => {
   const bodyParameters = !requestBody ? {} : requestBody.content['application/json'].schema.properties;
 
   let params = !parameters ? [] : parameters;
 
   if (params) {
-    parameters = params.reduce((carry, item) => {
+    parameters = params.reduce((carry: any, item: any) => {
       return {
         ...carry,
         [item.in]: [
@@ -23,7 +23,7 @@ const ParametersList = ({ requestBody, parameters }) => {
     <>
       { headers.length === 0 ? '' : <h5>Headers</h5> }
 
-      { headers.map((parameter) => (
+      { headers.map((parameter: any) => (
         <div key={ parameter.name } className="list__item">
           <div className="parameter-details">
             <span className="pill pill__grey text-bold">{ parameter.name }</span>
@@ -36,7 +36,7 @@ const ParametersList = ({ requestBody, parameters }) => {
 
       { paths.length === 0 ? '' : <h5>Path parameters</h5> }
 
-      { paths.map((parameter) => (
+      { paths.map((parameter: any) => (
         <div key={ parameter.name } className="list__item">
           <div className="parameter-details">
             <span className="pill pill__grey text-bold">{ parameter.name }</span>
@@ -49,7 +49,7 @@ const ParametersList = ({ requestBody, parameters }) => {
 
       { queries.length === 0 ? '' : <h5>Query parameters</h5> }
 
-      { queries.map((parameter) => (
+      { queries.map((parameter: any) => (
         <div key={ parameter.name } className="list__item">
           <div className="parameter-details">
             <span className="pill pill__grey text-bold">{ parameter.name }</span>
