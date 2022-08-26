@@ -2,17 +2,9 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import schemaParser from "../lib/schemaParser";
 import {useState} from "react";
 import {Card, CardHeader} from '../components/Card'
+import * as styles from "../styles";
 
 const ResponseList = ({ responseBody }: any) => {
-  const style = {
-    background: '#f6f8fa',
-    margin: 0,
-    padding: '15px',
-    fontSize: '.85rem',
-    fontFamily: 'monospace',
-    lineHeight: '.75rem'
-  };
-
   const responses = Object.keys(responseBody.responses).map((httpCode: string) => {
     return {
       httpCode: httpCode,
@@ -62,7 +54,7 @@ const ResponseList = ({ responseBody }: any) => {
                 key={ `schema-${response.httpCode}` }
                 style={ { display: display } }
               >
-                <SyntaxHighlighter language="json" customStyle={ style }>
+                <SyntaxHighlighter language="json" customStyle={ styles.highlighter }>
                   { JSON.stringify(response.schema, null, 4) }
                 </SyntaxHighlighter>
               </div>
@@ -81,7 +73,7 @@ const ResponseList = ({ responseBody }: any) => {
                 key={ `section-${response.httpCode}` }
                 style={ { display: display } }
               >
-                <SyntaxHighlighter language="json" customStyle={ style }>
+                <SyntaxHighlighter language="json" customStyle={ styles.highlighter }>
                   { JSON.stringify(schemaParser(response.schema), null, 4) }
                 </SyntaxHighlighter>
               </div>
