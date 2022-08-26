@@ -1,6 +1,16 @@
 import {Link} from "react-router-dom";
 
-const Layout = (props) => {
+interface PageInterface {
+  tag: string
+  name: string
+}
+
+interface LayoutProps {
+  children: any
+  pages: PageInterface[]
+}
+
+const Layout = (props: LayoutProps) => {
   const { pages } = props;
 
   return (
