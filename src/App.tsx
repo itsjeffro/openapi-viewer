@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Routes, Route } from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
-import EndpointScreen from "./screens/EndpointScreen";
+import ReferenceScreen from "./screens/ReferenceScreen";
 import Layout from "./components/Layout";
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
     <Layout pages={ pages }>
       <Routes>
         <Route path="/" element={<HomeScreen />} />
-        <Route path="/endpoints/:endpoint" element={<EndpointScreen />} />
+        <Route path="/references/:endpoint" element={<ReferenceScreen />} />
       </Routes>
     </Layout>
   )

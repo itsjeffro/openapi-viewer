@@ -34,7 +34,7 @@ const Layout = (props: LayoutProps) => {
           </li>
           { pages.map((page) => (
             <li key={ `path-${page.tag}` } className="sidebar__item">
-              <Link to={ `/endpoints/${page.tag}` }>{ page.name }</Link>
+              <Link to={ `/references/${page.tag}` }>{ page.name }</Link>
             </li>
           )) }
         </ul>

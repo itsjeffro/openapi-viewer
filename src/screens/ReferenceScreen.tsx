@@ -1,29 +1,15 @@
-import axios from "axios";
-import {useEffect, useState} from "react";
 import ParametersList from "./../components/ParametersList";
 import ResponseList from "./../components/ResponseList";
 import Sample from "./../components/Sample";
 import {useParams} from "react-router-dom";
-import {Spec} from "../contracts/SchemaInterace";
+import useFetchSpec from "../hooks/useFetchSpec";
 
-function EndpointScreen() {
+function ReferenceScreen() {
   let { endpoint } = useParams();
 
   const tag = endpoint || '';
 
-  const [spec, setSpec] = useState<Spec>(Object)
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const getSpec = async () => {
-      const api = await axios.get('/api/openapi');
-
-      setSpec(api.data)
-      setIsLoading(false)
-    }
-
-    getSpec();
-  }, [])
+  const { isLoading, data } = useFetchSpec();
 
   if (isLoading) {
     return (
@@ -33,14 +19,14 @@ function EndpointScreen() {
     )
   }
 
-  const host = spec.servers[0].url;
+  const host = data.servers[0].url;
 
   let endpoints: any[] = [];
 
-  Object.keys(spec.paths).map(path => {
-    const resourcePath = spec.paths[path];
+  Object.keys(data.paths).map(path => {
+    const resourcePath = data.paths[path];
 
-    Object.keys(spec.paths[path]).map((method) => {
+    Object.keys(data.paths[path]).map((method) => {
       const tags = resourcePath[method].tags;
 
       if (tags[0] === tag) {
@@ -59,7 +45,7 @@ function EndpointScreen() {
   return (
     <>
       <header className="header">
-        <h1>{ spec.info.title }</h1>
+        <h1>{ data.info.title }</h1>
       </header>
 
       <div className="section">
@@ -105,4 +91,4 @@ function EndpointScreen() {
   )
 }
 
-export default EndpointScreen
+export default ReferenceScreen
