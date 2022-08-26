@@ -1,8 +1,9 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
+import { Spec } from '../contracts/SchemaInterace'
 
 const HomeScreen = () => {
-  const [spec, setSpec] = useState({})
+  const [spec, setSpec] = useState<Spec>(Object)
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -17,7 +18,11 @@ const HomeScreen = () => {
   }, [])
 
   if (isLoading) {
-    return <>Loading...</>
+    return (
+      <header className="header">
+        <h1>Loading...</h1>
+      </header>
+    )
   }
 
   return (
@@ -35,11 +40,13 @@ const HomeScreen = () => {
       <div className="section">
         <h2>Servers</h2>
 
-        { spec.servers.map((server) => (
-          <div className="list__item">
-            { server.url }
-          </div>
-        ))}
+        <ul>
+          { spec.servers.map((server, index: number) => (
+            <li key={ `server-${index}` }>
+              { server.url }
+            </li>
+          ))}
+        </ul>
       </div>
     </>
   )
