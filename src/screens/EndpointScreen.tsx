@@ -4,13 +4,14 @@ import ParametersList from "./../components/ParametersList";
 import ResponseList from "./../components/ResponseList";
 import Sample from "./../components/Sample";
 import {useParams} from "react-router-dom";
+import {Spec} from "../contracts/SchemaInterace";
 
 function EndpointScreen() {
   let { endpoint } = useParams();
 
   const tag = endpoint || '';
 
-  const [spec, setSpec] = useState({})
+  const [spec, setSpec] = useState<Spec>(Object)
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -25,12 +26,16 @@ function EndpointScreen() {
   }, [])
 
   if (isLoading) {
-    return <>Loading...</>
+    return (
+      <header className="header">
+        <h1>Loading...</h1>
+      </header>
+    )
   }
 
   const host = spec.servers[0].url;
 
-  let endpoints = [];
+  let endpoints: any[] = [];
 
   Object.keys(spec.paths).map(path => {
     const resourcePath = spec.paths[path];
