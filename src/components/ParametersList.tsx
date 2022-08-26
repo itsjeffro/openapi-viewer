@@ -1,23 +1,11 @@
+import {groupParams} from "../lib/paramaeters";
+
 const ParametersList = ({ requestBody, parameters }: any) => {
-  const bodyParameters = !requestBody ? {} : requestBody.content['application/json'].schema.properties;
+  const bodyParameters = !requestBody
+    ? {}
+    : requestBody.content['application/json'].schema.properties;
 
-  let params = !parameters ? [] : parameters;
-
-  if (params) {
-    parameters = params.reduce((carry: any, item: any) => {
-      return {
-        ...carry,
-        [item.in]: [
-          ...carry[item.in] || [],
-          item
-        ]
-      }
-    }, {})
-  }
-
-  const headers = parameters['header'] || []
-  const queries = parameters['query'] || []
-  const paths = parameters['path'] || []
+  const { headers, paths, queries } = groupParams(parameters);
 
   return (
     <>
