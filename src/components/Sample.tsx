@@ -1,5 +1,7 @@
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import schemaParser from "../lib/schemaParser";
+import { Card, CardHeader } from './../components/Card';
+import exampleBuilder from "../lib/exampleBuilder";
 
 interface SampleProps {
   host: string
@@ -18,35 +20,22 @@ const Sample = ({ host, method, defaultPathKey, requestBody }: SampleProps) => {
     lineHeight: '.75rem'
   };
 
-  const example = !requestBody ? null : requestBody.content['application/json'].schema;
+  const body = !requestBody
+    ? null
+    : requestBody.content['application/json'].schema;
 
-  let request = `curl \\`
-
-  if (method === 'post' || method === 'put') {
-    request += `
-  -X ${ method.toUpperCase() } \\
-  -H "X-CSRF-TOKEN: TOKEN_HERE" \\`
-  }
-
-  request += `
-  -H "Accept: application/json" \\
-  ${ host }${ defaultPathKey } ${ example ? '\\' : '' }`
-
-  if (example !== null) {
-    request += `
-  -d '${ JSON.stringify(schemaParser(example), null, 4) }'`
-  }
+  let example = exampleBuilder(method, host, defaultPathKey, body)
 
   return (
     <div className="endpoint-details__method">
-      <div className="card">
-        <div className="card__header">
+      <Card>
+        <CardHeader>
           <span className="pill pill__blue text-bold">{ method }</span> { defaultPathKey }
-        </div>
+        </CardHeader>
         <SyntaxHighlighter language="bash" customStyle={ style }>
-          { request }
+          { example }
         </SyntaxHighlighter>
-      </div>
+      </Card>
     </div>
   )
 }

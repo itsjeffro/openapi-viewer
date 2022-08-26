@@ -1,6 +1,7 @@
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import schemaParser from "../lib/schemaParser";
 import {useState} from "react";
+import {Card, CardHeader} from '../components/Card'
 
 const ResponseList = ({ responseBody }: any) => {
   const style = {
@@ -26,7 +27,7 @@ const ResponseList = ({ responseBody }: any) => {
 
   return (
     <div className="endpoint-details__response">
-      <div className="card">
+      <Card>
         <div className="card__header card__nav">
           <button
             className={ `card__nav-tab ${selectedResponseTab === 'example' ? 'active' : ''}` }
@@ -38,7 +39,7 @@ const ResponseList = ({ responseBody }: any) => {
           >Response schema</button>
         </div>
 
-        <div className="card__header">
+        <CardHeader>
           <span className="label__http-code">Status:</span>
           <select
             className="form-input"
@@ -48,7 +49,7 @@ const ResponseList = ({ responseBody }: any) => {
               <option key={ responseHttpCode } value={ responseHttpCode }>{ responseHttpCode }</option>
             )) }
           </select>
-        </div>
+        </CardHeader>
 
         <div
           style={{ display: selectedResponseTab !== 'example' ? 'block' : 'none' }}
@@ -87,7 +88,7 @@ const ResponseList = ({ responseBody }: any) => {
             )
           }) }
         </div>
-      </div>
+      </Card>
     </div>
   )
 }
