@@ -1,7 +1,20 @@
-const schemaParser = (schema) => {
-  let result = null;
+interface Property {
+  example?: string
+  type?: string
+  items?: any
+}
 
-  if (schema.type === 'object' || !schema.type) {
+interface Schema {
+  type: string
+  properties: any | {
+    [key: string]: Property
+  }
+}
+
+const schemaParser = (schema: Schema) => {
+  let result: any = {};
+
+  if (schema.type === 'object') {
     result = {};
   }
 
@@ -18,7 +31,7 @@ const schemaParser = (schema) => {
   return result
 }
 
-const castExample = (property) => {
+const castExample = (property: Property) => {
   if (property.type === 'string') {
     return property.example;
   }
