@@ -1,24 +1,21 @@
 import schemaParser from "./schemaParser";
 
 const exampleBuilder = (method: string, host: string, endpoint: string, body: any) => {
-  let request = `curl \\`
+  let request = [`curl`];
 
   if (method === 'post' || method === 'put') {
-    request += `
-  -X ${ method.toUpperCase() } \\
-  -H "X-CSRF-TOKEN: TOKEN_HERE" \\`
+    request = request.concat(`  -X ${ method.toUpperCase() }`)
+    request = request.concat(`  -H "X-CSRF-TOKEN: TOKEN_HERE"`)
   }
 
-  request += `
-  -H "Accept: application/json" \\
-  ${ host }${ endpoint } ${ body ? '\\' : '' }`
+  request = request.concat(`  -H "Accept: application/json"`)
+  request = request.concat(`  ${ host }${ endpoint }`)
 
   if (body !== null) {
-    request += `
-  -d '${ JSON.stringify(schemaParser(body), null, 4) }'`
+    request = request.concat(`  -d '${ JSON.stringify(schemaParser(body), null, 4) }'`)
   }
 
-  return request;
+  return request.join(" \\ \n");
 }
 
 export default exampleBuilder
