@@ -4,5 +4,6 @@ export const highlighter = {
   padding: '15px',
   fontSize: '13px',
   fontFamily: 'monospace',
-  lineHeight: '21px'
+  lineHeight: '21px',
+  maxHeight: '580px'
 }
