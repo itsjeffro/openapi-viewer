@@ -3,11 +3,10 @@ import ResponseList from "./../components/ResponseList";
 import Sample from "./../components/Sample";
 import {useParams} from "react-router-dom";
 import useFetchSpec from "../hooks/useFetchSpec";
+import {filterByTag} from "../lib/paths";
 
 function ReferenceScreen() {
   let { endpoint } = useParams();
-
-  const tag = endpoint || '';
 
   const { isLoading, data } = useFetchSpec();
 
@@ -21,26 +20,7 @@ function ReferenceScreen() {
 
   const host = data.servers[0].url;
 
-  let endpoints: any[] = [];
-
-  Object.keys(data.paths).map(path => {
-    const resourcePath = data.paths[path];
-
-    Object.keys(data.paths[path]).map((method) => {
-      const tags = resourcePath[method].tags;
-
-      if (tags[0] === tag) {
-        endpoints = [
-          ...endpoints,
-          {
-            method: method,
-            path: path,
-            ...resourcePath[method]
-          }
-        ]
-      }
-    });
-  });
+  const endpoints = filterByTag(data, endpoint || '');
 
   return (
     <>
