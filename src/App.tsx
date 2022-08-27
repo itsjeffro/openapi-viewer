@@ -6,8 +6,8 @@ import Layout from "./components/Layout";
 
 function App() {
   const pages = [
-    { tag: 'csrf-token', name: 'CSRF token' },
-    { tag: 'legal-entity', name: 'Legal entities' },
+    { tag: 'csrf-token', name: 'Csrf Token' },
+    { tag: 'legal-entity', name: 'Legal Entity' },
   ]
 
   return (
