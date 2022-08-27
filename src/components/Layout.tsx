@@ -14,7 +14,7 @@ const Layout = (props: LayoutProps) => {
   const { pages } = props;
 
   return (
-    <div className="main-content">
+    <>
       <div className="sidebar">
         <div className="sidebar__heading">
           <strong>OpenAPI Viewer</strong>
@@ -40,10 +40,10 @@ const Layout = (props: LayoutProps) => {
         </ul>
       </div>
 
-      <div className="content">
+      <div className="content-wrapper">
         { props.children }
       </div>
-    </div>
+    </>
   )
 }
 

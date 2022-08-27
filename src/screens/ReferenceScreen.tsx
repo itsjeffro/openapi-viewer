@@ -48,12 +48,12 @@ function ReferenceScreen() {
         <h1>{ data.info.title }</h1>
       </header>
 
-      <div className="section">
+      <div className="container">
         { endpoints.map((endpoint, index: number) => {
           const path = endpoint;
 
           return (
-            <div key={ `method-${index}` } className="section-endpoint">
+            <div key={ `method-${index}` } className="section">
               <h2>{ path.summary }</h2>
 
               <div className="endpoint-details">

@@ -17,22 +17,24 @@ const HomeScreen = () => {
         <h1>Home</h1>
       </header>
 
-      <div className="section">
-        <h2>Introduction</h2>
+      <div className="container">
+        <div className="section">
+          <h2>Introduction</h2>
 
-        <p>{ data.info.description }</p>
-      </div>
+          <p>{ data.info.description }</p>
+        </div>
 
-      <div className="section">
-        <h2>Servers</h2>
+        <div className="section">
+          <h2>Servers</h2>
 
-        <ul>
-          { data.servers.map((server, index: number) => (
-            <li key={ `server-${index}` }>
-              { server.url }
-            </li>
-          ))}
-        </ul>
+          <ul>
+            { data.servers.map((server, index: number) => (
+              <li key={ `server-${index}` }>
+                { server.url }
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </>
   )
