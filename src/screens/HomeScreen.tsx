@@ -14,7 +14,7 @@ const HomeScreen = () => {
   return (
     <>
       <header className="header">
-        <h1>Home</h1>
+        <h1>{ data.info.title }</h1>
       </header>
 
       <div className="container">
