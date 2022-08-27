@@ -85,6 +85,9 @@ const ParametersList = ({ requestBody, parameters }: any) => {
               <span className="parameter-details__required">{ !bodyParameters[bodyParameter].nullable ? 'Required.' : ''  }</span>
             </div>
             { bodyParameters[bodyParameter].description ? <p>{bodyParameters[bodyParameter].description}</p> : '' }
+            { bodyParameters[bodyParameter].enum
+              ? <p>Options: {bodyParameters[bodyParameter].enum.join(', ')}</p>
+              : '' }
           </div>
         )) }
       </div>
