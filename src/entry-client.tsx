@@ -7,11 +7,9 @@ import "./index.scss";
 const container = document.getElementById("root");
 
 const FullApp = () => (
-  <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
 );
 
 if (import.meta.hot || !container?.innerText) {
