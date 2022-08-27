@@ -25,7 +25,7 @@ function ReferenceScreen() {
   return (
     <>
       <header className="header">
-        <h1>{ data.info.title }</h1>
+        <h1>{ data.info.title } \ References</h1>
       </header>
 
       <div className="container">
