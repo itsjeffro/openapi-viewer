@@ -6,9 +6,11 @@ import * as styles from "../styles";
 
 const ResponseList = ({ responseBody }: any) => {
   const responses = Object.keys(responseBody.responses).map((httpCode: string) => {
+    const content = responseBody.responses[httpCode].content;
+
     return {
       httpCode: httpCode,
-      schema: responseBody.responses[httpCode].content['application/json'].schema,
+      schema: content ? content['application/json'].schema : {},
     }
   })
 

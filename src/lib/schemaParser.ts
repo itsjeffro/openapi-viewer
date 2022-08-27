@@ -18,7 +18,7 @@ const schemaParser = (schema: Schema) => {
     result = {};
   }
 
-  Object.keys(schema.properties).map((property) => {
+  Object.keys(schema.properties || {}).map((property) => {
     if (schema.properties[property].type === 'array') {
       result[property] = schemaParser(schema.properties[property].items);
     } else if (schema.properties[property].type === 'object') {
