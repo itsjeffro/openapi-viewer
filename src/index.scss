@@ -88,6 +88,7 @@ textarea {
 
   ul {
     padding: 0;
+    margin: 10px 0;
   }
 
   &__heading {
@@ -100,6 +101,7 @@ textarea {
 
   a {
     text-decoration: none;
+    display: block;
   }
 }
 
@@ -123,13 +125,13 @@ textarea {
   display: flex;
 
   &__parameters {
-    padding-right: 36px;
+    padding-right: 80px;
     flex: 1;
   }
 
   &__samples {
-    max-width: 630px;
-    width: 630px;
+    max-width: 580px;
+    width: 580px;
   }
 }
 
@@ -151,6 +153,8 @@ textarea {
 
   .list__item p {
     margin-bottom: 0;
+    margin-top: 15px;
+    color: #333;
   }
 }
 
@@ -158,8 +162,9 @@ textarea {
   .pill__blue {
     margin-right: 10px;
     text-transform: uppercase;
-    padding: 8px 9px;
-    line-height: 1;;
+    padding: 10px 14px 8px;
+    line-height: 1;
+    border-radius: 15px;
   }
 }
 
@@ -175,9 +180,10 @@ textarea {
 }
 
 .card {
-  border: 1px solid #ddd;
+  border: 1px solid #c9d1dc;
   border-radius: 5px;
   overflow: hidden;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 4%);
 
   &__header {
     padding: 12px 15px;
@@ -227,9 +233,23 @@ textarea {
   }
 }
 
-.list__item {
-  border-top: 1px solid #ddd;
-  padding: 15px 0;
+.list {
+  margin-bottom: 1em;
+
+  &__header {
+    padding: 15px 0;
+  }
+
+  &__item {
+    border-top: 1px solid #ddd;
+    padding: 15px 0;
+  }
+}
+
+.list__header {
+  h5 {
+    margin: 0;
+  }
 }
 
 .text {
