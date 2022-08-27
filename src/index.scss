@@ -4,6 +4,7 @@ $font-size-base: 1em;
 * {
   margin: 0;
   padding: 0;
+  box-sizing: content-box;
 }
 
 html, body {
@@ -27,6 +28,7 @@ h3, h4 {
 h5 {
   text-transform: uppercase;
   color: #464950;
+  font-weight: 500;
 }
 
 p {
@@ -59,10 +61,11 @@ textarea {
 #root {
   display: flex;
   height: 100%;
+  width: 100%;
 }
 
-.main-content {
-  display: flex;
+.content-wrapper {
+  overflow-x: auto;
   width: 100%;
 }
 
@@ -100,15 +103,14 @@ textarea {
   }
 }
 
-.content {
-  width: 100%;
-  overflow-x: auto;
-}
-
-.section {
+.container {
   padding: 30px;
   max-width: 1300px;
   margin: 0 auto;
+}
+
+.section {
+  padding-bottom: 60px;
 
   h2 {
     border-bottom: 2px solid #ddd;
@@ -117,24 +119,17 @@ textarea {
   }
 }
 
-.section-endpoint {
-  padding-bottom: 64px;
-}
-
-.section-endpoint:not(:last-child) {
-  margin-bottom: 30px;
-  border-bottom: 1px solid #ddd;
-}
-
 .endpoint-details {
   display: flex;
+
   &__parameters {
     padding-right: 36px;
-    width: 50%;
+    flex: 1;
   }
 
   &__samples {
-    width: 50%;
+    max-width: 630px;
+    width: 630px;
   }
 }
 
