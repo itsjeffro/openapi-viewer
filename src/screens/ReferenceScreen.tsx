@@ -18,9 +18,10 @@ function ReferenceScreen() {
     )
   }
 
+  const tag = endpoint || '';
   const host = data.servers[0].url;
 
-  const endpoints = filterByTag(data, endpoint || '');
+  const endpoints = filterByTag(data, tag);
 
   return (
     <>
@@ -30,7 +31,7 @@ function ReferenceScreen() {
 
       <div className="container">
         <div className="heading">
-          <h1>{ endpoint.replace('-', ' ') }</h1>
+          <h1>{ tag.replace('-', ' ') }</h1>
         </div>
 
         { endpoints.map((endpoint, index: number) => {
