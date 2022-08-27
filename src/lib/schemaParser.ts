@@ -15,9 +15,9 @@ interface Schema {
   enum?: any[]
 }
 
-const schemaParser = (schema: Schema) => {
+const schemaParser = (schema: Schema): any => {
   if (schema.type === 'object') {
-    let result = {};
+    let result: any = {};
 
     Object.keys(schema.properties || {}).map((propertyName: string) => {
       result[propertyName] = schemaParser(schema.properties[propertyName])
