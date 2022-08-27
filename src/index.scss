@@ -196,6 +196,8 @@ textarea {
 
 .parameter-details {
   display: flex;
+  align-items: center;
+
   &__type {
     margin-right: auto;
     margin-left: 10px;
