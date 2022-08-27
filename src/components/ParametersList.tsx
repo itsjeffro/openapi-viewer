@@ -1,9 +1,13 @@
 import {groupParams} from "../lib/parameters";
 
 const ParametersList = ({ requestBody, parameters }: any) => {
-  const bodyParameters = !requestBody
+  const bodyContent = !requestBody
     ? {}
-    : requestBody.content['application/json'].schema.properties;
+    : requestBody.content['application/json'];
+
+  const bodySchema = bodyContent ? bodyContent.schema : null
+
+  const bodyParameters = bodySchema ? bodySchema.properties : {}
 
   const { headers, paths, queries } = groupParams(parameters);
 
@@ -71,13 +75,13 @@ const ParametersList = ({ requestBody, parameters }: any) => {
 
       <div
         className="list"
-        style={{ display: Object.keys(bodyParameters).length === 0 ? 'none' : 'block' }}
+        style={{ display: Object.keys(bodyParameters || {}).length === 0 ? 'none' : 'block' }}
       >
         <div className="list__header">
           <h5>Body parameters</h5>
         </div>
 
-        { Object.keys(bodyParameters).map((bodyParameter: string) => (
+        { Object.keys(bodyParameters || {}).map((bodyParameter: string) => (
           <div key={ bodyParameter } className="list__item">
             <div className="parameter-details">
               <span className="pill pill__grey text-bold">{ bodyParameter }</span>
