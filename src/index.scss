@@ -1,5 +1,15 @@
-$font-size-small: .85em;
+$body-color: #fff;
+
 $font-size-base: 1em;
+$font-size-small: .85em;
+
+$border-light-grey: #eaeaea;
+
+$text-color-primary: #222;
+$text-color-secondary: #464950;
+$text-color-white: #fff;
+
+$link-color: #0d5ecc;
 
 * {
   margin: 0;
@@ -7,18 +17,21 @@ $font-size-base: 1em;
   box-sizing: content-box;
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
 body {
+  background: $body-color;
+  color: $text-color-primary;
   font-size: $font-size-base;
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   -moz-osx-font-smoothing: grayscale;
 }
 
 a {
-  color: #0d5ecc;
+  color: $link-color;
 }
 
 h1 {
@@ -26,13 +39,14 @@ h1 {
   margin-bottom: 20px;
 }
 
-h3, h4 {
+h3,
+h4 {
   margin-bottom: 16px;
 }
 
 h5 {
   text-transform: uppercase;
-  color: #464950;
+  color: $text-color-secondary;
   font-weight: 500;
 }
 
@@ -125,7 +139,7 @@ textarea {
   padding-bottom: 60px;
 
   h2 {
-    border-bottom: 2px solid #ddd;
+    border-bottom: 2px solid $border-light-grey;
     padding-bottom: 30px;
     margin-bottom: 30px;
   }
@@ -164,7 +178,6 @@ textarea {
   .list__item p {
     margin-bottom: 0;
     margin-top: 15px;
-    color: #333;
   }
 }
 
@@ -197,7 +210,7 @@ textarea {
 
   &__header {
     padding: 12px 15px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid $border-light-grey;
   }
 
   &__body {
@@ -205,7 +218,7 @@ textarea {
   }
 
   &__nav-tab {
-    padding: 20px 10px;
+    padding: 20px 10px 18px;
     margin-right: 10px;
     border: 0;
     cursor: pointer;
@@ -251,7 +264,7 @@ textarea {
   }
 
   &__item {
-    border-top: 1px solid #ddd;
+    border-top: 1px solid $border-light-grey;
     padding: 15px 0;
   }
 }
@@ -281,7 +294,7 @@ textarea {
 
   &__blue {
     background: #0c5ecc;
-    color: #fff;
+    color: $text-color-white;
   }
 }
 
