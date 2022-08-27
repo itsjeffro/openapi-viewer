@@ -1,4 +1,4 @@
-import {groupParams} from "../lib/paramaeters";
+import {groupParams} from "../lib/parameters";
 
 const ParametersList = ({ requestBody, parameters }: any) => {
   const bodyParameters = !requestBody
