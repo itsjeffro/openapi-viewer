@@ -6,11 +6,12 @@ import * as styles from "../styles";
 
 const ResponseList = ({ responseBody }: any) => {
   const responses = Object.keys(responseBody.responses).map((httpCode: string) => {
-    const content = responseBody.responses[httpCode].content;
+    const status = responseBody.responses[httpCode];
 
     return {
       httpCode: httpCode,
-      schema: content ? content['application/json'].schema : {},
+      description: status.description,
+      schema: status.content ? status.content['application/json'].schema : null,
     }
   })
 
@@ -70,13 +71,19 @@ const ResponseList = ({ responseBody }: any) => {
           { responses.map((response) => {
             const display = selectedHttpCode === response.httpCode ? 'block' : 'none';
 
+            let example = schemaParser(response.schema || {});
+
+            if (!example) {
+              example = response.description
+            }
+
             return (
               <div
                 key={ `section-${response.httpCode}` }
                 style={ { display: display } }
               >
                 <SyntaxHighlighter language="json" customStyle={ styles.highlighter }>
-                  { JSON.stringify(schemaParser(response.schema), null, 4) }
+                  { JSON.stringify(example, null, 4) }
                 </SyntaxHighlighter>
               </div>
             )
