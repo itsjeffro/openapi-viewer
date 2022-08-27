@@ -2,49 +2,65 @@ interface Property {
   example?: string
   type?: string
   items?: any
+  enum: any[]
 }
 
 interface Schema {
   type: string
+  items?: any
   properties: any | {
     [key: string]: Property
-  }
+  },
+  example?: any
+  enum?: any[]
 }
 
 const schemaParser = (schema: Schema) => {
-  let result: any = {};
-
   if (schema.type === 'object') {
-    result = {};
+    let result = {};
+
+    Object.keys(schema.properties || {}).map((propertyName: string) => {
+      result[propertyName] = schemaParser(schema.properties[propertyName])
+    })
+
+    return result
   }
 
-  Object.keys(schema.properties || {}).map((property) => {
-    if (schema.properties[property].type === 'array') {
-      result[property] = schemaParser(schema.properties[property].items);
-    } else if (schema.properties[property].type === 'object') {
-      result[property] = schemaParser(schema.properties[property]);
-    } else {
-      result[property] = castExample(schema.properties[property])
-    }
-  })
+  if (schema.type === 'array') {
+    return [
+      schemaParser(schema.items)
+    ]
+  }
 
-  return result
+  if (schema.type === 'string') {
+    return getStringValueFromSchema(schema);
+  }
+
+  if (schema.type === 'boolean') {
+    return Boolean(schema.example);
+  }
+
+  if (schema.type === 'number') {
+    return Number(schema.example);
+  }
+
+  if (schema.type === 'integer') {
+    return schema.example || 0;
+  }
+
+  return schema.example || null;
 }
 
-const castExample = (property: Property) => {
-  if (property.type === 'string') {
-    return property.example;
+const getStringValueFromSchema = (schema: Schema) => {
+  if (schema.example) {
+    return schema.example;
   }
 
-  if (property.type === 'boolean') {
-    return Boolean(property.example);
+  if (schema.enum && schema.enum.length > 0) {
+    return schema.enum[0]
   }
 
-  if (property.type === 'number') {
-    return Number(property.example);
-  }
-
-  return property.example || null
+  return schema.type;
 }
 
 export default schemaParser;
