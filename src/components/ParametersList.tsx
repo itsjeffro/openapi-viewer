@@ -9,57 +9,85 @@ const ParametersList = ({ requestBody, parameters }: any) => {
 
   return (
     <>
-      { headers.length === 0 ? '' : <h5>Headers</h5> }
-
-      { headers.map((parameter: any) => (
-        <div key={ parameter.name } className="list__item">
-          <div className="parameter-details">
-            <span className="pill pill__grey text-bold">{ parameter.name }</span>
-            <span className="parameter-details__type">{ parameter.schema.type }</span>
-            <span className="parameter-details__required">{ parameter.required ? 'Required.' : '' }</span>
-          </div>
-          <p>{ parameter.description }</p>
+      <div
+        className="list"
+        style={{ display: headers.length === 0 ? 'none' : 'block' }}
+      >
+        <div className="list__header">
+          <h5>Headers</h5>
         </div>
-      )) }
 
-      { paths.length === 0 ? '' : <h5>Path parameters</h5> }
-
-      { paths.map((parameter: any) => (
-        <div key={ parameter.name } className="list__item">
-          <div className="parameter-details">
-            <span className="pill pill__grey text-bold">{ parameter.name }</span>
-            <span className="parameter-details__type">{ parameter.schema.type }</span>
-            <span className="parameter-details__required">{ parameter.required ? 'Required.' : '' }</span>
+        { headers.map((parameter: any) => (
+          <div key={ parameter.name } className="list__item">
+            <div className="parameter-details">
+              <span className="pill pill__grey text-bold">{ parameter.name }</span>
+              <span className="parameter-details__type">{ parameter.schema.type }</span>
+              <span className="parameter-details__required">{ parameter.required ? 'Required.' : '' }</span>
+            </div>
+            { parameter.description ? <p>{parameter.description}</p> : '' }
           </div>
-          <p>{ parameter.description }</p>
+        )) }
+      </div>
+
+      <div
+        className="list"
+        style={{ display: paths.length === 0 ? 'none' : 'block' }}
+      >
+        <div className="list__header">
+          <h5>Path parameters</h5>
         </div>
-      )) }
 
-      { queries.length === 0 ? '' : <h5>Query parameters</h5> }
-
-      { queries.map((parameter: any) => (
-        <div key={ parameter.name } className="list__item">
-          <div className="parameter-details">
-            <span className="pill pill__grey text-bold">{ parameter.name }</span>
-            <span className="parameter-details__type">{ parameter.schema.type }</span>
-            <span className="parameter-details__required">{ parameter.required ? 'Required.' : '' }</span>
+        { paths.map((parameter: any) => (
+          <div key={ parameter.name } className="list__item">
+            <div className="parameter-details">
+              <span className="pill pill__grey text-bold">{ parameter.name }</span>
+              <span className="parameter-details__type">{ parameter.schema.type }</span>
+              <span className="parameter-details__required">{ parameter.required ? 'Required.' : '' }</span>
+            </div>
+            { parameter.description ? <p>{parameter.description}</p> : '' }
           </div>
-          <p>{ parameter.description }</p>
+        )) }
+      </div>
+
+      <div
+        className="list"
+        style={{ display: queries.length === 0 ? 'none' : 'block' }}
+      >
+        <div className="list__header">
+          <h5>Query parameters</h5>
         </div>
-      )) }
 
-      { Object.keys(bodyParameters).length === 0 ? '' : <h5>Body parameters</h5> }
-
-      { Object.keys(bodyParameters).map((bodyParameter: string) => (
-        <div key={ bodyParameter } className="list__item">
-          <div className="parameter-details">
-            <span className="pill pill__grey text-bold">{ bodyParameter }</span>
-            <span className="parameter-details__type">{ bodyParameters[bodyParameter].type }</span>
-            <span className="parameter-details__required">{ !bodyParameters[bodyParameter].nullable ? 'Required.' : ''  }</span>
+        { queries.map((parameter: any) => (
+          <div key={ parameter.name } className="list__item">
+            <div className="parameter-details">
+              <span className="pill pill__grey text-bold">{ parameter.name }</span>
+              <span className="parameter-details__type">{ parameter.schema.type }</span>
+              <span className="parameter-details__required">{ parameter.required ? 'Required.' : '' }</span>
+            </div>
+            { parameter.description ? <p>{parameter.description}</p> : '' }
           </div>
-          <p>{ bodyParameters[bodyParameter].description }</p>
+        )) }
+      </div>
+
+      <div
+        className="list"
+        style={{ display: Object.keys(bodyParameters).length === 0 ? 'none' : 'block' }}
+      >
+        <div className="list__header">
+          <h5>Body parameters</h5>
         </div>
-      )) }
+
+        { Object.keys(bodyParameters).map((bodyParameter: string) => (
+          <div key={ bodyParameter } className="list__item">
+            <div className="parameter-details">
+              <span className="pill pill__grey text-bold">{ bodyParameter }</span>
+              <span className="parameter-details__type">{ bodyParameters[bodyParameter].type }</span>
+              <span className="parameter-details__required">{ !bodyParameters[bodyParameter].nullable ? 'Required.' : ''  }</span>
+            </div>
+            { bodyParameters[bodyParameter].description ? <p>{bodyParameters[bodyParameter].description}</p> : '' }
+          </div>
+        )) }
+      </div>
     </>
   )
 }
