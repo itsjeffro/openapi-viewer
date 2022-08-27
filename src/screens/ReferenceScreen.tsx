@@ -29,6 +29,10 @@ function ReferenceScreen() {
       </header>
 
       <div className="container">
+        <div className="heading">
+          <h1>{ endpoint.replace('-', ' ') }</h1>
+        </div>
+
         { endpoints.map((endpoint, index: number) => {
           const path = endpoint;
 
