@@ -13,9 +13,11 @@ interface SampleProps {
 const Sample = ({ host, method, defaultPathKey, requestBody }: SampleProps) => {
   const body = !requestBody
     ? null
-    : requestBody.content['application/json'].schema;
+    : requestBody.content['application/json'];
 
-  let example = exampleBuilder(method, host, defaultPathKey, body)
+  const bodySchema = body ? body.schema : null
+
+  let example = exampleBuilder(method, host, defaultPathKey, bodySchema)
 
   return (
     <div className="endpoint-details__method">
