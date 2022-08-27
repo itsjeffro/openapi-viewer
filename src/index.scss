@@ -21,6 +21,11 @@ a {
   color: #0d5ecc;
 }
 
+h1 {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
 h3, h4 {
   margin-bottom: 16px;
 }
@@ -77,6 +82,7 @@ textarea {
   h1 {
     font-size: $font-size-base;
     font-weight: 500;
+    margin: 0;
   }
 }
 
@@ -109,6 +115,10 @@ textarea {
   padding: 30px;
   max-width: 1300px;
   margin: 0 auto;
+}
+
+.heading {
+  text-transform: capitalize;
 }
 
 .section {
