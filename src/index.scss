@@ -1,9 +1,12 @@
 $body-color: #fff;
 
+$sidebar-color: #f6f8fa;
+
 $font-size-base: 1em;
 $font-size-small: .85em;
 
 $border-light-grey: #eaeaea;
+$border-grey: #c9d1dc;
 
 $text-color-primary: #222;
 $text-color-secondary: #464950;
@@ -89,7 +92,7 @@ textarea {
 }
 
 .header {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid $border-light-grey;
   box-shadow: 0 1px 4px rgb(0 0 0 / 10%);
   padding: 20px 30px;
 
@@ -101,8 +104,8 @@ textarea {
 }
 
 .sidebar {
-  background: #f6f8fa;
-  border-right: 1px solid #ddd;
+  background: $sidebar-color;
+  border-right: 1px solid $border-light-grey;
   width: 320px;
   min-width: 320px;
 
@@ -112,7 +115,7 @@ textarea {
   }
 
   &__heading {
-    padding: 25px 20px;
+    padding: 22px 20px;
   }
 
   &__item {
@@ -203,7 +206,7 @@ textarea {
 }
 
 .card {
-  border: 1px solid #c9d1dc;
+  border: 1px solid $border-grey;
   border-radius: 5px;
   overflow: hidden;
   box-shadow: 0 1px 3px rgb(0 0 0 / 4%);
