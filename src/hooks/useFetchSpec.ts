@@ -1,20 +1,20 @@
 import {useContext, useEffect} from "react";
 import axios from "axios";
-import {OpenApiContext} from "../contexts/openApiContext";
+import {StateContext} from "../state/stateProvider";
 
 const useFetchSpec = () => {
-  const { state, dispatch } = useContext(OpenApiContext);
+  const { state, dispatch } = useContext(StateContext);
 
   useEffect(() => {
     const callApi = () => {
-      if (state.openApi !== null) {
+      if (state.openApi.data !== null) {
         return;
       }
 
       axios
         .get('/api/openapi')
         .then(response => {
-          dispatch({type: 'SUCCESS', payload: response.data })
+          dispatch({ type: 'OPEN_API_SUCCESS', payload: response.data })
         });
     }
 
