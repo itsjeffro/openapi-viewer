@@ -1,26 +1,25 @@
-import {useEffect, useState} from "react";
-import {Spec} from "../contracts/SchemaInterace";
+import {useContext, useEffect} from "react";
 import axios from "axios";
+import {OpenApiContext} from "../contexts/openApiContext";
 
 const useFetchSpec = () => {
-  const [data, setData] = useState<Spec>(Object)
-  const [isLoading, setIsLoading] = useState(true);
+  const { state, dispatch } = useContext(OpenApiContext);
 
   useEffect(() => {
-    const callApi = async () => {
-      const api = await axios.get('/api/openapi');
+    const callApi = () => {
+      if (state.openApi !== null) {
+        return;
+      }
 
-      setData(api.data)
-      setIsLoading(false)
+      axios
+        .get('/api/openapi')
+        .then(response => {
+          dispatch({type: 'SUCCESS', payload: response.data })
+        });
     }
 
     callApi();
   }, [])
-
-  return {
-    isLoading,
-    data
-  }
 }
 
 export default useFetchSpec

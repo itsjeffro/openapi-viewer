@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
 import ReferenceScreen from "./screens/ReferenceScreen";
 import Layout from "./components/Layout";
+import OpenApiProvider from "./contexts/openApiContext";
 
 function App() {
   const pages = [
@@ -11,12 +12,14 @@ function App() {
   ]
 
   return (
-    <Layout pages={ pages }>
-      <Routes>
-        <Route path="/" element={<HomeScreen />} />
-        <Route path="/references/:endpoint" element={<ReferenceScreen />} />
-      </Routes>
-    </Layout>
+    <OpenApiProvider>
+      <Layout pages={ pages }>
+        <Routes>
+          <Route path="/" element={<HomeScreen />} />
+          <Route path="/references/:endpoint" element={<ReferenceScreen />} />
+        </Routes>
+      </Layout>
+    </OpenApiProvider>
   )
 }
 

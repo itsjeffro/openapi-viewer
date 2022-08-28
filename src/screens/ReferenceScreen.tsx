@@ -4,13 +4,17 @@ import Sample from "./../components/Sample";
 import {useParams} from "react-router-dom";
 import useFetchSpec from "../hooks/useFetchSpec";
 import {filterByTag} from "../lib/paths";
+import {useContext} from "react";
+import {OpenApiContext} from "../contexts/openApiContext";
 
 function ReferenceScreen() {
   let { endpoint } = useParams();
 
-  const { isLoading, data } = useFetchSpec();
+  const { state } = useContext(OpenApiContext);
 
-  if (isLoading) {
+  useFetchSpec();
+
+  if (state.isFetching) {
     return (
       <header className="header">
         <h1>Loading...</h1>
@@ -19,14 +23,14 @@ function ReferenceScreen() {
   }
 
   const tag = endpoint || '';
-  const host = data.servers[0].url;
+  const host = state.openApi.servers[0].url;
 
-  const endpoints = filterByTag(data, tag);
+  const endpoints = filterByTag(state.openApi, tag);
 
   return (
     <>
       <header className="header">
-        <h1>{ data.info.title } \ References</h1>
+        <h1>{ state.openApi.info.title } \ References</h1>
       </header>
 
       <div className="container">
