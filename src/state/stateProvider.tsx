@@ -1,30 +1,47 @@
-import React, {Reducer, useReducer} from "react";
+import React, {useReducer} from "react";
 
-// State
+// State and reducer
 
 interface StateInterface {
-  openApi: any
-  isFetching?: boolean
+  openApi: {
+    isFetching: boolean
+    data: any
+  }
 }
 
-const initialState: StateInterface = {
-  openApi: null,
-  isFetching: true
-};
-
-// Reducer
-
 interface ActionInterface {
-  type: 'REQUEST' | 'SUCCESS'
+  type: 'OPEN_API_REQUEST' | 'OPEN_API_SUCCESS'
   payload: StateInterface
 }
 
-const reducer = (state: StateInterface, action: ActionInterface): StateInterface => {
+const initialState: StateInterface = {
+  openApi: {
+    isFetching: true,
+    data: null
+  }
+};
+
+export const reducer = (state: StateInterface, action: ActionInterface): StateInterface => {
   switch (action.type) {
-    case 'REQUEST':
-      return { ...state, isFetching: true }
-    case 'SUCCESS':
-      return { isFetching: false, openApi: action.payload }
+    case 'OPEN_API_REQUEST':
+      return {
+        ...state,
+        openApi: {
+          ...state.openApi,
+          isFetching: true,
+        }
+      }
+
+    case 'OPEN_API_SUCCESS':
+      return {
+        ...state,
+        openApi: {
+          ...state.openApi,
+          isFetching: false,
+          data: action.payload,
+        }
+      }
+
     default:
       return state
   }
@@ -41,19 +58,19 @@ interface Props {
   children: any
 }
 
-const OpenApiProvider: React.FC<any> = (props: Props) => {
+const StateProvider: React.FC<any> = (props: Props) => {
   const [state, dispatch] = useReducer(
     reducer as any,
     initialState as any
   );
 
   return (
-    <OpenApiContext.Provider value={{ state, dispatch }}>
+    <StateContext.Provider value={{ state, dispatch }}>
       {props.children}
-    </OpenApiContext.Provider>
+    </StateContext.Provider>
   )
 };
 
-export const OpenApiContext = React.createContext<Context>({} as any);
+export const StateContext = React.createContext<Context>({} as any);
 
-export default OpenApiProvider
+export default StateProvider
