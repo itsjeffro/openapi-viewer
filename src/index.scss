@@ -39,7 +39,7 @@ a {
 
 h1 {
   font-size: 30px;
-  margin-bottom: 20px;
+  margin: 20px 0;
 }
 
 h3,
@@ -68,6 +68,7 @@ hr {
 
 ul {
   padding-left: 1rem;
+  margin: .5em 0 1em;
 }
 
 button,
@@ -139,7 +140,8 @@ textarea {
 }
 
 .section {
-  padding-bottom: 60px;
+  padding-bottom: 30px;
+  padding-top: 30px;
 
   h2 {
     border-bottom: 2px solid $border-light-grey;
