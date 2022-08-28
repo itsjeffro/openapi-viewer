@@ -5,16 +5,16 @@ import {useParams} from "react-router-dom";
 import useFetchSpec from "../hooks/useFetchSpec";
 import {filterByTag} from "../lib/paths";
 import {useContext} from "react";
-import {OpenApiContext} from "../contexts/openApiContext";
+import {StateContext} from "../state/stateProvider";
 
 function ReferenceScreen() {
   let { endpoint } = useParams();
 
-  const { state } = useContext(OpenApiContext);
+  const { state } = useContext(StateContext);
 
   useFetchSpec();
 
-  if (state.isFetching) {
+  if (state.openApi.isFetching) {
     return (
       <header className="header">
         <h1>Loading...</h1>
@@ -23,14 +23,15 @@ function ReferenceScreen() {
   }
 
   const tag = endpoint || '';
-  const host = state.openApi.servers[0].url;
+  const openApi = state.openApi.data;
+  const host = openApi.servers[0].url;
 
-  const endpoints = filterByTag(state.openApi, tag);
+  const endpoints = filterByTag(openApi, tag);
 
   return (
     <>
       <header className="header">
-        <h1>{ state.openApi.info.title } \ References</h1>
+        <h1>{ openApi.info.title } \ References</h1>
       </header>
 
       <div className="container">
@@ -38,12 +39,24 @@ function ReferenceScreen() {
           <h1>{ tag.replace('-', ' ') }</h1>
         </div>
 
+        On this page:
+
+        <ul>
+          { endpoints.map(endpoint => (
+            <li>
+              <a
+                href={ `#${endpoint.summary.replaceAll(' ', '-')}` }
+                title={ `Go to ${endpoint.summary}` }
+              >{ endpoint.summary }</a></li>
+          ))}
+        </ul>
+
         { endpoints.map((endpoint, index: number) => {
           const path = endpoint;
 
           return (
             <div key={ `method-${index}` } className="section">
-              <h2>{ path.summary }</h2>
+              <h2 id={ path.summary.replaceAll(' ', '-') }>{ path.summary }</h2>
 
               <div className="endpoint-details">
                 <div className="endpoint-details__parameters">

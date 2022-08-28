@@ -1,13 +1,13 @@
 import useFetchSpec from "../hooks/useFetchSpec";
 import {useContext} from "react";
-import {OpenApiContext} from "../contexts/openApiContext";
+import {StateContext} from "../state/stateProvider";
 
 const HomeScreen = () => {
-  const { state } = useContext(OpenApiContext);
+  const { state } = useContext(StateContext);
 
   useFetchSpec();
 
-  if (state.isFetching) {
+  if (state.openApi.isFetching) {
     return (
       <header className="header">
         <h1>Loading...</h1>
@@ -15,24 +15,26 @@ const HomeScreen = () => {
     )
   }
 
+  const openApi = state.openApi.data;
+
   return (
     <>
       <header className="header">
-        <h1>{ state.openApi.info.title }</h1>
+        <h1>{ openApi.info.title }</h1>
       </header>
 
       <div className="container">
         <div className="section">
           <h2>Introduction</h2>
 
-          <p>{ state.openApi.info.description }</p>
+          <p>{ openApi.info.description }</p>
         </div>
 
         <div className="section">
           <h2>Servers</h2>
 
           <ul>
-            { state.openApi.servers.map((server: any, index: number) => (
+            { openApi.servers.map((server: any, index: number) => (
               <li key={ `server-${index}` }>
                 { server.url }
               </li>
