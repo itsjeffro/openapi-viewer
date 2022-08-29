@@ -1,4 +1,4 @@
-import {groupParams} from "../lib/parameters";
+import {groupParams} from "../../../lib/parameters";
 import ParameterDetails from "./ParameterDetails";
 import EnumList from "./EnumList";
 

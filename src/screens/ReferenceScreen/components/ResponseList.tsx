@@ -1,8 +1,8 @@
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import schemaParser from "../lib/schemaParser";
+import schemaParser from "../../../lib/schemaParser";
 import {useState} from "react";
-import {Card, CardHeader} from '../components/Card'
-import * as styles from "../styles";
+import {Card, CardHeader} from '../../../components/Card'
+import * as styles from "../../../styles";
 
 const ResponseList = ({ responseBody }: any) => {
   const responses = Object.keys(responseBody.responses).map((httpCode: string) => {
