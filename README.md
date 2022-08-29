@@ -2,6 +2,8 @@
 
 Parses and displays an open api spec in a nice little UI.
 
+* Supports OpenApi 3.0.*
+
 ## Built using
 
 - Vite
