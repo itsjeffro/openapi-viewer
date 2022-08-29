@@ -4,12 +4,12 @@ import HomeScreen from "./screens/HomeScreen";
 import ReferenceScreen from "./screens/ReferenceScreen";
 import Layout from "./components/Layout";
 import StateProvider from "./state/stateProvider";
+import routes from "./lib/routes";
 
 function App() {
-  const pages = [
-    { tag: 'csrf-token', name: 'Csrf Token' },
-    { tag: 'legal-entity', name: 'Legal Entity' },
-  ]
+  const pages = Object.keys(routes).map((route) => {
+    return { tag: route, name: routes[route].name }
+  })
 
   return (
     <StateProvider>
