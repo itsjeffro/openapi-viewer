@@ -72,16 +72,15 @@ function ReferenceScreen() {
 
         { endpoints.map((endpoint, index: number) => {
           const endpointSummary = endpoint.summary || `${endpoint.method} ${endpoint.path}`;
+          const headingId = endpointSummary.replaceAll(' ', '-');
 
           return (
             <div key={ `method-${index}` } className="section">
-              <h2 id={ endpointSummary.replaceAll(' ', '-') }>{ endpointSummary }</h2>
+              <h2 id={ headingId }>{ endpointSummary }</h2>
 
               <div className="endpoint-details">
                 <div className="endpoint-details__parameters">
                   <p className="endpoint-details__description">{ endpoint.description }</p>
-
-                  <h4>Parameters</h4>
 
                   <ParametersList
                     requestBody={ endpoint.requestBody }
@@ -90,8 +89,6 @@ function ReferenceScreen() {
                 </div>
 
                 <div className="endpoint-details__samples">
-                  <h4>Code samples</h4>
-
                   <Sample
                     host={ host }
                     method={ endpoint.method }
@@ -99,9 +96,9 @@ function ReferenceScreen() {
                     requestBody={ endpoint.requestBody }
                   />
 
-                  <h5>Responses</h5>
-
-                  <ResponseList responseBody={ endpoint }/>
+                  <ResponseList
+                    responseBody={ endpoint }
+                  />
                 </div>
               </div>
             </div>

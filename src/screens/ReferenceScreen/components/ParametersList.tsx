@@ -15,6 +15,8 @@ const ParametersList = ({ requestBody, parameters }: any) => {
 
   return (
     <>
+      <h4>Parameters</h4>
+
       <ParameterDetails
         heading="Headers"
         parameters={ headers }

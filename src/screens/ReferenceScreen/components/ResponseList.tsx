@@ -21,76 +21,80 @@ const ResponseList = ({ responseBody }: any) => {
   const [selectedResponseTab, setSelectedResponseTab] = useState('example')
 
   return (
-    <div className="endpoint-details__response">
-      <Card>
-        <div className="card__header card__nav">
-          <button
-            className={ `card__nav-tab ${selectedResponseTab === 'example' ? 'active' : ''}` }
-            onClick={ () => setSelectedResponseTab('example') }
-          >Example response</button>
-          <button
-            className={ `card__nav-tab ${selectedResponseTab !== 'example' ? 'active' : ''}` }
-            onClick={ () => setSelectedResponseTab('schema') }
-          >Response schema</button>
-        </div>
+    <>
+      <h5>Responses</h5>
 
-        <CardHeader>
-          <span className="label__http-code">Status:</span>
-          <select
-            className="form-input"
-            onChange={ (e) => setSelectedHttpCode(e.target.value) }
+      <div className="endpoint-details__response">
+        <Card>
+          <div className="card__header card__nav">
+            <button
+              className={ `card__nav-tab ${selectedResponseTab === 'example' ? 'active' : ''}` }
+              onClick={ () => setSelectedResponseTab('example') }
+            >Example response</button>
+            <button
+              className={ `card__nav-tab ${selectedResponseTab !== 'example' ? 'active' : ''}` }
+              onClick={ () => setSelectedResponseTab('schema') }
+            >Response schema</button>
+          </div>
+
+          <CardHeader>
+            <span className="label__http-code">Status:</span>
+            <select
+              className="form-input"
+              onChange={ (e) => setSelectedHttpCode(e.target.value) }
+            >
+              { responseHttpCodes.map((responseHttpCode) => (
+                <option key={ responseHttpCode } value={ responseHttpCode }>{ responseHttpCode }</option>
+              )) }
+            </select>
+          </CardHeader>
+
+          <div
+            style={{ display: selectedResponseTab !== 'example' ? 'block' : 'none' }}
           >
-            { responseHttpCodes.map((responseHttpCode) => (
-              <option key={ responseHttpCode } value={ responseHttpCode }>{ responseHttpCode }</option>
-            )) }
-          </select>
-        </CardHeader>
+            { responses.map((response) => {
+              const display = selectedHttpCode === response.httpCode ? 'block' : 'none';
 
-        <div
-          style={{ display: selectedResponseTab !== 'example' ? 'block' : 'none' }}
-        >
-          { responses.map((response) => {
-            const display = selectedHttpCode === response.httpCode ? 'block' : 'none';
+              return (
+                <div
+                  key={ `schema-${response.httpCode}` }
+                  style={ { display: display } }
+                >
+                  <SyntaxHighlighter language="json" customStyle={ styles.highlighter }>
+                    { JSON.stringify(response.schema, null, 4) }
+                  </SyntaxHighlighter>
+                </div>
+              )
+            }) }
+          </div>
 
-            return (
-              <div
-                key={ `schema-${response.httpCode}` }
-                style={ { display: display } }
-              >
-                <SyntaxHighlighter language="json" customStyle={ styles.highlighter }>
-                  { JSON.stringify(response.schema, null, 4) }
-                </SyntaxHighlighter>
-              </div>
-            )
-          }) }
-        </div>
+          <div
+            style={{ display: selectedResponseTab === 'example' ? 'block' : 'none' }}
+          >
+            { responses.map((response) => {
+              const display = selectedHttpCode === response.httpCode ? 'block' : 'none';
 
-        <div
-          style={{ display: selectedResponseTab === 'example' ? 'block' : 'none' }}
-        >
-          { responses.map((response) => {
-            const display = selectedHttpCode === response.httpCode ? 'block' : 'none';
+              let example = schemaParser(response.schema || {});
 
-            let example = schemaParser(response.schema || {});
+              if (!example) {
+                example = response.description
+              }
 
-            if (!example) {
-              example = response.description
-            }
-
-            return (
-              <div
-                key={ `section-${response.httpCode}` }
-                style={ { display: display } }
-              >
-                <SyntaxHighlighter language="json" customStyle={ styles.highlighter }>
-                  { JSON.stringify(example, null, 4) }
-                </SyntaxHighlighter>
-              </div>
-            )
-          }) }
-        </div>
-      </Card>
-    </div>
+              return (
+                <div
+                  key={ `section-${response.httpCode}` }
+                  style={ { display: display } }
+                >
+                  <SyntaxHighlighter language="json" customStyle={ styles.highlighter }>
+                    { JSON.stringify(example, null, 4) }
+                  </SyntaxHighlighter>
+                </div>
+              )
+            }) }
+          </div>
+        </Card>
+      </div>
+    </>
   )
 }
 
