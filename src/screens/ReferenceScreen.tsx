@@ -6,6 +6,7 @@ import useFetchSpec from "../hooks/useFetchSpec";
 import {filterByTag} from "../lib/paths";
 import {useContext} from "react";
 import {StateContext} from "../state/stateProvider";
+import routes from "../lib/routes";
 
 function ReferenceScreen() {
   let { endpoint } = useParams();
@@ -26,6 +27,11 @@ function ReferenceScreen() {
   const openApi = state.openApi.data;
   const host = openApi.servers[0].url;
 
+  const tags = (openApi.tags || []).filter((tag: any) => {
+    return tag.name === endpoint
+  });
+
+  const description = tags.length > 0 ? tags[0].description : null;
   const endpoints = filterByTag(openApi, tag);
 
   return (
@@ -35,21 +41,29 @@ function ReferenceScreen() {
       </header>
 
       <div className="container">
-        <div className="heading">
-          <h1>{ tag.replace('-', ' ') }</h1>
+        <div className="section">
+          <h1>{ routes[tag].name }</h1>
+
+          <div className="endpoint-general">
+            { !description ? '' : <div className="endpoint-general__description">
+              <p>{ description }</p>
+            </div> }
+
+            <div className="endpoint-general__on-this-page">
+              <p>On this page:</p>
+
+              <ul>
+                { endpoints.map((endpoint, index: number) => (
+                  <li key={ `on-this-page-${index}` }>
+                    <a
+                      href={ `#${endpoint.summary.replaceAll(' ', '-')}` }
+                      title={ `Go to ${endpoint.summary}` }
+                    >{ endpoint.summary }</a></li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
-
-        On this page:
-
-        <ul>
-          { endpoints.map(endpoint => (
-            <li>
-              <a
-                href={ `#${endpoint.summary.replaceAll(' ', '-')}` }
-                title={ `Go to ${endpoint.summary}` }
-              >{ endpoint.summary }</a></li>
-          ))}
-        </ul>
 
         { endpoints.map((endpoint, index: number) => {
           const path = endpoint;
