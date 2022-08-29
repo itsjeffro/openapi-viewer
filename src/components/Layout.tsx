@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 interface PageInterface {
   tag: string
@@ -22,7 +22,7 @@ const Layout = (props: LayoutProps) => {
 
         <ul>
           <li className="sidebar__item">
-            <Link to={ `/` }>Home</Link>
+            <NavLink to={ `/` }>Home</NavLink>
           </li>
         </ul>
 
@@ -34,7 +34,10 @@ const Layout = (props: LayoutProps) => {
           </li>
           { pages.map((page) => (
             <li key={ `path-${page.tag}` } className="sidebar__item">
-              <Link to={ `/references/${page.tag}` }>{ page.name }</Link>
+              <NavLink
+                className={({ isActive }) => isActive ? 'active' : '' }
+                to={ `/references/${page.tag}` }
+              >{ page.name }</NavLink>
             </li>
           )) }
         </ul>
