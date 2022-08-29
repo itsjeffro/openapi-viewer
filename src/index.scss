@@ -20,6 +20,8 @@ $link-color: #0d5ecc;
   box-sizing: content-box;
 }
 
+/** normalised **/
+
 html,
 body {
   height: 100%;
@@ -39,7 +41,7 @@ a {
 
 h1 {
   font-size: 30px;
-  margin: 20px 0;
+  margin-bottom: 15px;
 }
 
 h3,
@@ -67,8 +69,12 @@ hr {
 }
 
 ul {
-  padding-left: 1rem;
-  margin: .5em 0 1em;
+  padding-left: 1em;
+  margin: .5em 0;
+}
+
+li {
+  padding: 0.2em 0;
 }
 
 button,
@@ -79,7 +85,7 @@ textarea {
   font-size: $font-size-base;
 }
 
-/** **/
+/** ui **/
 
 #root {
   display: flex;
@@ -115,38 +121,45 @@ textarea {
     margin: 10px 0;
   }
 
+  li {
+    margin: 0;
+    padding: 0
+  }
+
   &__heading {
     padding: 22px 20px;
   }
 
-  &__item {
+  h5 {
     padding: 10px 20px;
   }
 
   a {
     text-decoration: none;
     display: block;
+    padding: 10px 20px;
+
+    &:hover {
+      background: rgba(0,0,0,.02);
+    }
+
+    &.active {
+      background: rgba(0,0,0,.05);
+    }
   }
 }
 
-.container {
-  padding: 30px;
-  max-width: 1300px;
-  margin: 0 auto;
-}
+.endpoint-general {
+  display: flex;
 
-.heading {
-  text-transform: capitalize;
-}
+  &__description {
+    flex: 1;
+    padding-right: 80px;
+    font-size: 1.1em;
+  }
 
-.section {
-  padding-bottom: 30px;
-  padding-top: 30px;
-
-  h2 {
-    border-bottom: 2px solid $border-light-grey;
-    padding-bottom: 30px;
-    margin-bottom: 30px;
+  &__on-this-page {
+    width: 580px;
   }
 }
 
@@ -177,7 +190,7 @@ textarea {
 
 .endpoint-details__parameters {
   h5 {
-    margin: 0.85rem 0 0.5rem;
+    margin: 0.85em 0 0.5em;
   }
 
   .list__item p {
@@ -206,6 +219,29 @@ textarea {
   }
   &__required {
     color: #d63a07;
+  }
+}
+
+.label__http-code {
+  margin-right: 10px;
+}
+
+/** reusable components **/
+
+.container {
+  padding: 0 30px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.section {
+  padding-bottom: 30px;
+  padding-top: 30px;
+
+  h2 {
+    border-bottom: 2px solid $border-light-grey;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
   }
 }
 
@@ -258,7 +294,7 @@ textarea {
     font-family: monospace;
     font-size: $font-size-small;
     background: #f6f8fa;
-    line-height: 1.2rem;
+    line-height: 1.2em;
     padding: 10px 15px;
   }
 }
@@ -282,15 +318,9 @@ textarea {
   }
 }
 
-.text {
-  &-bold {
-    font-weight: 500;
-  }
-}
-
 .pill {
   padding: 1px 9px;
-  line-height: 1.5rem;
+  line-height: 1.5em;
   display: inline-block;
   border-radius: 5px;
   font-size: $font-size-small;
@@ -305,12 +335,16 @@ textarea {
   }
 }
 
-.label__http-code {
-  margin-right: 10px;
-}
-
 .form-input {
   border: 1px solid #ddd;
   padding: 5px 8px;
   border-radius: 4px;
+}
+
+/** utilities **/
+
+.text {
+  &-bold {
+    font-weight: 500;
+  }
 }
