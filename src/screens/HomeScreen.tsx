@@ -1,6 +1,9 @@
 import useFetchSpec from "../hooks/useFetchSpec";
 import {useContext} from "react";
 import {StateContext} from "../state/stateProvider";
+import Container from "../components/Container";
+import Section from "../components/Section";
+import Header from "../components/Header";
 
 const HomeScreen = () => {
   const { state } = useContext(StateContext);
@@ -9,9 +12,9 @@ const HomeScreen = () => {
 
   if (state.openApi.isFetching) {
     return (
-      <header className="header">
+      <Header>
         <h1>Loading...</h1>
-      </header>
+      </Header>
     )
   }
 
@@ -19,18 +22,18 @@ const HomeScreen = () => {
 
   return (
     <>
-      <header className="header">
+      <Header>
         <h1>{ openApi.info.title }</h1>
-      </header>
+      </Header>
 
-      <div className="container">
-        <div className="section">
+      <Container>
+        <Section>
           <h2>Introduction</h2>
 
           <p>{ openApi.info.description }</p>
-        </div>
+        </Section>
 
-        <div className="section">
+        <Section>
           <h2>Servers</h2>
 
           <ul>
@@ -40,8 +43,8 @@ const HomeScreen = () => {
               </li>
             ))}
           </ul>
-        </div>
-      </div>
+        </Section>
+      </Container>
     </>
   )
 }

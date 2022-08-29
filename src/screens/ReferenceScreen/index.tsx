@@ -7,6 +7,9 @@ import {filterByTag} from "../../lib/paths";
 import {useContext} from "react";
 import {StateContext} from "../../state/stateProvider";
 import routes from "../../lib/routes";
+import Container from "../../components/Container";
+import Section from "../../components/Section";
+import Header from "../../components/Header";
 
 function ReferenceScreen() {
   let { endpoint } = useParams();
@@ -17,9 +20,9 @@ function ReferenceScreen() {
 
   if (state.openApi.isFetching) {
     return (
-      <header className="header">
+      <Header>
         <h1>Loading...</h1>
-      </header>
+      </Header>
     )
   }
 
@@ -36,12 +39,12 @@ function ReferenceScreen() {
 
   return (
     <>
-      <header className="header">
+      <Header>
         <h1>{ openApi.info.title } \ References</h1>
-      </header>
+      </Header>
 
-      <div className="container">
-        <div className="section">
+      <Container>
+        <Section>
           <h1>{ routes[tag].name }</h1>
 
           <div className="endpoint-general">
@@ -68,14 +71,14 @@ function ReferenceScreen() {
               </ul>
             </div>
           </div>
-        </div>
+        </Section>
 
         { endpoints.map((endpoint, index: number) => {
           const endpointSummary = endpoint.summary || `${endpoint.method} ${endpoint.path}`;
           const headingId = endpointSummary.replaceAll(' ', '-');
 
           return (
-            <div key={ `method-${index}` } className="section">
+            <Section key={ `method-${index}` }>
               <h2 id={ headingId }>{ endpointSummary }</h2>
 
               <div className="endpoint-details">
@@ -101,10 +104,10 @@ function ReferenceScreen() {
                   />
                 </div>
               </div>
-            </div>
+            </Section>
           )
         }) }
-      </div>
+      </Container>
     </>
   )
 }
