@@ -1,12 +1,12 @@
-import ParametersList from "./../components/ParametersList";
-import ResponseList from "./../components/ResponseList";
-import Sample from "./../components/Sample";
+import ParametersList from "./../../components/ParametersList";
+import ResponseList from "./../../components/ResponseList";
+import Sample from "./../../components/Sample";
 import {useParams} from "react-router-dom";
-import useFetchSpec from "../hooks/useFetchSpec";
-import {filterByTag} from "../lib/paths";
+import useFetchSpec from "../../hooks/useFetchSpec";
+import {filterByTag} from "../../lib/paths";
 import {useContext} from "react";
-import {StateContext} from "../state/stateProvider";
-import routes from "../lib/routes";
+import {StateContext} from "../../state/stateProvider";
+import routes from "../../lib/routes";
 
 function ReferenceScreen() {
   let { endpoint } = useParams();
@@ -53,34 +53,39 @@ function ReferenceScreen() {
               <p>On this page:</p>
 
               <ul>
-                { endpoints.map((endpoint, index: number) => (
-                  <li key={ `on-this-page-${index}` }>
-                    <a
-                      href={ `#${endpoint.summary.replaceAll(' ', '-')}` }
-                      title={ `Go to ${endpoint.summary}` }
-                    >{ endpoint.summary }</a></li>
-                ))}
+                { endpoints.map((endpoint, index: number) => {
+                  const endpointSummary = endpoint.summary || `${endpoint.method.toUpperCase()} ${endpoint.path}`;
+
+                  return (
+                    <li key={`on-this-page-${index}`}>
+                      <a
+                        href={`#${endpointSummary.replaceAll(' ', '-')}`}
+                        title={`Go to ${endpointSummary}`}
+                      >{endpointSummary}</a>
+                    </li>
+                  )
+                })}
               </ul>
             </div>
           </div>
         </div>
 
         { endpoints.map((endpoint, index: number) => {
-          const path = endpoint;
+          const endpointSummary = endpoint.summary || `${endpoint.method} ${endpoint.path}`;
 
           return (
             <div key={ `method-${index}` } className="section">
-              <h2 id={ path.summary.replaceAll(' ', '-') }>{ path.summary }</h2>
+              <h2 id={ endpointSummary.replaceAll(' ', '-') }>{ endpointSummary }</h2>
 
               <div className="endpoint-details">
                 <div className="endpoint-details__parameters">
-                  <p className="endpoint-details__description">{ path.description }</p>
+                  <p className="endpoint-details__description">{ endpoint.description }</p>
 
                   <h4>Parameters</h4>
 
                   <ParametersList
-                    requestBody={ path.requestBody }
-                    parameters={ path.parameters }
+                    requestBody={ endpoint.requestBody }
+                    parameters={ endpoint.parameters }
                   />
                 </div>
 
@@ -91,12 +96,12 @@ function ReferenceScreen() {
                     host={ host }
                     method={ endpoint.method }
                     defaultPathKey={ endpoint.path }
-                    requestBody={ path.requestBody }
+                    requestBody={ endpoint.requestBody }
                   />
 
                   <h5>Responses</h5>
 
-                  <ResponseList responseBody={ path }/>
+                  <ResponseList responseBody={ endpoint }/>
                 </div>
               </div>
             </div>
