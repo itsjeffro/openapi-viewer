@@ -1,4 +1,6 @@
 import {groupParams} from "../lib/parameters";
+import ParameterDetails from "./ParameterDetails";
+import EnumList from "./EnumList";
 
 const ParametersList = ({ requestBody, parameters }: any) => {
   const bodyContent = !requestBody
@@ -13,65 +15,20 @@ const ParametersList = ({ requestBody, parameters }: any) => {
 
   return (
     <>
-      <div
-        className="list"
-        style={{ display: headers.length === 0 ? 'none' : 'block' }}
-      >
-        <div className="list__header">
-          <h5>Headers</h5>
-        </div>
+      <ParameterDetails
+        heading="Headers"
+        parameters={ headers }
+      />
 
-        { headers.map((parameter: any) => (
-          <div key={ parameter.name } className="list__item">
-            <div className="parameter-details">
-              <span className="pill pill__grey text-bold">{ parameter.name }</span>
-              <span className="parameter-details__type">{ parameter.schema.type }</span>
-              <span className="parameter-details__required">{ parameter.required ? 'Required.' : '' }</span>
-            </div>
-            { parameter.description ? <p>{parameter.description}</p> : '' }
-          </div>
-        )) }
-      </div>
+      <ParameterDetails
+        heading="Path parameters"
+        parameters={ paths }
+      />
 
-      <div
-        className="list"
-        style={{ display: paths.length === 0 ? 'none' : 'block' }}
-      >
-        <div className="list__header">
-          <h5>Path parameters</h5>
-        </div>
-
-        { paths.map((parameter: any) => (
-          <div key={ parameter.name } className="list__item">
-            <div className="parameter-details">
-              <span className="pill pill__grey text-bold">{ parameter.name }</span>
-              <span className="parameter-details__type">{ parameter.schema.type }</span>
-              <span className="parameter-details__required">{ parameter.required ? 'Required.' : '' }</span>
-            </div>
-            { parameter.description ? <p>{parameter.description}</p> : '' }
-          </div>
-        )) }
-      </div>
-
-      <div
-        className="list"
-        style={{ display: queries.length === 0 ? 'none' : 'block' }}
-      >
-        <div className="list__header">
-          <h5>Query parameters</h5>
-        </div>
-
-        { queries.map((parameter: any) => (
-          <div key={ parameter.name } className="list__item">
-            <div className="parameter-details">
-              <span className="pill pill__grey text-bold">{ parameter.name }</span>
-              <span className="parameter-details__type">{ parameter.schema.type }</span>
-              <span className="parameter-details__required">{ parameter.required ? 'Required.' : '' }</span>
-            </div>
-            { parameter.description ? <p>{parameter.description}</p> : '' }
-          </div>
-        )) }
-      </div>
+      <ParameterDetails
+        heading="Query parameters"
+        parameters={ queries }
+      />
 
       <div
         className="list"
@@ -90,7 +47,7 @@ const ParametersList = ({ requestBody, parameters }: any) => {
             </div>
             { bodyParameters[bodyParameter].description ? <p>{bodyParameters[bodyParameter].description}</p> : '' }
             { bodyParameters[bodyParameter].enum
-              ? <p>Options: {bodyParameters[bodyParameter].enum.join(', ')}</p>
+              ? <EnumList enums={ bodyParameters[bodyParameter].enum } />
               : '' }
           </div>
         )) }
