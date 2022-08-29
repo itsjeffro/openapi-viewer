@@ -3,8 +3,10 @@ import path from "path";
 import fs from "fs";
 import { createServer as createViteServer } from "vite";
 import SwaggerParser from "@apidevtools/swagger-parser";
+import 'dotenv/config'
+import config from "./config";
 
-async function createServer(isProd = process.env.NODE_ENV === "production") {
+async function createServer(isProd: boolean) {
   const app = express()
 
   let vite;
@@ -24,7 +26,7 @@ async function createServer(isProd = process.env.NODE_ENV === "production") {
   }
 
   app.get('/api/openapi', async (req, res) => {
-    const yaml = path.join(__dirname, 'storage/openapi/test.yml');
+    const yaml = path.join(__dirname, config.storage.openapi);
 
     let api = await SwaggerParser.validate(yaml);
 
@@ -58,8 +60,10 @@ async function createServer(isProd = process.env.NODE_ENV === "production") {
   })
 
   app.listen(5173, () => {
-    console.log(`Listening on port http://localhost:5173`)
+    console.log(`Listening on port http://localhost:5173 ${config.env}`)
   })
 }
 
-createServer()
+createServer(
+  config.env === "production"
+)
