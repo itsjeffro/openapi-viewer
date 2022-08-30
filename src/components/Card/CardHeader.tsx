@@ -1,3 +1,5 @@
+import React from "react";
+
 interface CardHeaderProps {
   children: React.ReactNode
 }

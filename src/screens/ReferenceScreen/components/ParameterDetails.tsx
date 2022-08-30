@@ -1,4 +1,5 @@
 import EnumList from "./EnumList";
+import {List, ListHeader, ListItem} from "../../../components/List";
 
 interface ParameterDetailsProps {
   heading: string
@@ -7,16 +8,13 @@ interface ParameterDetailsProps {
 
 const ParameterDetails = ({ heading, parameters }: ParameterDetailsProps) => {
   return (
-    <div
-      className="list"
-      style={{ display: parameters.length === 0 ? 'none' : 'block' }}
-    >
-      <div className="list__header">
+    <List style={{ display: parameters.length === 0 ? 'none' : 'block' }}>
+      <ListHeader>
         <h5>{ heading }</h5>
-      </div>
+      </ListHeader>
 
       { parameters.map((parameter: any) => (
-        <div key={ parameter.name } className="list__item">
+        <ListItem key={ parameter.name }>
           <div className="parameter-details">
             <span className="pill pill__grey text-bold">{ parameter.name }</span>
             <span className="parameter-details__type">{ parameter.schema.type }</span>
@@ -25,12 +23,10 @@ const ParameterDetails = ({ heading, parameters }: ParameterDetailsProps) => {
 
           { parameter.description ? <p>{parameter.description}</p> : '' }
 
-          { parameter.schema.enum
-            ? <EnumList enums={ parameter.schema.enum } />
-            : '' }
-        </div>
+          { parameter.schema.enum ? <EnumList enums={ parameter.schema.enum } /> : '' }
+        </ListItem>
       )) }
-    </div>
+    </List>
   )
 }
 
