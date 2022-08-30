@@ -20,20 +20,14 @@ const Sample = ({ host, method, defaultPathKey, requestBody }: SampleProps) => {
   let example = exampleBuilder(method, host, defaultPathKey, bodySchema)
 
   return (
-    <>
-      <h4>Code samples</h4>
-
-      <div className="endpoint-details__method">
-        <Card>
-          <CardHeader>
-            <span className="pill pill__blue text-bold">{ method }</span> { defaultPathKey }
-          </CardHeader>
-          <SyntaxHighlighter language="bash" customStyle={ styles.highlighter }>
-            { example }
-          </SyntaxHighlighter>
-        </Card>
-      </div>
-    </>
+      <Card>
+        <CardHeader>
+          <span className="pill pill__blue text-bold">{ method }</span> { defaultPathKey }
+        </CardHeader>
+        <SyntaxHighlighter language="bash" customStyle={ styles.highlighter }>
+          { example }
+        </SyntaxHighlighter>
+      </Card>
   )
 }
 
