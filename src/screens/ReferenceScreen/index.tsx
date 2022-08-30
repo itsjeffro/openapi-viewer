@@ -1,19 +1,23 @@
-import ParametersList from "./components/ParametersList";
 import ResponseList from "./components/ResponseList";
 import Sample from "./components/Sample";
 import {useParams} from "react-router-dom";
 import useFetchSpec from "../../hooks/useFetchSpec";
-import {filterByTag} from "../../lib/paths";
 import {useContext} from "react";
 import {StateContext} from "../../state/stateProvider";
 import routes from "../../lib/routes";
 import Container from "../../components/Container";
 import Section from "../../components/Section";
 import Header from "../../components/Header";
+import OpenApi from "../../lib/OpenApi";
+import {Path} from "../../lib/OpenApi/Paths";
+import GeneralOnThisPage from "./components/GeneralOnThisPage";
+import GeneralDescription from "./components/GeneralDescription";
+import {groupParams} from "../../lib/parameters";
+import ParameterDetails from "./components/ParameterDetails";
+import BodyDetails from "./components/BodyDetails";
 
 function ReferenceScreen() {
-  let { endpoint } = useParams();
-
+  const { endpoint } = useParams();
   const { state } = useContext(StateContext);
 
   useFetchSpec();
@@ -26,82 +30,88 @@ function ReferenceScreen() {
     )
   }
 
-  const tag = endpoint || '';
-  const openApi = state.openApi.data;
-  const host = openApi.servers[0].url;
+  const tagName = endpoint || '';
+  const openApi = new OpenApi(state.openApi.data)
 
-  const tags = (openApi.tags || []).filter((tag: any) => {
-    return tag.name === endpoint
-  });
-
-  const description = tags.length > 0 ? tags[0].description : null;
-  const endpoints = filterByTag(openApi, tag);
+  const server = openApi.servers().first();
+  const tag = openApi.tags().filterByName(tagName).first();
+  const paths = openApi.paths().filterByTagName(tagName).get();
 
   return (
     <>
       <Header>
-        <h1>{ openApi.info.title } \ References</h1>
+        <h1>{ openApi.info().title } \ References</h1>
       </Header>
 
       <Container>
         <Section>
-          <h1>{ routes[tag].name }</h1>
+          <h1>{ routes[tagName].name }</h1>
 
           <div className="endpoint-general">
-            { !description ? '' : <div className="endpoint-general__description">
-              <p>{ description }</p>
-            </div> }
+            <div className="endpoint-general__description">
+              <GeneralDescription tagDescription={ tag.description || ''} />
+            </div>
 
             <div className="endpoint-general__on-this-page">
-              <p>On this page:</p>
-
-              <ul>
-                { endpoints.map((endpoint, index: number) => {
-                  const endpointSummary = endpoint.summary || `${endpoint.method.toUpperCase()} ${endpoint.path}`;
-
-                  return (
-                    <li key={`on-this-page-${index}`}>
-                      <a
-                        href={`#${endpointSummary.replaceAll(' ', '-')}`}
-                        title={`Go to ${endpointSummary}`}
-                      >{endpointSummary}</a>
-                    </li>
-                  )
-                })}
-              </ul>
+              <GeneralOnThisPage paths={ paths } />
             </div>
           </div>
         </Section>
 
-        { endpoints.map((endpoint, index: number) => {
-          const endpointSummary = endpoint.summary || `${endpoint.method} ${endpoint.path}`;
-          const headingId = endpointSummary.replaceAll(' ', '-');
+        { paths.map((path: Path, index: number) => {
+          const pathSummary = path.summary || `${path.method} ${path.name}`;
+          const headingId = pathSummary.replaceAll(' ', '-');
+          const { headers, paths, queries } = groupParams(path.parameters);
 
           return (
             <Section key={ `method-${index}` }>
-              <h2 id={ headingId }>{ endpointSummary }</h2>
+              <h2 id={ headingId }>{ pathSummary }</h2>
 
               <div className="endpoint-details">
                 <div className="endpoint-details__parameters">
-                  <p className="endpoint-details__description">{ endpoint.description }</p>
+                  <p className="endpoint-details__description">{ path.description }</p>
 
-                  <ParametersList
-                    requestBody={ endpoint.requestBody }
-                    parameters={ endpoint.parameters }
+                  <h4>Parameters</h4>
+
+                  <ParameterDetails
+                    heading="Headers"
+                    parameters={ headers }
+                  />
+
+                  <ParameterDetails
+                    heading="Path parameters"
+                    parameters={ paths }
+                  />
+
+                  <ParameterDetails
+                    heading="Query parameters"
+                    parameters={ queries }
+                  />
+
+                  <BodyDetails
+                    requestBody={ path.requestBody }
                   />
                 </div>
 
                 <div className="endpoint-details__samples">
-                  <Sample
-                    host={ host }
-                    method={ endpoint.method }
-                    defaultPathKey={ endpoint.path }
-                    requestBody={ endpoint.requestBody }
-                  />
+                  <h4>Code samples</h4>
 
-                  <ResponseList
-                    responseBody={ endpoint }
-                  />
+                  <div className="endpoint-details__method">
+                    <Sample
+                      host={ server ? server.url : '' }
+                      method={ path.method }
+                      defaultPathKey={ path.name }
+                      requestBody={ path.requestBody }
+                    />
+                  </div>
+
+                  <h5>Responses</h5>
+
+                  <div className="endpoint-details__response">
+                    <ResponseList
+                      responses={ path.responses }
+                    />
+                  </div>
                 </div>
               </div>
             </Section>
