@@ -1,10 +1,10 @@
-export const filterByTag = (data: any, tag: string): any[] => {
+export const filterByTag = (paths: any, tag: string): any[] => {
   let endpoints: any[] = [];
 
-  Object.keys(data.paths).map(path => {
-    const resourcePath = data.paths[path];
+  Object.keys(paths).map(path => {
+    const resourcePath = paths[path];
 
-    Object.keys(data.paths[path]).map((method) => {
+    Object.keys(paths[path]).map((method) => {
       const tags = resourcePath[method].tags;
 
       if (tags[0] === tag) {
@@ -12,7 +12,7 @@ export const filterByTag = (data: any, tag: string): any[] => {
           ...endpoints,
           {
             method: method,
-            path: path,
+            name: path,
             ...resourcePath[method]
           }
         ]
