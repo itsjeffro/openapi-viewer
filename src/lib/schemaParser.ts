@@ -69,7 +69,7 @@ const getStringValueFromSchema = (schema: Schema) => {
 }
 
 const schemaCombiner = (schema: Schema) => {
-  let allOf = null;
+  let allOf: any = null;
 
   (schema.allOf || []).map((item) => {
     if (item.type === 'object' && !allOf) {
