@@ -8,7 +8,9 @@ const GeneralDescription = ({ tagDescription }: Props) => {
   }
 
   return (
-    <p>{ tagDescription }</p>
+    <div className="endpoint-general__description">
+      <p>{ tagDescription }</p>
+    </div>
   )
 }
 

@@ -6,7 +6,7 @@ interface Props {
 
 const GeneralOnThisPage = ({ paths }: Props) => {
   return (
-    <>
+    <div className="endpoint-general__on-this-page">
       <p>On this page:</p>
 
       <ul>
@@ -23,7 +23,7 @@ const GeneralOnThisPage = ({ paths }: Props) => {
           )
         })}
       </ul>
-    </>
+    </div>
   )
 }
 
