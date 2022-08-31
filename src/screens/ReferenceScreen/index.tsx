@@ -31,6 +31,8 @@ function ReferenceScreen() {
   }
 
   const tagName = endpoint || '';
+  const tagHeading = routes[tagName] ? routes[tagName].name : tagName;
+
   const openApi = new OpenApi(state.openApi.data)
 
   const server = openApi.servers().first();
@@ -45,16 +47,12 @@ function ReferenceScreen() {
 
       <Container>
         <Section>
-          <h1>{ routes[tagName].name }</h1>
+          <h1>{ tagHeading }</h1>
 
           <div className="endpoint-general">
-            <div className="endpoint-general__description">
-              <GeneralDescription tagDescription={ tag.description || ''} />
-            </div>
+            <GeneralDescription tagDescription={ tag ? tag.description : null} />
 
-            <div className="endpoint-general__on-this-page">
-              <GeneralOnThisPage paths={ paths } />
-            </div>
+            <GeneralOnThisPage paths={ paths } />
           </div>
         </Section>
 
