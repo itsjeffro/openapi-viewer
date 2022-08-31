@@ -8,10 +8,16 @@ const ResponseList = ({ responses }: any) => {
    responses = Object.keys(responses).map((httpCode: string) => {
     const status = responses[httpCode];
 
+    const statusContent = status.content.hasOwnProperty('application/json')
+      ? status.content['application/json']
+      : {};
+
+    const schema = statusContent['schema'] || null;
+
     return {
       httpCode: httpCode,
       description: status.description,
-      schema: status.content ? status.content['application/json'].schema : null,
+      schema: schema,
     }
   })
 
