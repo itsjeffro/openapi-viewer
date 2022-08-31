@@ -5,12 +5,12 @@ interface PageInterface {
   name: string
 }
 
-interface LayoutProps {
+interface Props {
   children: any
   pages: PageInterface[]
 }
 
-const Layout = (props: LayoutProps) => {
+const Layout = (props: Props) => {
   const { pages } = props;
 
   return (

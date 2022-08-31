@@ -1,10 +1,10 @@
 import React from "react";
 
-interface CardProps {
+interface Props {
   children: React.ReactNode
 }
 
-const Card = (props: CardProps) => {
+const Card = (props: Props) => {
   return (
     <div className="card">
       { props.children }
