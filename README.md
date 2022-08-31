@@ -25,3 +25,9 @@ Run `npm i` and then `npm run dev`
 ### Production
 
 Run `npm i` and then `npm run build`. Prune dev dependencies by running `npm prune --production`
+
+The `dist` directory contains the final build. This contains:
+
+- `/dist/index.html` from `/index.html`
+- `/dist/assets` from `/src`
+- `/dist/favicon.ico` from `/public`
