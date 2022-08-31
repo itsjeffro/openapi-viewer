@@ -13,6 +13,7 @@ interface Schema {
   },
   example?: any
   enum?: any[]
+  allOf?: any[]
 }
 
 const schemaParser = (schema: Schema): any => {
@@ -24,6 +25,10 @@ const schemaParser = (schema: Schema): any => {
     })
 
     return result
+  }
+
+  if (schema.hasOwnProperty('allOf')) {
+    return schemaCombiner(schema)
   }
 
   if (schema.type === 'array') {
@@ -61,6 +66,25 @@ const getStringValueFromSchema = (schema: Schema) => {
   }
 
   return schema.type;
+}
+
+const schemaCombiner = (schema: Schema) => {
+  let allOf = null;
+
+  (schema.allOf || []).map((item) => {
+    if (item.type === 'object' && !allOf) {
+      allOf = {}
+    }
+
+    if (item.type === 'object') {
+      allOf = {
+        ...allOf,
+        ...schemaParser(item)
+      }
+    }
+  })
+
+  return allOf;
 }
 
 export default schemaParser;
