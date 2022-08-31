@@ -11,12 +11,12 @@ const BodyDetails = ({ requestBody }: Props) => {
   const bodyParameters = bodySchema ? bodySchema.properties : {}
 
   return (
-    <List style={{ display: Object.keys(bodyParameters || {}).length === 0 ? 'none' : 'block' }}>
+    <List style={{ display: Object.keys(bodyParameters).length === 0 ? 'none' : 'block' }}>
       <ListHeader>
         <h5>Body parameters</h5>
       </ListHeader>
 
-      { Object.keys(bodyParameters || {}).map((bodyParameter: string) => (
+      { Object.keys(bodyParameters).map((bodyParameter: string) => (
         <ListItem key={ bodyParameter }>
           <div className="parameter-details">
             <span className="pill pill__grey text-bold">{ bodyParameter }</span>
