@@ -16,6 +16,7 @@ import {groupParams} from "../../lib/parameters";
 import ParameterDetails from "./components/ParameterDetails";
 import BodyDetails from "./components/BodyDetails";
 import Flex from "../../components/Flex";
+import Box from "../../components/Box";
 
 function ReferenceScreen() {
   const { endpoint } = useParams();
@@ -67,7 +68,7 @@ function ReferenceScreen() {
               <h2 id={ headingId }>{ pathSummary }</h2>
 
               <Flex>
-                <div className="endpoint-details__parameters">
+                <Box flex="1" paddingRight="80px">
                   <p className="endpoint-details__description">{ path.description }</p>
 
                   <h4>Parameters</h4>
@@ -90,7 +91,7 @@ function ReferenceScreen() {
                   <BodyDetails
                     requestBody={ path.requestBody }
                   />
-                </div>
+                </Box>
 
                 <div className="endpoint-details__samples">
                   <h4>Code samples</h4>
