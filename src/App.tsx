@@ -5,6 +5,8 @@ import ReferenceScreen from "./screens/ReferenceScreen";
 import Layout from "./components/Layout";
 import StateProvider from "./state/stateProvider";
 import routes from "./lib/routes";
+import {ThemeProvider} from "styled-components";
+import theme from "./theme";
 
 function App() {
   const pages = Object.keys(routes).map((route) => {
@@ -12,14 +14,16 @@ function App() {
   })
 
   return (
-    <StateProvider>
-      <Layout pages={ pages }>
-        <Routes>
-          <Route path="/" element={<HomeScreen />} />
-          <Route path="/references/:endpoint" element={<ReferenceScreen />} />
-        </Routes>
-      </Layout>
-    </StateProvider>
+    <ThemeProvider theme={theme}>
+      <StateProvider>
+        <Layout pages={ pages }>
+          <Routes>
+            <Route path="/" element={<HomeScreen />} />
+            <Route path="/references/:endpoint" element={<ReferenceScreen />} />
+          </Routes>
+        </Layout>
+      </StateProvider>
+    </ThemeProvider>
   )
 }
 
