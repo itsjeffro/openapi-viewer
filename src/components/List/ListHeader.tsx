@@ -1,16 +1,12 @@
 import React from "react";
+import styled from "styled-components";
 
-interface Props {
-  children: React.ReactNode
-  style?: any
-}
-
-const ListHeader = ({ children }: Props) => {
-  return (
-    <div className="list__header">
-      { children }
-    </div>
-  )
-}
+const ListHeader = styled.div`
+  padding: 15px 0;
+  
+  h5 {
+    margin: 0;
+  }
+`
 
 export default ListHeader

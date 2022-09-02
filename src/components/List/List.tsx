@@ -1,16 +1,8 @@
 import React from "react";
+import styled from "styled-components";
 
-interface Props {
-  children: React.ReactNode
-  style?: any
-}
-
-const List = ({ style, children }: Props) => {
-  return (
-    <div style={ style } className="list">
-      { children }
-    </div>
-  )
-}
+const List = styled.div`
+  margin-bottom: 1em;
+`
 
 export default List;
