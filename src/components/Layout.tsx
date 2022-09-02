@@ -1,4 +1,5 @@
 import {NavLink} from "react-router-dom";
+import Divider from "./Divider";
 
 interface PageInterface {
   tag: string
@@ -26,7 +27,7 @@ const Layout = (props: Props) => {
           </li>
         </ul>
 
-        <hr />
+        <Divider />
 
         <ul>
           <li className="sidebar__item">
