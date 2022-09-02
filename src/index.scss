@@ -14,13 +14,13 @@ $text-color-white: #fff;
 
 $link-color: #0d5ecc;
 
+/** normalised **/
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: content-box;
 }
-
-/** normalised **/
 
 html,
 body {
@@ -44,6 +44,12 @@ h1 {
   margin-bottom: 15px;
 }
 
+h2 {
+  border-bottom: 2px solid $border-light-grey;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+}
+
 h3,
 h4 {
   margin-bottom: 16px;
@@ -57,15 +63,6 @@ h5 {
 
 p {
   margin: 8px 0;
-}
-
-hr {
-  margin: 0;
-  flex-shrink: 0;
-  border-width: 0;
-  border-style: solid;
-  border-color: rgba(0, 0, 0, 0.12);
-  border-bottom-width: thin;
 }
 
 ul {
@@ -96,21 +93,6 @@ textarea {
 .content-wrapper {
   overflow-x: auto;
   width: 100%;
-}
-
-.header {
-  border-bottom: 1px solid $border-light-grey;
-  box-shadow: 0 1px 4px rgb(0 0 0 / 10%);
-  padding: 0 30px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-
-  h1 {
-    font-size: $font-size-base;
-    font-weight: 500;
-    margin: 0;
-  }
 }
 
 .sidebar {
@@ -156,8 +138,6 @@ textarea {
 }
 
 .endpoint-general {
-  display: flex;
-
   &__description {
     flex: 1;
     padding-right: 80px;
@@ -165,18 +145,12 @@ textarea {
   }
 
   &__on-this-page {
+    max-width: 580px;
     width: 580px;
   }
 }
 
 .endpoint-details {
-  display: flex;
-
-  &__parameters {
-    padding-right: 80px;
-    flex: 1;
-  }
-
   &__samples {
     max-width: 580px;
     width: 580px;
@@ -194,17 +168,6 @@ textarea {
   }
 }
 
-.endpoint-details__parameters {
-  h5 {
-    margin: 0.85em 0 0.5em;
-  }
-
-  .list__item p {
-    margin-bottom: 0;
-    margin-top: 15px;
-  }
-}
-
 .endpoint-details__method {
   .pill__blue {
     margin-right: 10px;
@@ -216,9 +179,6 @@ textarea {
 }
 
 .parameter-details {
-  display: flex;
-  align-items: center;
-
   &__type {
     margin-right: auto;
     margin-left: 10px;
@@ -234,36 +194,10 @@ textarea {
 
 /** reusable components **/
 
-.container {
-  padding: 0 30px;
-  max-width: 1300px;
-  margin: 0 auto;
-}
-
-.section {
-  padding-bottom: 30px;
-  padding-top: 30px;
-
-  h2 {
-    border-bottom: 2px solid $border-light-grey;
-    padding-bottom: 30px;
-    margin-bottom: 30px;
-  }
-}
-
 .card {
-  border: 1px solid $border-grey;
-  border-radius: 5px;
-  overflow: hidden;
-  box-shadow: 0 1px 3px rgb(0 0 0 / 4%);
-
   &__header {
     padding: 12px 15px;
     border-bottom: 1px solid $border-light-grey;
-  }
-
-  &__body {
-    padding: 15px;
   }
 
   &__nav-tab {
@@ -305,25 +239,6 @@ textarea {
   }
 }
 
-.list {
-  margin-bottom: 1em;
-
-  &__header {
-    padding: 15px 0;
-  }
-
-  &__item {
-    border-top: 1px solid $border-light-grey;
-    padding: 15px 0;
-  }
-}
-
-.list__header {
-  h5 {
-    margin: 0;
-  }
-}
-
 .pill {
   padding: 1px 9px;
   line-height: 1.5em;
@@ -345,12 +260,4 @@ textarea {
   border: 1px solid #ddd;
   padding: 5px 8px;
   border-radius: 4px;
-}
-
-/** utilities **/
-
-.text {
-  &-bold {
-    font-weight: 500;
-  }
 }
