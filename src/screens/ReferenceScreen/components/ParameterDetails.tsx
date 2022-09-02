@@ -1,5 +1,7 @@
 import EnumList from "./EnumList";
 import {List, ListHeader, ListItem} from "../../../components/List";
+import Text from "../../../components/Text";
+import Flex from "../../../components/Flex";
 
 interface ParameterDetailsProps {
   heading: string
@@ -15,11 +17,11 @@ const ParameterDetails = ({ heading, parameters }: ParameterDetailsProps) => {
 
       { parameters.map((parameter: any) => (
         <ListItem key={ parameter.name }>
-          <div className="parameter-details">
-            <span className="pill pill__grey text-bold">{ parameter.name }</span>
+          <Flex alignItems="center">
+            <Text fontWeight="medium" className="pill pill__grey">{ parameter.name }</Text>
             <span className="parameter-details__type">{ parameter.schema.type }</span>
             <span className="parameter-details__required">{ parameter.required ? 'Required.' : '' }</span>
-          </div>
+          </Flex>
 
           { parameter.description ? <p>{parameter.description}</p> : '' }
 

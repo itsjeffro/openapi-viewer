@@ -1,5 +1,7 @@
 import EnumList from "./EnumList";
 import {List, ListHeader, ListItem} from "../../../components/List";
+import Text from "../../../components/Text";
+import Flex from "../../../components/Flex";
 
 interface Props {
   requestBody: any
@@ -18,11 +20,11 @@ const BodyDetails = ({ requestBody }: Props) => {
 
       { Object.keys(bodyParameters).map((bodyParameter: string) => (
         <ListItem key={ bodyParameter }>
-          <div className="parameter-details">
-            <span className="pill pill__grey text-bold">{ bodyParameter }</span>
+          <Flex alignItems="center">
+            <Text fontWeight="medium" className="pill pill__grey">{ bodyParameter }</Text>
             <span className="parameter-details__type">{ bodyParameters[bodyParameter].type }</span>
             <span className="parameter-details__required">{ !bodyParameters[bodyParameter].nullable ? 'Required.' : ''  }</span>
-          </div>
+          </Flex>
 
           { bodyParameters[bodyParameter].description ? <p>{bodyParameters[bodyParameter].description}</p> : '' }
 

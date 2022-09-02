@@ -15,6 +15,7 @@ import GeneralDescription from "./components/GeneralDescription";
 import {groupParams} from "../../lib/parameters";
 import ParameterDetails from "./components/ParameterDetails";
 import BodyDetails from "./components/BodyDetails";
+import Flex from "../../components/Flex";
 
 function ReferenceScreen() {
   const { endpoint } = useParams();
@@ -49,11 +50,11 @@ function ReferenceScreen() {
         <Section>
           <h1>{ tagHeading }</h1>
 
-          <div className="endpoint-general">
+          <Flex>
             <GeneralDescription tagDescription={ tag ? tag.description : null} />
 
             <GeneralOnThisPage paths={ paths } />
-          </div>
+          </Flex>
         </Section>
 
         { paths.map((path: Path, index: number) => {
@@ -65,7 +66,7 @@ function ReferenceScreen() {
             <Section key={ `method-${index}` }>
               <h2 id={ headingId }>{ pathSummary }</h2>
 
-              <div className="endpoint-details">
+              <Flex>
                 <div className="endpoint-details__parameters">
                   <p className="endpoint-details__description">{ path.description }</p>
 
@@ -111,7 +112,7 @@ function ReferenceScreen() {
                     />
                   </div>
                 </div>
-              </div>
+              </Flex>
             </Section>
           )
         }) }

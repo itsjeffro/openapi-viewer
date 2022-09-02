@@ -2,6 +2,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { Card, CardHeader } from './../../../components/Card';
 import exampleBuilder from "../../../lib/exampleBuilder";
 import * as styles from "../../../styles";
+import Text from "../../../components/Text";
 
 interface SampleProps {
   host: string
@@ -22,7 +23,7 @@ const Sample = ({ host, method, defaultPathKey, requestBody }: SampleProps) => {
   return (
       <Card>
         <CardHeader>
-          <span className="pill pill__blue text-bold">{ method }</span> { defaultPathKey }
+          <Text fontWeight="medium" className="pill pill__blue">{ method }</Text> { defaultPathKey }
         </CardHeader>
         <SyntaxHighlighter language="bash" customStyle={ styles.highlighter }>
           { example }
