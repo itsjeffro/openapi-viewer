@@ -5,6 +5,7 @@ import Container from "../components/Container";
 import Section from "../components/Section";
 import Header from "../components/Header";
 import OpenApi from "../lib/OpenApi";
+import Text from "../components/Text";
 
 const HomeScreen = () => {
   const { state } = useContext(StateContext);
@@ -14,7 +15,7 @@ const HomeScreen = () => {
   if (state.openApi.isFetching) {
     return (
       <Header>
-        <h1>Loading...</h1>
+        <Text fontWeight="medium">Loading...</Text>
       </Header>
     )
   }
@@ -26,18 +27,18 @@ const HomeScreen = () => {
   return (
     <>
       <Header>
-        <h1>{ openApi.info().title }</h1>
+        <Text fontWeight="medium">{ openApi.info().title }</Text>
       </Header>
 
       <Container>
         <Section>
-          <h2>Introduction</h2>
+          <Text as="h2">Introduction</Text>
 
-          <p>{ openApi.info().description }</p>
+          <Text as="p">{ openApi.info().description }</Text>
         </Section>
 
         <Section>
-          <h2>Servers</h2>
+          <Text as="h2">Servers</Text>
 
           <ul>
             { servers.map((server: any, index: number) => (
