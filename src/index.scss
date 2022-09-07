@@ -39,30 +39,10 @@ a {
   color: $link-color;
 }
 
-h1 {
-  font-size: 30px;
-  margin-bottom: 15px;
-}
-
 h2 {
   border-bottom: 2px solid $border-light-grey;
   padding-bottom: 30px;
   margin-bottom: 30px;
-}
-
-h3,
-h4 {
-  margin-bottom: 16px;
-}
-
-h5 {
-  text-transform: uppercase;
-  color: $text-color-secondary;
-  font-weight: 500;
-}
-
-p {
-  margin: 8px 0;
 }
 
 ul {
@@ -135,30 +115,6 @@ textarea {
       background: rgba(0,0,0,.05);
     }
   }
-}
-
-.endpoint-general {
-  &__description {
-    flex: 1;
-    padding-right: 80px;
-    font-size: 1.1em;
-  }
-
-  &__on-this-page {
-    max-width: 580px;
-    width: 580px;
-  }
-}
-
-.endpoint-details {
-  &__samples {
-    max-width: 580px;
-    width: 580px;
-  }
-}
-
-.endpoint-details__description {
-  margin-bottom: 16px;
 }
 
 .endpoint-details__samples {
