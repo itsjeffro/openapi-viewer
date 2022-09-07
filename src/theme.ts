@@ -30,6 +30,11 @@ const theme = {
       fontSize: '30px',
       marginBottom: '15px',
     },
+    h2: {
+      borderBottom: '1px solid #eaeaea',
+      paddingBottom: '30px',
+      marginBottom: '30px',
+    },
     h3: {
       marginBottom: '16px',
     },
