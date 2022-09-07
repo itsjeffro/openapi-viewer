@@ -25,8 +25,25 @@ const theme = {
   color: {
     red: '#d63a07',
   },
-  gap: {
-
+  typography: {
+    h1: {
+      fontSize: '30px',
+      marginBottom: '15px',
+    },
+    h3: {
+      marginBottom: '16px',
+    },
+    h4: {
+      marginBottom: '16px',
+    },
+    h5: {
+      textTransform: 'uppercase',
+      color: '#464950',
+      fontWeight: 500,
+    },
+    p: {
+      margin: '0 0 16px',
+    }
   }
 };
 
