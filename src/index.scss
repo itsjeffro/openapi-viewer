@@ -39,12 +39,6 @@ a {
   color: $link-color;
 }
 
-h2 {
-  border-bottom: 2px solid $border-light-grey;
-  padding-bottom: 30px;
-  margin-bottom: 30px;
-}
-
 ul {
   padding-left: 1em;
   margin: .5em 0;
@@ -182,16 +176,6 @@ textarea {
   }
   &:hover {
     border-color: #ddd;
-  }
-}
-
-.card__body {
-  &.markdown {
-    font-family: monospace;
-    font-size: $font-size-small;
-    background: #f6f8fa;
-    line-height: 1.2em;
-    padding: 10px 15px;
   }
 }
 
