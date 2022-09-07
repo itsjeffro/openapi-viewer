@@ -17,6 +17,7 @@ import ParameterDetails from "./components/ParameterDetails";
 import BodyDetails from "./components/BodyDetails";
 import Flex from "../../components/Flex";
 import Box from "../../components/Box";
+import Text from "../../components/Text";
 
 function ReferenceScreen() {
   const { endpoint } = useParams();
@@ -27,7 +28,7 @@ function ReferenceScreen() {
   if (state.openApi.isFetching) {
     return (
       <Header>
-        <h1>Loading...</h1>
+        <Text fontWeight="medium">Loading...</Text>
       </Header>
     )
   }
@@ -44,17 +45,21 @@ function ReferenceScreen() {
   return (
     <>
       <Header>
-        <h1>{ openApi.info().title } \ References</h1>
+        <Text fontWeight="medium">{ openApi.info().title } \ References</Text>
       </Header>
 
       <Container>
         <Section>
-          <h1>{ tagHeading }</h1>
+          <Text as="h1">{ tagHeading }</Text>
 
           <Flex>
-            <GeneralDescription tagDescription={ tag ? tag.description : null} />
+            <Box flex="1" paddingRight="80px">
+              <GeneralDescription tagDescription={ tag ? tag.description : null} />
+            </Box>
 
-            <GeneralOnThisPage paths={ paths } />
+            <Box width="580px" maxWidth="580px">
+              <GeneralOnThisPage paths={ paths } />
+            </Box>
           </Flex>
         </Section>
 
@@ -65,13 +70,13 @@ function ReferenceScreen() {
 
           return (
             <Section key={ `method-${index}` }>
-              <h2 id={ headingId }>{ pathSummary }</h2>
+              <Text as="h2" id={ headingId }>{ pathSummary }</Text>
 
               <Flex>
                 <Box flex="1" paddingRight="80px">
-                  <p className="endpoint-details__description">{ path.description }</p>
+                  <Text as="p">{ path.description }</Text>
 
-                  <h4>Parameters</h4>
+                  <Text as="h4">Parameters</Text>
 
                   <ParameterDetails
                     heading="Headers"
@@ -93,8 +98,8 @@ function ReferenceScreen() {
                   />
                 </Box>
 
-                <div className="endpoint-details__samples">
-                  <h4>Code samples</h4>
+                <Box width="580px" maxWidth="580px" className="endpoint-details__samples">
+                  <Text as="h4">Code samples</Text>
 
                   <div className="endpoint-details__method">
                     <Sample
@@ -105,14 +110,14 @@ function ReferenceScreen() {
                     />
                   </div>
 
-                  <h5>Responses</h5>
+                  <Text as="h5">Responses</Text>
 
                   <div className="endpoint-details__response">
                     <ResponseList
                       responses={ path.responses }
                     />
                   </div>
-                </div>
+                </Box>
               </Flex>
             </Section>
           )
