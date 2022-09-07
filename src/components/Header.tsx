@@ -8,12 +8,6 @@ const Header = styled.header`
   height: 60px;
   display: flex;
   align-items: center;
-  
-  h1 {
-    font-size: ${props => props.theme.fontSize.base};
-    font-weight: 500;
-    margin: 0;
-  }
 `
 
 export default Header
