@@ -1,3 +1,5 @@
+import Text from "../../../components/Text";
+
 interface Props {
   tagDescription: string
 }
@@ -8,9 +10,7 @@ const GeneralDescription = ({ tagDescription }: Props) => {
   }
 
   return (
-    <div className="endpoint-general__description">
-      <p>{ tagDescription }</p>
-    </div>
+    <Text as="p" fontSize="medium">{ tagDescription }</Text>
   )
 }
 

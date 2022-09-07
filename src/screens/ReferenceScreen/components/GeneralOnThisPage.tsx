@@ -1,4 +1,5 @@
 import {Path} from "../../../lib/OpenApi/Paths";
+import Text from "../../../components/Text";
 
 interface Props {
   paths: Path[]
@@ -6,8 +7,8 @@ interface Props {
 
 const GeneralOnThisPage = ({ paths }: Props) => {
   return (
-    <div className="endpoint-general__on-this-page">
-      <p>On this page:</p>
+    <>
+      <Text as="p">On this page:</Text>
 
       <ul>
         { paths.map((path: Path, index: number) => {
@@ -23,7 +24,7 @@ const GeneralOnThisPage = ({ paths }: Props) => {
           )
         })}
       </ul>
-    </div>
+    </>
   )
 }
 

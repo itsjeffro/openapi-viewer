@@ -15,7 +15,7 @@ const BodyDetails = ({ requestBody }: Props) => {
   return (
     <List style={{ display: Object.keys(bodyParameters).length === 0 ? 'none' : 'block' }}>
       <ListHeader>
-        <h5>Body parameters</h5>
+        <Text as="h5">Body parameters</Text>
       </ListHeader>
 
       { Object.keys(bodyParameters).map((bodyParameter: string) => (
@@ -26,7 +26,7 @@ const BodyDetails = ({ requestBody }: Props) => {
             <span className="parameter-details__required">{ !bodyParameters[bodyParameter].nullable ? 'Required.' : ''  }</span>
           </Flex>
 
-          { bodyParameters[bodyParameter].description ? <p>{bodyParameters[bodyParameter].description}</p> : '' }
+          { bodyParameters[bodyParameter].description ? <Text as="p">{bodyParameters[bodyParameter].description}</Text> : '' }
 
           { bodyParameters[bodyParameter].enum ? <EnumList enums={ bodyParameters[bodyParameter].enum } /> : '' }
         </ListItem>

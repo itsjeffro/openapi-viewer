@@ -12,7 +12,7 @@ const ParameterDetails = ({ heading, parameters }: ParameterDetailsProps) => {
   return (
     <List style={{ display: parameters.length === 0 ? 'none' : 'block' }}>
       <ListHeader>
-        <h5>{ heading }</h5>
+        <Text as="h5">{ heading }</Text>
       </ListHeader>
 
       { parameters.map((parameter: any) => (
@@ -23,7 +23,7 @@ const ParameterDetails = ({ heading, parameters }: ParameterDetailsProps) => {
             <span className="parameter-details__required">{ parameter.required ? 'Required.' : '' }</span>
           </Flex>
 
-          { parameter.description ? <p>{parameter.description}</p> : '' }
+          { parameter.description ? <Text as="p">{parameter.description}</Text> : '' }
 
           { parameter.schema.enum ? <EnumList enums={ parameter.schema.enum } /> : '' }
         </ListItem>

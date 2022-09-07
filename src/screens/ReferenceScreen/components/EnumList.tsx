@@ -8,7 +8,7 @@ const EnumList = ({ enums }: EnumListProps) => {
   const total = enums.length;
 
   return (
-    <p>Options:{' '}
+    <Text as="p">Options:{' '}
       { enums.map((option: string, index: number) => {
         return (
           <span key={ option }>
@@ -16,7 +16,7 @@ const EnumList = ({ enums }: EnumListProps) => {
           </span>
         )
       }) }
-    </p>
+    </Text>
   )
 }
 
