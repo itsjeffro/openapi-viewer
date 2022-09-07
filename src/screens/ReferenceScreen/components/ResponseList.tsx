@@ -63,7 +63,7 @@ const ResponseList = ({ responses }: any) => {
               style={ { display: display } }
             >
               <SyntaxHighlighter language="json" customStyle={ styles.highlighter }>
-                { JSON.stringify(response.schema, null, 4) }
+                { JSON.stringify(response.schema, null, 2) }
               </SyntaxHighlighter>
             </div>
           )
@@ -88,7 +88,7 @@ const ResponseList = ({ responses }: any) => {
               style={ { display: display } }
             >
               <SyntaxHighlighter language="json" customStyle={ styles.highlighter }>
-                { JSON.stringify(example, null, 4) }
+                { JSON.stringify(example, null, 2) }
               </SyntaxHighlighter>
             </div>
           )

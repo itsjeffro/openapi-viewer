@@ -12,7 +12,7 @@ const exampleBuilder = (method: string, host: string, endpoint: string, body: an
   request = request.concat(`  ${ host }${ endpoint }`)
 
   if (body !== null) {
-    request = request.concat(`  -d '${ JSON.stringify(schemaParser(body), null, 4) }'`)
+    request = request.concat(`  -d '${ JSON.stringify(schemaParser(body), null, 2) }'`)
   }
 
   return request.join(" \\ \n");
