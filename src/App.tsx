@@ -7,6 +7,7 @@ import StateProvider from "./state/stateProvider";
 import routes from "./lib/routes";
 import {ThemeProvider} from "styled-components";
 import theme from "./theme";
+import GlobalStyle from "./components/GlobalStyle";
 
 function App() {
   const pages = Object.keys(routes).map((route) => {
@@ -15,6 +16,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
+      <GlobalStyle />
       <StateProvider>
         <Layout pages={ pages }>
           <Routes>
