@@ -5,21 +5,18 @@ interface Props {
   theme: any
 }
 
-const variants = {
-  primary: {
+const Badge = styled.span((props: Props) => {
+  return {
+    display: 'inline-block',
+    fontSize: props.theme.fontSize.small,
+    marginRight: '10px',
+    'text-transform': 'uppercase',
+    padding: '10px 14px 8px',
+    lineHeight: 1,
+    borderRadius: '15px',
     background: '#0c5ecc',
-    color: '#fff',
+    color: props.theme.fontColor.white,
   }
-}
-
-const Badge = styled.span`
-  padding: 1px 9px;
-  line-height: 1.5em;
-  display: inline-block;
-  border-radius: 5px;
-  font-size: ${(props: Props) => variants[props.variant] || props.theme.fontSize.small};
-  background: #eeefef;
-  color: ${(props: Props) => variants[props.variant] || '#111'}
-`
+})
 
 export default Badge
