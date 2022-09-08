@@ -5,13 +5,20 @@ interface Props {
   paddingRight?: string | number
   width?: string | number
   maxWidth?: string | number
+  overflowX?: string
 }
 
-const Box = styled.span`
-  flex: ${(props: Props) => props.flex || 'inherit'};
-  padding-right:  ${(props: Props) => props.paddingRight || 0};
-  width:  ${(props: Props) => props.width || 'inherit'};
-  max-width:  ${(props: Props) => props.maxWidth || 'inherit'};
-`
+const Box = styled.span((props) => {
+  return {
+    flex: props.flex,
+    paddingRight: props.paddingRight,
+    paddingLeft: props.paddingLeft,
+    paddingTop: props.paddingTop,
+    paddingBottom: props.paddingBottom,
+    width: props.width,
+    maxWidth: props.maxWidth,
+    overflowX: props.overflowX,
+  }
+})
 
 export default Box
