@@ -14,58 +14,11 @@ $text-color-white: #fff;
 
 $link-color: #0d5ecc;
 
-/** normalised **/
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: content-box;
-}
-
-html,
-body {
-  height: 100%;
-}
-
-body {
-  background: $body-color;
-  color: $text-color-primary;
-  font-size: $font-size-base;
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  color: $link-color;
-}
-
-ul {
-  padding-left: 1em;
-  margin: .5em 0;
-}
-
-li {
-  padding: 0.2em 0;
-}
-
-button,
-input,
-optgroup,
-select,
-textarea {
-  font-size: $font-size-base;
-}
-
 /** ui **/
 
 #root {
   display: flex;
   height: 100%;
-  width: 100%;
-}
-
-.content-wrapper {
-  overflow-x: auto;
   width: 100%;
 }
 
@@ -118,16 +71,6 @@ textarea {
   }
 }
 
-.endpoint-details__method {
-  .pill__blue {
-    margin-right: 10px;
-    text-transform: uppercase;
-    padding: 10px 14px 8px;
-    line-height: 1;
-    border-radius: 15px;
-  }
-}
-
 .parameter-details {
   &__type {
     margin-right: auto;
@@ -176,23 +119,6 @@ textarea {
   }
   &:hover {
     border-color: #ddd;
-  }
-}
-
-.pill {
-  padding: 1px 9px;
-  line-height: 1.5em;
-  display: inline-block;
-  border-radius: 5px;
-  font-size: $font-size-small;
-
-  &__grey {
-    background: #eeefef;
-  }
-
-  &__blue {
-    background: #0c5ecc;
-    color: $text-color-white;
   }
 }
 
