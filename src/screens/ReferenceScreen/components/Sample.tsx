@@ -3,6 +3,7 @@ import { Card, CardHeader } from './../../../components/Card';
 import exampleBuilder from "../../../lib/exampleBuilder";
 import * as styles from "../../../styles";
 import Text from "../../../components/Text";
+import Badge from "../../../components/Badge";
 
 interface SampleProps {
   host: string
@@ -23,7 +24,7 @@ const Sample = ({ host, method, defaultPathKey, requestBody }: SampleProps) => {
   return (
       <Card>
         <CardHeader>
-          <Text fontWeight="medium" className="pill pill__blue">{ method }</Text> { defaultPathKey }
+          <Badge><Text fontWeight="medium">{ method }</Text></Badge> { defaultPathKey }
         </CardHeader>
         <SyntaxHighlighter language="bash" customStyle={ styles.highlighter }>
           { example }

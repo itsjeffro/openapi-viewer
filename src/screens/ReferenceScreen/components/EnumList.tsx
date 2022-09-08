@@ -12,7 +12,7 @@ const EnumList = ({ enums }: EnumListProps) => {
       { enums.map((option: string, index: number) => {
         return (
           <span key={ option }>
-            <Text fontWeight="medium" className="pill pill__grey">{ option }</Text>{ total === (index + 1) ? '' : ', ' }
+            <Text as="code" fontWeight="medium">{ option }</Text>{ total === (index + 1) ? '' : ', ' }
           </span>
         )
       }) }

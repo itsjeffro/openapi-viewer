@@ -18,7 +18,7 @@ const ParameterDetails = ({ heading, parameters }: ParameterDetailsProps) => {
       { parameters.map((parameter: any) => (
         <ListItem key={ parameter.name }>
           <Flex alignItems="center">
-            <Text fontWeight="medium" className="pill pill__grey">{ parameter.name }</Text>
+            <Text as="code" fontWeight="medium">{ parameter.name }</Text>
             <span className="parameter-details__type">{ parameter.schema.type }</span>
             <span className="parameter-details__required">{ parameter.required ? 'Required.' : '' }</span>
           </Flex>

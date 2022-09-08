@@ -78,45 +78,28 @@ function ReferenceScreen() {
 
                   <Text as="h4">Parameters</Text>
 
-                  <ParameterDetails
-                    heading="Headers"
-                    parameters={ headers }
-                  />
+                  <ParameterDetails heading="Headers" parameters={ headers }/>
 
-                  <ParameterDetails
-                    heading="Path parameters"
-                    parameters={ paths }
-                  />
+                  <ParameterDetails heading="Path parameters" parameters={ paths }/>
 
-                  <ParameterDetails
-                    heading="Query parameters"
-                    parameters={ queries }
-                  />
+                  <ParameterDetails heading="Query parameters" parameters={ queries }/>
 
-                  <BodyDetails
-                    requestBody={ path.requestBody }
-                  />
+                  <BodyDetails requestBody={ path.requestBody }/>
                 </Box>
 
                 <Box width="580px" maxWidth="580px" className="endpoint-details__samples">
                   <Text as="h4">Code samples</Text>
 
-                  <div className="endpoint-details__method">
-                    <Sample
-                      host={ server ? server.url : '' }
-                      method={ path.method }
-                      defaultPathKey={ path.name }
-                      requestBody={ path.requestBody }
-                    />
-                  </div>
+                  <Sample
+                    host={ server ? server.url : '' }
+                    method={ path.method }
+                    defaultPathKey={ path.name }
+                    requestBody={ path.requestBody }
+                  />
 
                   <Text as="h5">Responses</Text>
 
-                  <div className="endpoint-details__response">
-                    <ResponseList
-                      responses={ path.responses }
-                    />
-                  </div>
+                  <ResponseList responses={ path.responses }/>
                 </Box>
               </Flex>
             </Section>

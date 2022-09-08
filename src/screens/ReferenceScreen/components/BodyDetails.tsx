@@ -21,7 +21,7 @@ const BodyDetails = ({ requestBody }: Props) => {
       { Object.keys(bodyParameters).map((bodyParameter: string) => (
         <ListItem key={ bodyParameter }>
           <Flex alignItems="center">
-            <Text fontWeight="medium" className="pill pill__grey">{ bodyParameter }</Text>
+            <Text as="code" fontWeight="medium">{ bodyParameter }</Text>
             <span className="parameter-details__type">{ bodyParameters[bodyParameter].type }</span>
             <span className="parameter-details__required">{ !bodyParameters[bodyParameter].nullable ? 'Required.' : ''  }</span>
           </Flex>
