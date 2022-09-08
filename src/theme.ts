@@ -48,6 +48,15 @@ const theme = {
     },
     p: {
       margin: '0 0 16px',
+    },
+    code: {
+      fontFamily: 'Inter, Avenir, Helvetica, Arial, sans-serif',
+      padding: '1px 9px',
+      lineHeight: '1.5em',
+      display: 'inline-block',
+      borderRadius: '5px',
+      fontSize: '.85em',
+      background: '#eeefef',
     }
   }
 };
