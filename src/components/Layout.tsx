@@ -1,5 +1,6 @@
 import {NavLink} from "react-router-dom";
 import Divider from "./Divider";
+import Box from "./Box";
 
 interface PageInterface {
   tag: string
@@ -44,9 +45,9 @@ const Layout = (props: Props) => {
         </ul>
       </div>
 
-      <div className="content-wrapper">
+      <Box overflowX="auto" width="100%">
         { props.children }
-      </div>
+      </Box>
     </>
   )
 }
