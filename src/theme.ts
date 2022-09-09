@@ -45,6 +45,7 @@ const theme = {
       textTransform: 'uppercase',
       color: '#464950',
       fontWeight: 500,
+      padding: '15px 0',
     },
     p: {
       margin: '0 0 16px',
