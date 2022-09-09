@@ -1,15 +1,8 @@
-import React from "react";
+import styled from "styled-components";
 
-interface Props {
-  children: React.ReactNode
-}
-
-const CardHeader = (props: Props) => {
-  return (
-    <div className="card__header">
-      { props.children }
-    </div>
-  )
-}
+const CardHeader = styled.div(props => ({
+  padding: '12px 15px',
+  borderBottom: `1px solid ${props.theme.borderColor.lightGrey}`,
+}))
 
 export default CardHeader
