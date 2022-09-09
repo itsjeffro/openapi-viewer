@@ -87,7 +87,7 @@ function ReferenceScreen() {
                   <BodyDetails requestBody={ path.requestBody }/>
                 </Box>
 
-                <Box width="580px" maxWidth="580px" className="endpoint-details__samples">
+                <Box width="580px" maxWidth="580px">
                   <Text as="h4">Code samples</Text>
 
                   <Sample
