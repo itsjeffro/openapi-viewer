@@ -1,12 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-const ListHeader = styled.div`
-  padding: 15px 0;
-  
-  h5 {
-    margin: 0;
-  }
+const ListSubheader = styled.li`
+  padding: 0 20px;
 `
 
-export default ListHeader
+export default ListSubheader
