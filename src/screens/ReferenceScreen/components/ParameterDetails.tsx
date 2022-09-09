@@ -1,7 +1,10 @@
 import EnumList from "./EnumList";
-import {List, ListHeader, ListItem} from "../../../components/List";
+import {List, ListItem} from "../../../components/List";
 import Text from "../../../components/Text";
 import Flex from "../../../components/Flex";
+import Box from "../../../components/Box";
+import RequiredText from "./RequiredText";
+import Divider from "../../../components/Divider";
 
 interface ParameterDetailsProps {
   heading: string
@@ -11,22 +14,23 @@ interface ParameterDetailsProps {
 const ParameterDetails = ({ heading, parameters }: ParameterDetailsProps) => {
   return (
     <List style={{ display: parameters.length === 0 ? 'none' : 'block' }}>
-      <ListHeader>
-        <Text as="h5">{ heading }</Text>
-      </ListHeader>
+      <Text as="h5">{ heading }</Text>
 
       { parameters.map((parameter: any) => (
-        <ListItem key={ parameter.name }>
-          <Flex alignItems="center">
-            <Text as="code" fontWeight="medium">{ parameter.name }</Text>
-            <span className="parameter-details__type">{ parameter.schema.type }</span>
-            <span className="parameter-details__required">{ parameter.required ? 'Required.' : '' }</span>
-          </Flex>
+        <Box key={ parameter.name }>
+          <Divider />
+          <ListItem>
+            <Flex alignItems="center" columnGap="10px">
+              <Text as="code" fontWeight="medium">{ parameter.name }</Text>
+              <Box marginRight="auto">{ parameter.schema.type }</Box>
+              <RequiredText isRequired={ parameter.required } />
+            </Flex>
 
-          { parameter.description ? <Text as="p">{parameter.description}</Text> : '' }
+            { parameter.description ? <Text as="p">{parameter.description}</Text> : '' }
 
-          { parameter.schema.enum ? <EnumList enums={ parameter.schema.enum } /> : '' }
-        </ListItem>
+            { parameter.schema.enum ? <EnumList enums={ parameter.schema.enum } /> : '' }
+          </ListItem>
+        </Box>
       )) }
     </List>
   )

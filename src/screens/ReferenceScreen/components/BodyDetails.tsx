@@ -1,7 +1,10 @@
 import EnumList from "./EnumList";
-import {List, ListHeader, ListItem} from "../../../components/List";
+import {List, ListItem} from "../../../components/List";
 import Text from "../../../components/Text";
 import Flex from "../../../components/Flex";
+import Box from "../../../components/Box";
+import RequiredText from "./RequiredText";
+import Divider from "../../../components/Divider";
 
 interface Props {
   requestBody: any
@@ -14,22 +17,23 @@ const BodyDetails = ({ requestBody }: Props) => {
 
   return (
     <List style={{ display: Object.keys(bodyParameters).length === 0 ? 'none' : 'block' }}>
-      <ListHeader>
-        <Text as="h5">Body parameters</Text>
-      </ListHeader>
+      <Text as="h5">Body parameters</Text>
 
       { Object.keys(bodyParameters).map((bodyParameter: string) => (
-        <ListItem key={ bodyParameter }>
-          <Flex alignItems="center">
-            <Text as="code" fontWeight="medium">{ bodyParameter }</Text>
-            <span className="parameter-details__type">{ bodyParameters[bodyParameter].type }</span>
-            <span className="parameter-details__required">{ !bodyParameters[bodyParameter].nullable ? 'Required.' : ''  }</span>
-          </Flex>
+        <Box key={ bodyParameter }>
+          <Divider />
+          <ListItem key={ bodyParameter }>
+            <Flex alignItems="center" columnGap="10px">
+              <Text as="code" fontWeight="medium">{ bodyParameter }</Text>
+              <Box marginRight="auto">{ bodyParameters[bodyParameter].type }</Box>
+              <RequiredText isRequired={ !bodyParameters[bodyParameter].nullable } />
+            </Flex>
 
-          { bodyParameters[bodyParameter].description ? <Text as="p">{bodyParameters[bodyParameter].description}</Text> : '' }
+            { bodyParameters[bodyParameter].description ? <Text as="p">{bodyParameters[bodyParameter].description}</Text> : '' }
 
-          { bodyParameters[bodyParameter].enum ? <EnumList enums={ bodyParameters[bodyParameter].enum } /> : '' }
-        </ListItem>
+            { bodyParameters[bodyParameter].enum ? <EnumList enums={ bodyParameters[bodyParameter].enum } /> : '' }
+          </ListItem>
+        </Box>
       )) }
     </List>
   )

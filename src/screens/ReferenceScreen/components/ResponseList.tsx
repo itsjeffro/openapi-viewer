@@ -1,8 +1,14 @@
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import schemaParser from "../../../lib/schemaParser";
-import {useState} from "react";
+import {ChangeEvent, useState} from "react";
 import {Card, CardHeader} from '../../../components/Card'
 import * as styles from "../../../styles";
+import Flex from "../../../components/Flex";
+import Text from "../../../components/Text";
+import Select from "../../../components/Select";
+import Divider from "../../../components/Divider";
+import Tab from "../../../components/Tab";
+import Tabs from "../../../components/Tabs";
 
 const ResponseList = ({ responses }: any) => {
    responses = Object.keys(responses).map((httpCode: string) => {
@@ -28,27 +34,31 @@ const ResponseList = ({ responses }: any) => {
 
   return (
     <Card>
-      <div className="card__header card__nav">
-        <button
-          className={ `card__nav-tab ${selectedResponseTab === 'example' ? 'active' : ''}` }
+      <Tabs>
+        <Tab
+          className={ selectedResponseTab === 'example' ? 'active' : '' }
           onClick={ () => setSelectedResponseTab('example') }
-        >Example response</button>
-        <button
-          className={ `card__nav-tab ${selectedResponseTab !== 'example' ? 'active' : ''}` }
+        >Example response</Tab>
+        <Tab
+          className={ selectedResponseTab !== 'example' ? 'active' : '' }
           onClick={ () => setSelectedResponseTab('schema') }
-        >Response schema</button>
-      </div>
+        >Response schema</Tab>
+      </Tabs>
+
+      <Divider/>
 
       <CardHeader>
-        <span className="label__http-code">Status:</span>
-        <select
-          className="form-input"
-          onChange={ (e) => setSelectedHttpCode(e.target.value) }
-        >
-          { responseHttpCodes.map((responseHttpCode: string) => (
-            <option key={ responseHttpCode } value={ responseHttpCode }>{ responseHttpCode }</option>
-          )) }
-        </select>
+        <Flex alignItems="center" columnGap="10px">
+          <Text>Status:</Text>
+          <Select onChange={ (e: ChangeEvent<HTMLSelectElement>) => setSelectedHttpCode(e.target.value) }>
+            { responseHttpCodes.map((responseHttpCode: string) => (
+              <option
+                key={ responseHttpCode }
+                value={ responseHttpCode }
+              >{ responseHttpCode }</option>
+            )) }
+          </Select>
+        </Flex>
       </CardHeader>
 
       <div
