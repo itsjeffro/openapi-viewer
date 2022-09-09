@@ -1,6 +1,10 @@
 import {NavLink} from "react-router-dom";
 import Divider from "./Divider";
 import Box from "./Box";
+import Sidebar from "./Sidebar";
+import {List, ListItem, ListSubheader} from "./List";
+import Text from "./Text";
+import Flex from "./Flex";
 
 interface PageInterface {
   tag: string
@@ -17,33 +21,34 @@ const Layout = (props: Props) => {
 
   return (
     <>
-      <div className="sidebar">
-        <div className="sidebar__heading">
+      <Sidebar className="sidebar">
+        <Flex alignItems="center" height="60px" padding="0 20px">
           <strong>OpenAPI Viewer</strong>
-        </div>
+        </Flex>
 
-        <ul>
-          <li className="sidebar__item">
+        <List>
+          <ListItem disablePadding>
             <NavLink to={ `/` }>Home</NavLink>
-          </li>
-        </ul>
+          </ListItem>
+        </List>
 
         <Divider />
 
-        <ul>
-          <li className="sidebar__item">
-            <h5>Reference</h5>
-          </li>
+        <List>
+          <ListSubheader disablePadding>
+            <Text as="h5">Reference</Text>
+          </ListSubheader>
+
           { pages.map((page) => (
-            <li key={ `path-${page.tag}` } className="sidebar__item">
+            <ListItem key={ `path-${page.tag}` } disablePadding>
               <NavLink
                 className={({ isActive }) => isActive ? 'active' : '' }
                 to={ `/references/${page.tag}` }
               >{ page.name }</NavLink>
-            </li>
+            </ListItem>
           )) }
-        </ul>
-      </div>
+        </List>
+      </Sidebar>
 
       <Box overflowX="auto" width="100%">
         { props.children }
