@@ -1,9 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-const ListItem = styled.div`
-  border-top: 1px solid ${props => props.theme.borderColor.lightGrey};
-  padding: 15px 0;
+interface Props {
+  disablePadding?: boolean
+}
+
+const ListItem = styled.li`
+  list-style: none;
+  padding: ${(props: Props) => props.disablePadding ? '0' : '15px 0'};
   
   p {
     margin: 15px 0 0;
