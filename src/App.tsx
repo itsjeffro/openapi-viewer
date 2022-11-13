@@ -5,9 +5,9 @@ import ReferenceScreen from "./screens/ReferenceScreen";
 import Layout from "./components/Layout";
 import StateProvider from "./state/stateProvider";
 import routes from "./lib/routes";
-import {ThemeProvider} from "styled-components";
+import { Global, ThemeProvider } from "@emotion/react";
 import theme from "./theme";
-import GlobalStyle from "./components/GlobalStyle";
+import { GlobalStyle } from "./components/GlobalStyle";
 
 function App() {
   const pages = Object.keys(routes).map((route) => {
