@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
 const Tab = styled.button`
   padding: 18px 10px 16px;

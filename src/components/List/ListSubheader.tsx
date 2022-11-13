@@ -1,8 +1,11 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
+interface Props {
+  disablePadding?: boolean;
+}
 const ListSubheader = styled.li`
-  padding: 0 20px;
+  padding: ${(props: Props) => !props.disablePadding ? '' : '0 20px'};
 `
 
 export default ListSubheader

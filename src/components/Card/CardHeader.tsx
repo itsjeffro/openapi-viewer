@@ -1,8 +1,8 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
-const CardHeader = styled.div(props => ({
-  padding: '12px 15px',
-  borderBottom: `1px solid ${props.theme.borderColor.lightGrey}`,
-}))
+const CardHeader = styled.div`
+  padding: 12px 15px;
+  border-bottom: 1px solid ${(props: any) => props.theme.borderColor.lightGrey};
+`
 
 export default CardHeader

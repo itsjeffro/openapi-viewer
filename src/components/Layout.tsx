@@ -21,7 +21,7 @@ const Layout = (props: Props) => {
 
   return (
     <>
-      <Sidebar className="sidebar">
+      <Sidebar>
         <Flex alignItems="center" height="60px" padding="0 20px">
           <strong>OpenAPI Viewer</strong>
         </Flex>
