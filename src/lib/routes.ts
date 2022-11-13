@@ -10,6 +10,9 @@ const routes: Routes = {
   },
   'legal-entity': {
     name: 'Legal Entity'
+  },
+  'form-action': {
+    name: 'Form action'
   }
 }
 
