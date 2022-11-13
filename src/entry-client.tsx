@@ -11,7 +11,7 @@ const FullApp = () => (
   </BrowserRouter>
 );
 
-if (import.meta.hot || !container?.innerText) {
+if (import.meta || !container?.innerText) {
   const root = createRoot(container!);
   root.render(<FullApp />);
 } else {
