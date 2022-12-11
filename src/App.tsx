@@ -5,7 +5,7 @@ import ReferenceScreen from "./screens/ReferenceScreen";
 import Layout from "./components/Layout";
 import StateProvider from "./state/stateProvider";
 import routes from "./lib/routes";
-import { Global, ThemeProvider } from "@emotion/react";
+import { ThemeProvider } from "@emotion/react";
 import theme from "./theme";
 import { GlobalStyle } from "./components/GlobalStyle";
 
