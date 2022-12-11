@@ -1,8 +1,8 @@
+import {ChangeEvent, useState} from "react";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import schemaParser from "../../../lib/schemaParser";
-import {ChangeEvent, useState} from "react";
-import {Card, CardHeader} from '../../../components/Card'
 import * as styles from "../../../styles";
+import {Card, CardHeader} from '../../../components/Card'
 import Flex from "../../../components/Flex";
 import Text from "../../../components/Text";
 import Select from "../../../components/Select";
@@ -28,7 +28,6 @@ const ResponseList = ({ responses }: any) => {
   })
 
   const responseHttpCodes = responses.map((response: any) => response.httpCode)
-
   const [selectedHttpCode, setSelectedHttpCode] = useState(responseHttpCodes[0])
   const [selectedResponseTab, setSelectedResponseTab] = useState('example')
 

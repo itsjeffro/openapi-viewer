@@ -12,8 +12,9 @@ interface Props {
 
 const BodyDetails = ({ requestBody }: Props) => {
   const bodyContent = !requestBody ? {} : requestBody.content['application/json'];
-  const bodySchema = bodyContent ? bodyContent.schema : null
-  const bodyParameters = bodySchema ? bodySchema.properties : {}
+  const bodySchema = bodyContent ? bodyContent.schema : null;
+  const bodyParameters = bodySchema ? (bodySchema.properties || {}) : {};
+  const requiredProperties = bodySchema ? bodySchema.required : [];
 
   return (
     <List style={{ display: Object.keys(bodyParameters).length === 0 ? 'none' : 'block' }}>
@@ -26,7 +27,7 @@ const BodyDetails = ({ requestBody }: Props) => {
             <Flex alignItems="center" columnGap="10px">
               <Text as="code" fontWeight="medium">{ bodyParameter }</Text>
               <Box marginRight="auto">{ bodyParameters[bodyParameter].type }</Box>
-              <RequiredText isRequired={ !bodyParameters[bodyParameter].nullable } />
+              <RequiredText isRequired={ requiredProperties.includes(bodyParameter) } />
             </Flex>
 
             { bodyParameters[bodyParameter].description ? <Text as="p">{bodyParameters[bodyParameter].description}</Text> : '' }

@@ -67,6 +67,7 @@ function ReferenceScreen() {
           const pathSummary = path.summary || `${path.method} ${path.name}`;
           const headingId = pathSummary.replaceAll(' ', '-');
           const { headers, paths, queries } = groupParams(path.parameters);
+          const hasParameters = headers.length > 0 || paths.length > 0 || queries.length > 0 || path.requestBody;
 
           return (
             <Section key={ `method-${index}` }>
@@ -76,7 +77,7 @@ function ReferenceScreen() {
                 <Box flex="1" paddingRight="80px">
                   <Text as="p">{ path.description }</Text>
 
-                  <Text as="h4">Parameters</Text>
+                  { hasParameters && (<Text as="h4" disableMargin>Parameters</Text>) }
 
                   <ParameterDetails heading="Headers" parameters={ headers }/>
 
