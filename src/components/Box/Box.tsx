@@ -18,7 +18,7 @@ interface Props {
   overflowY?: string
 }
 
-const Box = styled.span`
+export const Box = styled.span`
     flex: ${(props: Props) => props.flex};
 
     padding-right: ${(props: Props) => props.paddingRight};
@@ -38,6 +38,4 @@ const Box = styled.span`
     overflow-x: ${(props: Props) => props.overflowX};
     overflow-y: ${(props: Props) => props.overflowY};
   }
-`
-
-export default Box
+`;

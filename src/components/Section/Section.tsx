@@ -5,9 +5,7 @@ interface Props {
   children: React.ReactNode
 }
 
-const Section = styled.section((props: Props) => ({
+export const Section = styled.section((props: Props) => ({
   paddingTop: '30px',
   paddingBottom: '30px',
-}))
-
-export default Section
+}));

@@ -5,7 +5,7 @@ interface Props {
   theme?: any
 }
 
-const Badge = styled.span((props: Props) => {
+export const Badge = styled.span((props: Props) => {
   return {
     display: 'inline-block',
     fontSize: props.theme.fontSize.small,
@@ -17,6 +17,4 @@ const Badge = styled.span((props: Props) => {
     background: '#0c5ecc',
     color: props.theme.fontColor.white,
   }
-})
-
-export default Badge
+});

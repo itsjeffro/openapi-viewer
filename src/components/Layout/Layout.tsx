@@ -18,7 +18,7 @@ interface Props {
   pages: PageInterface[]
 }
 
-const Layout = (props: Props) => {
+export const Layout = (props: Props) => {
   const { pages } = props;
   const { state } = useContext(StateContext);
 
@@ -58,6 +58,4 @@ const Layout = (props: Props) => {
       </Box>
     </>
   )
-}
-
-export default Layout
+};

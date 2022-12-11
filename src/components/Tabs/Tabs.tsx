@@ -1,6 +1,10 @@
 import styled from "@emotion/styled";
 
-const Tab = styled.button`
+export const Tabs = styled.div`
+  padding: 0 15px;
+`;
+
+export const Tab = styled.button`
   padding: 18px 10px 16px;
   margin-right: 10px;
   border: 0;
@@ -17,6 +21,4 @@ const Tab = styled.button`
   &:hover {
     border-color: #ddd;
   }
-`
-
-export default Tab
+`;

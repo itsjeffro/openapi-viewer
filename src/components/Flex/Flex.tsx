@@ -7,12 +7,10 @@ interface Props {
   padding?: string
 }
 
-const Flex = styled.div`
+export const Flex = styled.div`
   display: flex;
   align-items: ${(props: Props) => props.alignItems || null};
   column-gap: ${(props: Props) => props.columnGap || null};
   height: ${(props: Props) => props.height || null};
   padding: ${(props: Props) => props.padding || null};
-`
-
-export default Flex
+`;

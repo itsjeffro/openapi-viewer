@@ -66,7 +66,7 @@ const typography: Typography = {
   }
 }
 
-const Text = styled.span((props: Props) => {
+export const Text = styled.span((props: Props) => {
   const fontSize = props.fontSize || '';
   const fontWeight = props.fontWeight || '';
   const disableMargin = props.disableMargin || false;
@@ -80,5 +80,3 @@ const Text = styled.span((props: Props) => {
     })
   }
 })
-
-export default Text
