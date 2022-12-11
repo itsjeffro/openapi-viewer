@@ -13,6 +13,9 @@ const routes: Routes = {
   },
   'form-action': {
     name: 'Form action'
+  },
+  'user': {
+    name: 'User'
   }
 }
 

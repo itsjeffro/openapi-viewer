@@ -17,18 +17,18 @@ interface Schema {
 }
 
 const schemaParser = (schema: Schema): any => {
-  if (schema.type === 'object') {
+  if (schema.type === 'object' && schema.properties) {
     let result: any = {};
 
-    Object.keys(schema.properties || {}).map((propertyName: string) => {
+    Object.keys(schema.properties).map((propertyName: string) => {
       result[propertyName] = schemaParser(schema.properties[propertyName])
-    })
+    });
 
     return result
   }
 
   if (schema.hasOwnProperty('allOf')) {
-    return schemaCombiner(schema)
+    return schemaCombiner(schema);
   }
 
   if (schema.type === 'array') {
@@ -73,13 +73,13 @@ const schemaCombiner = (schema: Schema) => {
 
   (schema.allOf || []).map((item) => {
     if (item.type === 'object' && !allOf) {
-      allOf = {}
+      allOf = {};
     }
 
     if (item.type === 'object') {
       allOf = {
         ...allOf,
-        ...schemaParser(item)
+        ...schemaParser(item),
       }
     }
   })
