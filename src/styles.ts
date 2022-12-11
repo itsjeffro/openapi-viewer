@@ -5,5 +5,5 @@ export const highlighter = {
   fontSize: '13px',
   fontFamily: 'monospace',
   lineHeight: '21px',
-  maxHeight: '580px'
-}
+  maxHeight: '350px'
+};
