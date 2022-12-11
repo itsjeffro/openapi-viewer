@@ -10,7 +10,7 @@ const Badge = styled.span((props: Props) => {
     display: 'inline-block',
     fontSize: props.theme.fontSize.small,
     marginRight: '10px',
-    'text-transform': 'uppercase',
+    textTransform: 'uppercase',
     padding: '10px 14px 8px',
     lineHeight: 1,
     borderRadius: '15px',

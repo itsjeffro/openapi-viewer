@@ -5,6 +5,8 @@ import Sidebar from "./Sidebar";
 import {List, ListItem, ListSubheader} from "./List";
 import Text from "./Text";
 import Flex from "./Flex";
+import {useContext} from "react";
+import {StateContext} from "../state/stateProvider";
 
 interface PageInterface {
   tag: string
@@ -18,6 +20,7 @@ interface Props {
 
 const Layout = (props: Props) => {
   const { pages } = props;
+  const { state } = useContext(StateContext);
 
   return (
     <>
@@ -36,7 +39,7 @@ const Layout = (props: Props) => {
 
         <List>
           <ListSubheader disablePadding>
-            <Text as="h5">Reference</Text>
+            <Text as="h5">{ state?.openApi?.data?.info?.title }</Text>
           </ListSubheader>
 
           { pages.map((page) => (

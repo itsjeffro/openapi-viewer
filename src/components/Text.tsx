@@ -69,11 +69,15 @@ const typography: Typography = {
 const Text = styled.span((props: Props) => {
   const fontSize = props.fontSize || '';
   const fontWeight = props.fontWeight || '';
+  const disableMargin = props.disableMargin || false;
 
   return {
     fontWeight: fontWeight ? weights[fontWeight] : null,
     fontSize: fontSize ? sizes[fontSize] : null,
-    ...(props.as ? typography[props.as] : null)
+    ...(props.as ? typography[props.as] : null),
+    ...(disableMargin && {
+      margin: 0,
+    })
   }
 })
 
