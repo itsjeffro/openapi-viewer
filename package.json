@@ -20,6 +20,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
+    "react-router-hash-link": "^2.4.3",
     "react-syntax-highlighter": "^15.5.0"
   },
   "devDependencies": {
@@ -27,6 +28,7 @@
     "@types/node": "^18.7.12",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
+    "@types/react-router-hash-link": "^2.4.5",
     "@types/react-syntax-highlighter": "^15.5.5",
     "@vitejs/plugin-react": "^2.0.1",
     "concurrently": "^7.3.0",
