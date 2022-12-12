@@ -28,29 +28,30 @@ const weights: Weights = {
 }
 
 const sizes: Sizes = {
-  medium: '1.1em',
+  medium: '1.1rem',
+  large: '1.25rem',
 }
 
 const typography: Typography = {
   h1: {
-    fontSize: '30px',
+    fontSize: '1.875rem',
     marginBottom: '15px',
   },
   h2: {
     borderBottom: '1px solid #eaeaea',
-    paddingBottom: '30px',
-    marginBottom: '30px',
+    padding: '15px 0',
+    margin: '0 0 30px',
   },
   h3: {
     marginBottom: '16px',
   },
   h4: {
+    fontSize: '1rem',
     marginBottom: '16px',
   },
   h5: {
-    textTransform: 'uppercase',
-    color: '#464950',
-    fontWeight: 500,
+    fontSize: '0.875rem',
+    fontWeight: 600,
     padding: '15px 0',
   },
   p: {
@@ -62,7 +63,7 @@ const typography: Typography = {
     lineHeight: '1.5em',
     display: 'inline-block',
     borderRadius: '5px',
-    fontSize: '.85em',
+    fontSize: '.875rem',
     background: '#eeefef',
   }
 }

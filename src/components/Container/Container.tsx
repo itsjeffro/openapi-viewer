@@ -7,6 +7,6 @@ interface Props {
 
 export const Container = styled.div((props: Props) => ({
   padding: '0 30px',
-  maxWidth: '1300px',
+  maxWidth: '1200px',
   margin: '0 auto',
 }));

@@ -1,12 +1,14 @@
-import {NavLink} from "react-router-dom";
-import Divider from "./Divider";
-import Box from "./Box";
-import Sidebar from "./Sidebar";
-import {List, ListItem, ListSubheader} from "./List";
-import Text from "./Text";
-import Flex from "./Flex";
-import {useContext} from "react";
-import {StateContext} from "../state/stateProvider";
+import { useContext } from "react";
+import { NavLink } from "react-router-dom";
+import { HashLink  as Link} from "react-router-hash-link";
+import { Divider } from "../Divider";
+import { Box } from "../Box";
+import { Sidebar } from "../Sidebar";
+import { List, ListItem, ListSubheader } from "../List";
+import { Text } from "../Text";
+import { Flex } from "../Flex";
+import { StateContext } from "../../state/stateProvider";
+import { slugify } from "../../lib/string";
 
 interface PageInterface {
   tag: string
@@ -21,6 +23,29 @@ interface Props {
 export const Layout = (props: Props) => {
   const { pages } = props;
   const { state } = useContext(StateContext);
+
+  const menuLinks = {};
+  const paths = state?.openApi?.data?.paths || {};
+
+  Object.keys(paths).forEach((key) => {
+    const path = paths[key];
+
+    Object.keys(path).forEach((method) => {
+      path[method]?.tags.forEach((pathMethod) => {
+        menuLinks[pathMethod] = {
+          title: pathMethod,
+          slug: pathMethod,
+          subLinks: [
+            ...menuLinks[pathMethod]?.subLinks || [],
+            {
+              title: path[method].summary,
+              anchor: path[method].summary,
+            }
+          ],
+        };
+      });
+    });
+  });
 
   return (
     <>
@@ -42,12 +67,23 @@ export const Layout = (props: Props) => {
             <Text as="h5">{ state?.openApi?.data?.info?.title }</Text>
           </ListSubheader>
 
-          { pages.map((page) => (
-            <ListItem key={ `path-${page.tag}` } disablePadding>
+          { Object.keys(menuLinks).map((menuLink) => (
+            <ListItem key={ `path-${menuLinks[menuLink].slug}` } disablePadding>
               <NavLink
                 className={({ isActive }) => isActive ? 'active' : '' }
-                to={ `/references/${page.tag}` }
-              >{ page.name }</NavLink>
+                to={ `/references/${menuLinks[menuLink].slug}` }
+              >{ menuLinks[menuLink].title }</NavLink>
+              <Box display="none">
+                <List>
+                  { menuLinks[menuLink].subLinks.map((subLink) => (
+                    <ListItem disablePadding key={slugify(subLink.anchor)}>
+                      <Link to={ `/references/${menuLinks[menuLink].slug}#${slugify(subLink.anchor)}` }>
+                        - { subLink.title }
+                      </Link>
+                    </ListItem>
+                  )) }
+                </List>
+              </Box>
             </ListItem>
           )) }
         </List>
