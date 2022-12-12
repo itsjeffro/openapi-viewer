@@ -1,23 +1,24 @@
-import ResponseList from "./components/ResponseList";
-import Sample from "./components/Sample";
-import {useParams} from "react-router-dom";
-import useFetchSpec from "../../hooks/useFetchSpec";
 import {useContext} from "react";
-import {StateContext} from "../../state/stateProvider";
-import routes from "../../lib/routes";
-import Container from "../../components/Container";
-import Section from "../../components/Section";
-import Header from "../../components/Header";
-import OpenApi from "../../lib/OpenApi";
-import {Path} from "../../lib/OpenApi/Paths";
+import {useParams} from "react-router-dom";
+import Sample from "./components/Sample";
 import GeneralOnThisPage from "./components/GeneralOnThisPage";
 import GeneralDescription from "./components/GeneralDescription";
-import {groupParams} from "../../lib/parameters";
 import ParameterDetails from "./components/ParameterDetails";
 import BodyDetails from "./components/BodyDetails";
-import Flex from "../../components/Flex";
-import Box from "../../components/Box";
-import Text from "../../components/Text";
+import ResponseList from "./components/ResponseList";
+import {Container} from "../../components/Container";
+import {Section} from "../../components/Section";
+import {Header} from "../../components/Header";
+import {Flex} from "../../components/Flex";
+import {Box} from "../../components/Box";
+import {Text} from "../../components/Text";
+import useFetchSpec from "../../hooks/useFetchSpec";
+import OpenApi from "../../lib/OpenApi";
+import {Path} from "../../lib/OpenApi/Paths";
+import {groupParams} from "../../lib/parameters";
+import routes from "../../lib/routes";
+import {StateContext} from "../../state/stateProvider";
+import {slugify} from "../../lib/string";
 
 function ReferenceScreen() {
   const { endpoint } = useParams();
@@ -50,22 +51,15 @@ function ReferenceScreen() {
 
       <Container>
         <Section>
-          <Text as="h1">{ tagHeading }</Text>
-
-          <Flex>
-            <Box flex="1" paddingRight="80px">
-              <GeneralDescription tagDescription={ tag ? tag.description : null} />
-            </Box>
-
-            <Box width="580px" maxWidth="580px">
-              <GeneralOnThisPage paths={ paths } />
-            </Box>
+          <Flex gap="15px" flexDirection="column">
+            <Text as="h1" disableMargin>{ tagHeading }</Text>
+            <GeneralDescription tagDescription={ tag ? tag.description : null} />
           </Flex>
         </Section>
 
         { paths.map((path: Path, index: number) => {
           const pathSummary = path.summary || `${path.method} ${path.name}`;
-          const headingId = pathSummary.replaceAll(' ', '-');
+          const headingId = slugify(pathSummary);
           const { headers, paths, queries } = groupParams(path.parameters);
           const hasParameters = headers.length > 0 || paths.length > 0 || queries.length > 0 || path.requestBody;
 

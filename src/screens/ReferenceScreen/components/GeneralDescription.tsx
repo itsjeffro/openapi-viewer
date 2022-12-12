@@ -1,4 +1,4 @@
-import Text from "../../../components/Text";
+import {Text} from "../../../components/Text";
 
 interface Props {
   tagDescription: string
@@ -10,7 +10,7 @@ const GeneralDescription = ({ tagDescription }: Props) => {
   }
 
   return (
-    <Text as="p" fontSize="medium">{ tagDescription }</Text>
+    <Text as="p" fontSize="large" disableMargin>{ tagDescription }</Text>
   )
 }
 

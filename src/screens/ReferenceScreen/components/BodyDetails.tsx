@@ -1,20 +1,42 @@
 import EnumList from "./EnumList";
-import {List, ListItem} from "../../../components/List";
-import Text from "../../../components/Text";
-import Flex from "../../../components/Flex";
-import Box from "../../../components/Box";
+import { List, ListItem } from "../../../components/List";
+import { Text } from "../../../components/Text";
+import { Flex } from "../../../components/Flex";
+import { Box } from "../../../components/Box";
+import { Divider } from "../../../components/Divider";
 import RequiredText from "./RequiredText";
-import Divider from "../../../components/Divider";
+import schemaParser from "../../../lib/schemaParser";
 
 interface Props {
   requestBody: any
 }
 
+const buildSchema = (schema) => {
+  let allOf: any = null;
+
+  (schema && (schema.allOf) || []).map((item) => {
+    if (item.type === 'object' && !allOf) {
+      allOf = {};
+    }
+
+    if (item.type === 'object') {
+      allOf = {
+        ...allOf,
+        ...item,
+      }
+    }
+  })
+
+  return allOf;
+}
+
 const BodyDetails = ({ requestBody }: Props) => {
   const bodyContent = !requestBody ? {} : requestBody.content['application/json'];
-  const bodySchema = bodyContent ? bodyContent.schema : null;
+  const bodySchema = bodyContent ? buildSchema(bodyContent.schema) : null;
   const bodyParameters = bodySchema ? (bodySchema.properties || {}) : {};
   const requiredProperties = bodySchema ? bodySchema.required : [];
+
+  console.log(buildSchema(bodyContent.schema));
 
   return (
     <List style={{ display: Object.keys(bodyParameters).length === 0 ? 'none' : 'block' }}>

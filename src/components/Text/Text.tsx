@@ -5,6 +5,7 @@ interface Props {
   fontSize?: string
   theme?: any
   as?: string
+  disableMargin?: boolean
 }
 
 interface Sizes {

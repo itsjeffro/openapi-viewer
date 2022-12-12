@@ -1,11 +1,11 @@
 import useFetchSpec from "../hooks/useFetchSpec";
 import {useContext} from "react";
 import {StateContext} from "../state/stateProvider";
-import Container from "../components/Container";
-import Section from "../components/Section";
-import Header from "../components/Header";
+import {Container} from "../components/Container";
+import {Section} from "../components/Section";
+import {Header} from "../components/Header";
+import {Text} from "../components/Text";
 import OpenApi from "../lib/OpenApi";
-import Text from "../components/Text";
 
 const HomeScreen = () => {
   const { state } = useContext(StateContext);

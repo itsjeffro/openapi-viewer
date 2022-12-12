@@ -1,9 +1,9 @@
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { Card, CardHeader } from './../../../components/Card';
+import { Card, CardHeader } from '../../../components/Card';
+import {Text} from "../../../components/Text";
+import {Badge} from "../../../components/Badge";
 import exampleBuilder from "../../../lib/exampleBuilder";
 import * as styles from "../../../styles";
-import Text from "../../../components/Text";
-import Badge from "../../../components/Badge";
 
 interface SampleProps {
   host: string

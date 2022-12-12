@@ -1,14 +1,13 @@
 import {ChangeEvent, useState} from "react";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { Card, CardHeader } from '../../../components/Card';
+import { Flex } from "../../../components/Flex";
+import { Text } from "../../../components/Text";
+import { Select } from "../../../components/Select";
+import { Divider } from "../../../components/Divider";
+import { Tab, Tabs } from "../../../components/Tabs";
 import schemaParser from "../../../lib/schemaParser";
 import * as styles from "../../../styles";
-import {Card, CardHeader} from '../../../components/Card'
-import Flex from "../../../components/Flex";
-import Text from "../../../components/Text";
-import Select from "../../../components/Select";
-import Divider from "../../../components/Divider";
-import Tab from "../../../components/Tab";
-import Tabs from "../../../components/Tabs";
 
 const ResponseList = ({ responses }: any) => {
    responses = Object.keys(responses).map((httpCode: string) => {
