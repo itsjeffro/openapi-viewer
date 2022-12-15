@@ -1,12 +1,12 @@
 export interface Server {
-  url: string
+  url: string;
 }
 
 export interface Spec {
-  servers: Server[]
-  paths: any
+  servers: Server[];
+  paths: any;
   info: {
-    title: string
-    description: string
-  }
+    title: string;
+    description: string;
+  };
 }

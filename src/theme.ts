@@ -58,8 +58,8 @@ const theme = {
       borderRadius: '5px',
       fontSize: '.85em',
       background: '#eeefef',
-    }
-  }
+    },
+  },
 };
 
-export default theme
+export default theme;

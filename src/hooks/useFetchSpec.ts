@@ -1,6 +1,6 @@
-import {useContext, useEffect} from "react";
-import axios from "axios";
-import {StateContext} from "../state/stateProvider";
+import { useContext, useEffect } from 'react';
+import axios from 'axios';
+import { StateContext } from '../state/stateProvider';
 
 const useFetchSpec = () => {
   const { state, dispatch } = useContext(StateContext);
@@ -11,15 +11,13 @@ const useFetchSpec = () => {
         return;
       }
 
-      axios
-        .get('/api/openapi')
-        .then(response => {
-          dispatch({ type: 'OPEN_API_SUCCESS', payload: response.data })
-        });
-    }
+      axios.get('/api/openapi').then((response) => {
+        dispatch({ type: 'OPEN_API_SUCCESS', payload: response.data });
+      });
+    };
 
     callApi();
-  }, [])
-}
+  }, []);
+};
 
-export default useFetchSpec
+export default useFetchSpec;

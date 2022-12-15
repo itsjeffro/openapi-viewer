@@ -1,24 +1,24 @@
-import React, {useReducer} from "react";
+import React, { useReducer } from 'react';
 
 // State and reducer
 
 interface StateInterface {
   openApi: {
-    isFetching: boolean
-    data: any
-  }
+    isFetching: boolean;
+    data: any;
+  };
 }
 
 interface ActionInterface {
-  type: 'OPEN_API_REQUEST' | 'OPEN_API_SUCCESS'
-  payload: StateInterface
+  type: 'OPEN_API_REQUEST' | 'OPEN_API_SUCCESS';
+  payload: StateInterface;
 }
 
 const initialState: StateInterface = {
   openApi: {
     isFetching: true,
-    data: null
-  }
+    data: null,
+  },
 };
 
 export const reducer = (state: StateInterface, action: ActionInterface): StateInterface => {
@@ -29,8 +29,8 @@ export const reducer = (state: StateInterface, action: ActionInterface): StateIn
         openApi: {
           ...state.openApi,
           isFetching: true,
-        }
-      }
+        },
+      };
 
     case 'OPEN_API_SUCCESS':
       return {
@@ -39,13 +39,13 @@ export const reducer = (state: StateInterface, action: ActionInterface): StateIn
           ...state.openApi,
           isFetching: false,
           data: action.payload,
-        }
-      }
+        },
+      };
 
     default:
-      return state
+      return state;
   }
-}
+};
 
 // Context
 
@@ -55,22 +55,15 @@ interface Context {
 }
 
 interface Props {
-  children: any
+  children: any;
 }
 
 const StateProvider: React.FC<any> = (props: Props) => {
-  const [state, dispatch] = useReducer(
-    reducer as any,
-    initialState as any
-  );
+  const [state, dispatch] = useReducer(reducer as any, initialState as any);
 
-  return (
-    <StateContext.Provider value={{ state, dispatch }}>
-      {props.children}
-    </StateContext.Provider>
-  )
+  return <StateContext.Provider value={{ state, dispatch }}>{props.children}</StateContext.Provider>;
 };
 
 export const StateContext = React.createContext<Context>({} as any);
 
-export default StateProvider
+export default StateProvider;

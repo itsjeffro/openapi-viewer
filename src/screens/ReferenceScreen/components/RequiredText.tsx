@@ -1,4 +1,4 @@
-import {Text} from "../../../components/Text";
+import { Text } from '../../../components/Text';
 
 interface Props {
   isRequired?: boolean;
@@ -7,10 +7,10 @@ interface Props {
 const RequiredText = ({ isRequired }: Props) => {
   const styles = {
     color: '#d63a07',
-    display: isRequired ? 'inline-block' : 'none'
+    display: isRequired ? 'inline-block' : 'none',
   };
 
-  return <Text style={ styles }>Required.</Text>
-}
+  return <Text style={styles}>Required.</Text>;
+};
 
-export default RequiredText
+export default RequiredText;

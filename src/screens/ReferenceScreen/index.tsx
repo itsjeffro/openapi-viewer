@@ -1,24 +1,21 @@
-import {useContext} from "react";
-import {useParams} from "react-router-dom";
-import Sample from "./components/Sample";
-import GeneralOnThisPage from "./components/GeneralOnThisPage";
-import GeneralDescription from "./components/GeneralDescription";
-import ParameterDetails from "./components/ParameterDetails";
-import BodyDetails from "./components/BodyDetails";
-import ResponseList from "./components/ResponseList";
-import {Container} from "../../components/Container";
-import {Section} from "../../components/Section";
-import {Header} from "../../components/Header";
-import {Flex} from "../../components/Flex";
-import {Box} from "../../components/Box";
-import {Text} from "../../components/Text";
-import useFetchSpec from "../../hooks/useFetchSpec";
-import OpenApi from "../../lib/OpenApi";
-import {Path} from "../../lib/OpenApi/Paths";
-import {groupParams} from "../../lib/parameters";
-import routes from "../../lib/routes";
-import {StateContext} from "../../state/stateProvider";
-import {slugify} from "../../lib/string";
+import { useContext } from 'react';
+import { useParams } from 'react-router-dom';
+import Sample from './components/Sample';
+import GeneralDescription from './components/GeneralDescription';
+import ParameterDetails from './components/ParameterDetails';
+import BodyDetails from './components/BodyDetails';
+import ResponseList from './components/ResponseList';
+import { Container } from '../../components/Container';
+import { Header } from '../../components/Header';
+import { Flex } from '../../components/Flex';
+import { Box } from '../../components/Box';
+import { Text } from '../../components/Text';
+import useFetchSpec from '../../hooks/useFetchSpec';
+import OpenApi from '../../lib/OpenApi';
+import { Path } from '../../lib/OpenApi/Paths';
+import { groupParams } from '../../lib/parameters';
+import { StateContext } from '../../state/stateProvider';
+import { slugify, ucfirst } from '../../lib/string';
 
 function ReferenceScreen() {
   const { endpoint } = useParams();
@@ -31,14 +28,13 @@ function ReferenceScreen() {
       <Header>
         <Text fontWeight="medium">Loading...</Text>
       </Header>
-    )
+    );
   }
 
   const tagName = endpoint || '';
-  const tagHeading = routes[tagName] ? routes[tagName].name : tagName;
+  const tagHeading = ucfirst(tagName.replace('-', ' '));
 
-  const openApi = new OpenApi(state.openApi.data)
-
+  const openApi = new OpenApi(state.openApi.data);
   const server = openApi.servers().first();
   const tag = openApi.tags().filterByName(tagName).first();
   const paths = openApi.paths().filterByTagName(tagName).get();
@@ -46,63 +42,67 @@ function ReferenceScreen() {
   return (
     <>
       <Header>
-        <Text fontWeight="medium">{ openApi.info().title } \ References</Text>
+        <Text fontWeight="medium">{openApi.info().title} \ References</Text>
       </Header>
 
       <Container>
-        <Section>
-          <Flex gap="15px" flexDirection="column">
-            <Text as="h1" disableMargin>{ tagHeading }</Text>
-            <GeneralDescription tagDescription={ tag ? tag.description : null} />
-          </Flex>
-        </Section>
+        <Flex gap="15px" flexDirection="column" paddingTop="30px">
+          <Text as="h1" disableMargin>
+            {tagHeading}
+          </Text>
+          <GeneralDescription tagDescription={tag ? tag.description : null} />
+        </Flex>
 
-        { paths.map((path: Path, index: number) => {
+        {paths.map((path: Path, index: number) => {
           const pathSummary = path.summary || `${path.method} ${path.name}`;
           const headingId = slugify(pathSummary);
           const { headers, paths, queries } = groupParams(path.parameters);
           const hasParameters = headers.length > 0 || paths.length > 0 || queries.length > 0 || path.requestBody;
 
           return (
-            <Section key={ `method-${index}` }>
-              <Text as="h2" id={ headingId }>{ pathSummary }</Text>
+            <Box paddingTop="30px" paddingBottom="30px" key={`method-${index}`}>
+              <Text as="h2" id={headingId}>
+                {pathSummary}
+              </Text>
 
-              <Flex>
-                <Box flex="1" paddingRight="80px">
-                  <Text as="p">{ path.description }</Text>
+              <Flex flexDirection="row">
+                <Flex flexDirection="column" flex="1" padding="0 80px 0 0" gap="30px">
+                  <Text as="p" disableMargin>
+                    {path.description}
+                  </Text>
 
-                  { hasParameters && (<Text as="h4" disableMargin>Parameters</Text>) }
+                  <Box>
+                    {hasParameters && (
+                      <Text as="h4" disableMargin>
+                        Parameters
+                      </Text>
+                    )}
 
-                  <ParameterDetails heading="Headers" parameters={ headers }/>
-
-                  <ParameterDetails heading="Path parameters" parameters={ paths }/>
-
-                  <ParameterDetails heading="Query parameters" parameters={ queries }/>
-
-                  <BodyDetails requestBody={ path.requestBody }/>
-                </Box>
+                    <ParameterDetails heading="Headers" parameters={headers} />
+                    <ParameterDetails heading="Path parameters" parameters={paths} />
+                    <ParameterDetails heading="Query parameters" parameters={queries} />
+                    <BodyDetails requestBody={path.requestBody} />
+                  </Box>
+                </Flex>
 
                 <Box width="580px" maxWidth="580px">
                   <Text as="h4">Code samples</Text>
-
                   <Sample
-                    host={ server ? server.url : '' }
-                    method={ path.method }
-                    defaultPathKey={ path.name }
-                    requestBody={ path.requestBody }
+                    host={server ? server.url : ''}
+                    method={path.method}
+                    defaultPathKey={path.name}
+                    requestBody={path.requestBody}
                   />
-
                   <Text as="h5">Responses</Text>
-
-                  <ResponseList responses={ path.responses }/>
+                  <ResponseList responses={path.responses} />
                 </Box>
               </Flex>
-            </Section>
-          )
-        }) }
+            </Box>
+          );
+        })}
       </Container>
     </>
-  )
+  );
 }
 
-export default ReferenceScreen
+export default ReferenceScreen;
