@@ -1,5 +1,5 @@
-import { Global, useTheme } from "@emotion/react";
-import * as React from "react";
+import { Global, useTheme } from '@emotion/react';
+import * as React from 'react';
 
 export const GlobalStyle = () => {
   const theme: any = useTheme();
@@ -44,7 +44,7 @@ export const GlobalStyle = () => {
     textarea {
       font-size: ${theme.fontSize.base};
     }
-  `
+  `;
 
-  return <Global styles={styles} />
-}
+  return <Global styles={styles} />;
+};

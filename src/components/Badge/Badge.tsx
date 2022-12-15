@@ -1,8 +1,8 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 interface Props {
-  variant?: string
-  theme?: any
+  variant?: string;
+  theme?: any;
 }
 
 export const Badge = styled.span((props: Props) => {
@@ -16,5 +16,5 @@ export const Badge = styled.span((props: Props) => {
     borderRadius: '15px',
     background: '#0c5ecc',
     color: props.theme.fontColor.white,
-  }
+  };
 });

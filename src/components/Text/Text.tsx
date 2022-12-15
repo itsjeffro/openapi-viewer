@@ -1,11 +1,11 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 interface Props {
-  fontWeight?: string
-  fontSize?: string
-  theme?: any
-  as?: string
-  disableMargin?: boolean
+  fontWeight?: string;
+  fontSize?: string;
+  theme?: any;
+  as?: string;
+  disableMargin?: boolean;
 }
 
 interface Sizes {
@@ -20,17 +20,16 @@ interface Typography {
   [key: string]: any;
 }
 
-
 const weights: Weights = {
   regular: 300,
   medium: 500,
   bold: 700,
-}
+};
 
 const sizes: Sizes = {
   medium: '1.1rem',
   large: '1.25rem',
-}
+};
 
 const typography: Typography = {
   h1: {
@@ -38,11 +37,13 @@ const typography: Typography = {
     marginBottom: '15px',
   },
   h2: {
+    fontSize: '1.5rem',
     borderBottom: '1px solid #eaeaea',
-    padding: '15px 0',
+    paddingBottom: '15px',
     margin: '0 0 30px',
   },
   h3: {
+    fontSize: '1.25rem',
     marginBottom: '16px',
   },
   h4: {
@@ -65,8 +66,8 @@ const typography: Typography = {
     borderRadius: '5px',
     fontSize: '.875rem',
     background: '#eeefef',
-  }
-}
+  },
+};
 
 export const Text = styled.span((props: Props) => {
   const fontSize = props.fontSize || '';
@@ -79,6 +80,6 @@ export const Text = styled.span((props: Props) => {
     ...(props.as ? typography[props.as] : null),
     ...(disableMargin && {
       margin: 0,
-    })
-  }
-})
+    }),
+  };
+});

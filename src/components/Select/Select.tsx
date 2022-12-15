@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 export const Select = styled.select((props) => ({
   border: '1px solid #ddd',

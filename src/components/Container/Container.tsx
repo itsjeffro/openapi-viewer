@@ -1,8 +1,8 @@
-import React from "react";
-import styled from '@emotion/styled'
+import React from 'react';
+import styled from '@emotion/styled';
 
 interface Props {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export const Container = styled.div((props: Props) => ({
