@@ -1,22 +1,22 @@
 interface Routes {
   [key: string]: {
-    name: string
-  }
+    name: string;
+  };
 }
 
 const routes: Routes = {
   'csrf-token': {
-    name: 'Csrf Token'
+    name: 'Csrf Token',
   },
   'legal-entity': {
-    name: 'Legal Entity'
+    name: 'Legal Entity',
   },
   'form-action': {
-    name: 'Form action'
+    name: 'Form action',
   },
-  'user': {
-    name: 'User'
-  }
-}
+  user: {
+    name: 'User',
+  },
+};
 
-export default routes
+export default routes;

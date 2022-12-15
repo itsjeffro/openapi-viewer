@@ -1,6 +1,6 @@
-import Paths from "./Paths";
-import Tags from "./Tags";
-import Servers from "./Servers";
+import Paths from './Paths';
+import Tags from './Tags';
+import Servers from './Servers';
 
 class OpenApi {
   public data;
@@ -10,20 +10,20 @@ class OpenApi {
   }
 
   public info() {
-    return this.data.info
+    return this.data.info;
   }
 
   public tags(): Tags {
-    return new Tags(this.data.tags || [])
+    return new Tags(this.data.tags || []);
   }
 
   public servers(): Servers {
-    return new Servers(this.data.servers || [])
+    return new Servers(this.data.servers || []);
   }
 
   public paths(): Paths {
-    return new Paths(this.data.paths)
+    return new Paths(this.data.paths);
   }
 }
 
-export default OpenApi
+export default OpenApi;

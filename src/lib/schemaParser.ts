@@ -1,19 +1,21 @@
 interface Property {
-  example?: string
-  type?: string
-  items?: any
-  enum: any[]
+  example?: string;
+  type?: string;
+  items?: any;
+  enum: any[];
 }
 
 interface Schema {
-  type: string
-  items?: any
-  properties: any | {
-    [key: string]: Property
-  },
-  example?: any
-  enum?: any[]
-  allOf?: any[]
+  type: string;
+  items?: any;
+  properties:
+    | any
+    | {
+        [key: string]: Property;
+      };
+  example?: any;
+  enum?: any[];
+  allOf?: any[];
 }
 
 const schemaParser = (schema: Schema): any => {
@@ -21,10 +23,10 @@ const schemaParser = (schema: Schema): any => {
     let result: any = {};
 
     Object.keys(schema.properties).map((propertyName: string) => {
-      result[propertyName] = schemaParser(schema.properties[propertyName])
+      result[propertyName] = schemaParser(schema.properties[propertyName]);
     });
 
-    return result
+    return result;
   }
 
   if (schema.hasOwnProperty('allOf')) {
@@ -32,9 +34,7 @@ const schemaParser = (schema: Schema): any => {
   }
 
   if (schema.type === 'array') {
-    return [
-      schemaParser(schema.items)
-    ]
+    return [schemaParser(schema.items)];
   }
 
   if (schema.type === 'string') {
@@ -54,7 +54,7 @@ const schemaParser = (schema: Schema): any => {
   }
 
   return schema.example || null;
-}
+};
 
 const getStringValueFromSchema = (schema: Schema) => {
   if (schema.example) {
@@ -62,11 +62,11 @@ const getStringValueFromSchema = (schema: Schema) => {
   }
 
   if (schema.enum && schema.enum.length > 0) {
-    return schema.enum[0]
+    return schema.enum[0];
   }
 
   return schema.type;
-}
+};
 
 const schemaCombiner = (schema: Schema) => {
   let allOf: any = null;
@@ -80,11 +80,11 @@ const schemaCombiner = (schema: Schema) => {
       allOf = {
         ...allOf,
         ...schemaParser(item),
-      }
+      };
     }
-  })
+  });
 
   return allOf;
-}
+};
 
 export default schemaParser;

@@ -1,21 +1,21 @@
 interface Server {
-  url: string
+  url: string;
 }
 
 class Servers {
-  public servers
+  public servers;
 
   constructor(servers: Server[]) {
-    this.servers = servers
+    this.servers = servers;
   }
 
   public first(): Server {
-    return this.servers[0]
+    return this.servers[0];
   }
 
   public get(): Server[] {
-    return this.servers
+    return this.servers;
   }
 }
 
-export default Servers
+export default Servers;

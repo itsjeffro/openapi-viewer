@@ -7,15 +7,15 @@ class Tags {
 
   public filterByName(tagName: string): this {
     this.tags = this.tags.filter((tag: any) => {
-      return tag.name === tagName
-    })
+      return tag.name === tagName;
+    });
 
     return this;
   }
 
   public first() {
-    return this.tags[0] || null
+    return this.tags[0] || null;
   }
 }
 
-export default Tags
+export default Tags;

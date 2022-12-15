@@ -13,9 +13,9 @@ class PathResponses {
         httpCode: httpCode,
         description: status.description,
         schema: status.content ? status.content['application/json'].schema : null,
-      }
-    })
+      };
+    });
   }
 }
 
-export default PathResponses
+export default PathResponses;

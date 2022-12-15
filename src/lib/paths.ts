@@ -1,7 +1,7 @@
 export const filterByTag = (paths: any, tag: string): any[] => {
   let endpoints: any[] = [];
 
-  Object.keys(paths).map(path => {
+  Object.keys(paths).map((path) => {
     const resourcePath = paths[path];
 
     Object.keys(paths[path]).map((method) => {
@@ -13,12 +13,12 @@ export const filterByTag = (paths: any, tag: string): any[] => {
           {
             method: method,
             name: path,
-            ...resourcePath[method]
-          }
-        ]
+            ...resourcePath[method],
+          },
+        ];
       }
     });
   });
 
   return endpoints;
-}
+};
