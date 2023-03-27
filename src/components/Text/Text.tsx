@@ -38,8 +38,6 @@ const typography: Typography = {
   },
   h2: {
     fontSize: '1.5rem',
-    borderBottom: '1px solid #eaeaea',
-    paddingBottom: '15px',
     margin: '0 0 30px',
   },
   h3: {

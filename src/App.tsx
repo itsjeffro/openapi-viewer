@@ -1,12 +1,12 @@
 import { ThemeProvider } from '@emotion/react';
 import * as React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { GlobalStyle } from '@itsjeffro/ui-components';
 import { Layout } from './components/Layout';
-import { GlobalStyle } from './components/GlobalStyle';
-import theme from './theme';
-import HomeScreen from './screens/HomeScreen';
 import ReferenceScreen from './screens/ReferenceScreen';
+import HomeScreen from './screens/HomeScreen';
 import StateProvider from './state/stateProvider';
+import theme from './theme';
 
 function App() {
   return (

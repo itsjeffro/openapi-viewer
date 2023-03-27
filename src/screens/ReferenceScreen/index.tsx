@@ -1,21 +1,22 @@
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
+import { Box } from '@itsjeffro/ui-components/Box';
+import { Container } from '@itsjeffro/ui-components/Container';
+import { Divider } from '@itsjeffro/ui-components/Divider';
+import { Flex } from '@itsjeffro/ui-components/Flex';
+import { Header } from '@itsjeffro/ui-components/Header';
+import { Text } from '@itsjeffro/ui-components/Text';
 import Sample from './components/Sample';
 import GeneralDescription from './components/GeneralDescription';
 import ParameterDetails from './components/ParameterDetails';
 import BodyDetails from './components/BodyDetails';
 import ResponseList from './components/ResponseList';
-import { Container } from '../../components/Container';
-import { Header } from '../../components/Header';
-import { Flex } from '../../components/Flex';
-import { Box } from '../../components/Box';
-import { Text } from '../../components/Text';
 import useFetchSpec from '../../hooks/useFetchSpec';
 import OpenApi from '../../lib/OpenApi';
 import { Path } from '../../lib/OpenApi/Paths';
 import { groupParams } from '../../lib/parameters';
-import { StateContext } from '../../state/stateProvider';
 import { slugify, ucfirst } from '../../lib/string';
+import { StateContext } from '../../state/stateProvider';
 
 function ReferenceScreen() {
   const { endpoint } = useParams();
@@ -46,7 +47,7 @@ function ReferenceScreen() {
       </Header>
 
       <Container>
-        <Flex gap="15px" flexDirection="column" paddingTop="30px">
+        <Flex gap="15px" flexDirection="column" paddingTop="30px" paddingBottom="30px">
           <Text as="h1" disableMargin>
             {tagHeading}
           </Text>
@@ -60,44 +61,47 @@ function ReferenceScreen() {
           const hasParameters = headers.length > 0 || paths.length > 0 || queries.length > 0 || path.requestBody;
 
           return (
-            <Box paddingTop="30px" paddingBottom="30px" key={`method-${index}`}>
-              <Text as="h2" id={headingId}>
-                {pathSummary}
-              </Text>
+            <>
+              <Divider />
+              <Box paddingTop="30px" paddingBottom="30px" key={`method-${index}`}>
+                <Text as="h2" id={headingId}>
+                  {pathSummary}
+                </Text>
 
-              <Flex flexDirection="row">
-                <Flex flexDirection="column" flex="1" padding="0 80px 0 0" gap="30px">
-                  <Text as="p" disableMargin>
-                    {path.description}
-                  </Text>
+                <Flex flexDirection="row">
+                  <Flex flexDirection="column" flex="1" padding="0 80px 0 0" gap="30px">
+                    <Text as="p" disableMargin>
+                      {path.description}
+                    </Text>
 
-                  <Box>
-                    {hasParameters && (
-                      <Text as="h4" disableMargin>
-                        Parameters
-                      </Text>
-                    )}
+                    <Box>
+                      {hasParameters && (
+                        <Text as="h4" disableMargin>
+                          Parameters
+                        </Text>
+                      )}
 
-                    <ParameterDetails heading="Headers" parameters={headers} />
-                    <ParameterDetails heading="Path parameters" parameters={paths} />
-                    <ParameterDetails heading="Query parameters" parameters={queries} />
-                    <BodyDetails requestBody={path.requestBody} />
+                      <ParameterDetails heading="Headers" parameters={headers} />
+                      <ParameterDetails heading="Path parameters" parameters={paths} />
+                      <ParameterDetails heading="Query parameters" parameters={queries} />
+                      <BodyDetails requestBody={path.requestBody} />
+                    </Box>
+                  </Flex>
+
+                  <Box width="580px" maxWidth="580px">
+                    <Text as="h4">Code samples</Text>
+                    <Sample
+                      host={server ? server.url : ''}
+                      method={path.method}
+                      defaultPathKey={path.name}
+                      requestBody={path.requestBody}
+                    />
+                    <Text as="h5">Responses</Text>
+                    <ResponseList responses={path.responses} />
                   </Box>
                 </Flex>
-
-                <Box width="580px" maxWidth="580px">
-                  <Text as="h4">Code samples</Text>
-                  <Sample
-                    host={server ? server.url : ''}
-                    method={path.method}
-                    defaultPathKey={path.name}
-                    requestBody={path.requestBody}
-                  />
-                  <Text as="h5">Responses</Text>
-                  <ResponseList responses={path.responses} />
-                </Box>
-              </Flex>
-            </Box>
+              </Box>
+            </>
           );
         })}
       </Container>
