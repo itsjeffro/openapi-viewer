@@ -1,8 +1,13 @@
 # OpenAPI Viewer
 
+# Introduction
 Parses and displays an open api spec in a nice little UI.
 
 * Supports OpenApi 3.0.*
+
+<p align="center">
+    <img src="https://res.cloudinary.com/dz4tjswiv/image/upload/v1680134384/openapi-viewer.png">
+</p>
 
 ## Built using
 
