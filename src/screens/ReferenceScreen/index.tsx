@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { Box } from '../../components/Box';
 import { Container } from '../../components/Container';
@@ -82,9 +82,7 @@ function ReferenceScreen() {
                         </Text>
                       )}
 
-                      {!hasParameters && (
-                        <Text>No parameters</Text>
-                      )}
+                      {!hasParameters && <Text>No parameters</Text>}
 
                       <ParameterDetails heading="Headers" parameters={headers} />
                       <ParameterDetails heading="Path parameters" parameters={paths} />

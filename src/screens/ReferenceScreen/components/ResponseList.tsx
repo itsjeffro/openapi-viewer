@@ -17,7 +17,7 @@ const getSchema = (status: any): any => {
   const statusContent = status.content.hasOwnProperty('application/json') ? status.content['application/json'] : {};
 
   return statusContent?.schema || {};
-}
+};
 
 const ResponseList = ({ responses }: any) => {
   responses = Object.keys(responses).map((httpCode: string) => {
