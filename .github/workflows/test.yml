@@ -3,11 +3,6 @@ name: Test
 on:
   push:
   pull_request:
-  workflow_call:
-    inputs:
-      os:
-        required: true
-        type: string
 
 jobs:
   test:
@@ -16,7 +11,7 @@ jobs:
       matrix:
         node-version: [14.x, 16.x, 18.x, 19.x]
     name: Node v${{ matrix.node-version }} on ${{ inputs.os }}
-    runs-on: ${{ inputs.os }}
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
