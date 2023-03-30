@@ -2,7 +2,7 @@ import { groupParams } from "./parameters";
 
 describe('parameters', () => {
 
-  it('should return pameters grouped in object by key', () => {
+  it('should return parameters grouped in object by key', () => {
     const parameters = [
       {in: 'header', name: 'accept'},
       {in: 'path', name: 'userId'},
