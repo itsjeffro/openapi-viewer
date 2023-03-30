@@ -1,7 +1,7 @@
 import { ThemeProvider } from '@emotion/react';
 import * as React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { GlobalStyle } from '@itsjeffro/ui-components';
+import { GlobalStyle } from './components/GlobalStyle';
 import { Layout } from './components/Layout';
 import ReferenceScreen from './screens/ReferenceScreen';
 import HomeScreen from './screens/HomeScreen';

@@ -9,13 +9,21 @@ import { Tab, Tabs } from '../../../components/Tabs';
 import schemaParser from '../../../lib/schemaParser';
 import * as styles from '../../../styles';
 
+const getSchema = (status: any): any => {
+  if (!status.content) {
+    return {};
+  }
+
+  const statusContent = status.content.hasOwnProperty('application/json') ? status.content['application/json'] : {};
+
+  return statusContent?.schema || {};
+}
+
 const ResponseList = ({ responses }: any) => {
   responses = Object.keys(responses).map((httpCode: string) => {
     const status = responses[httpCode];
 
-    const statusContent = status.content.hasOwnProperty('application/json') ? status.content['application/json'] : {};
-
-    const schema = statusContent['schema'] || null;
+    const schema = getSchema(status);
 
     return {
       httpCode: httpCode,

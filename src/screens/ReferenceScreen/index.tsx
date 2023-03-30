@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { Box } from '@itsjeffro/ui-components/Box';
-import { Container } from '@itsjeffro/ui-components/Container';
-import { Divider } from '@itsjeffro/ui-components/Divider';
-import { Flex } from '@itsjeffro/ui-components/Flex';
-import { Header } from '@itsjeffro/ui-components/Header';
-import { Text } from '@itsjeffro/ui-components/Text';
+import { Box } from '../../components/Box';
+import { Container } from '../../components/Container';
+import { Divider } from '../../components/Divider';
+import { Flex } from '../../components/Flex';
+import { Header } from '../../components/Header';
+import { Text } from '../../components/Text';
 import Sample from './components/Sample';
 import GeneralDescription from './components/GeneralDescription';
 import ParameterDetails from './components/ParameterDetails';
