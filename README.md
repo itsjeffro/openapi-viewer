@@ -2,6 +2,7 @@
 
 <p align="center">
     <a href="https://github.com/itsjeffro/openapi-viewer/actions"><img src="https://github.com/itsjeffro/openapi-viewer/actions/workflows/test.yml/badge.svg" alt="Build Status"></a>
+    <a href="https://packagist.org/packages/itsjeffro/deploy"><img src="https://poser.pugx.org/itsjeffro/deploy/license.svg"></a>
 </p>
 
 # Introduction
