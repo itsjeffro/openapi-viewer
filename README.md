@@ -1,5 +1,9 @@
 # OpenAPI Viewer
 
+<p align="center">
+    <a href="https://github.com/itsjeffro/openapi-viewer/actions"><img src="https://github.com/itsjeffro/openapi-viewer/workflows/tests/badge.svg" alt="Build Status"></a>
+</p>
+
 # Introduction
 Parses and displays an open api spec in a nice little UI.
 
