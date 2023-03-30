@@ -61,8 +61,9 @@ function ReferenceScreen() {
           const hasParameters = headers.length > 0 || paths.length > 0 || queries.length > 0 || path.requestBody;
 
           return (
-            <>
+            <Box key={index}>
               <Divider />
+
               <Box paddingTop="30px" paddingBottom="30px" key={`method-${index}`}>
                 <Text as="h2" id={headingId}>
                   {pathSummary}
@@ -101,7 +102,7 @@ function ReferenceScreen() {
                   </Box>
                 </Flex>
               </Box>
-            </>
+            </Box>
           );
         })}
       </Container>

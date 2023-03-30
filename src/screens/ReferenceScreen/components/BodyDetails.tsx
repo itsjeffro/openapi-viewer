@@ -13,6 +13,10 @@ interface Props {
 const buildSchema = (schema: any) => {
   let allOf: any = null;
 
+  if (schema?.type === 'object' && schema.properties) {
+    return schema;
+  }
+
   ((schema && schema.allOf) || []).map((item: any) => {
     if (item.type === 'object' && !allOf) {
       allOf = {};
@@ -33,7 +37,7 @@ const BodyDetails = ({ requestBody }: Props) => {
   const bodyContent = !requestBody ? {} : requestBody.content['application/json'];
   const bodySchema = bodyContent ? buildSchema(bodyContent.schema) : null;
   const bodyParameters = bodySchema ? bodySchema.properties || {} : {};
-  const requiredProperties = bodySchema ? bodySchema.required : [];
+  const requiredProperties = bodySchema?.required || [];
 
   return (
     <List style={{ display: Object.keys(bodyParameters).length === 0 ? 'none' : 'block' }}>
