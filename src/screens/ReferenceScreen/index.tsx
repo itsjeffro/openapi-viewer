@@ -82,6 +82,10 @@ function ReferenceScreen() {
                         </Text>
                       )}
 
+                      {!hasParameters && (
+                        <Text>No parameters</Text>
+                      )}
+
                       <ParameterDetails heading="Headers" parameters={headers} />
                       <ParameterDetails heading="Path parameters" parameters={paths} />
                       <ParameterDetails heading="Query parameters" parameters={queries} />
