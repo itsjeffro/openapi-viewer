@@ -5,10 +5,8 @@ const exampleBuilder = (method: string, host: string, endpoint: string, body: an
 
   if (method === 'post' || method === 'put') {
     request = request.concat(`  -X ${method.toUpperCase()}`);
-    request = request.concat(`  -H "X-CSRF-TOKEN: TOKEN_HERE"`);
   }
 
-  request = request.concat(`  -H "Accept: application/json"`);
   request = request.concat(`  ${host}${endpoint}`);
 
   if (body !== null) {
