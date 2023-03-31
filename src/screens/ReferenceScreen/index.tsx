@@ -97,7 +97,7 @@ function ReferenceScreen() {
                       host={server ? server.url : ''}
                       method={path.method}
                       defaultPathKey={path.name}
-                      requestBody={path.requestBody}
+                      path={path}
                     />
                     <Text as="h5">Responses</Text>
                     <ResponseList responses={path.responses} />

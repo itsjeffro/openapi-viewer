@@ -9,15 +9,14 @@ interface SampleProps {
   host: string;
   method: string;
   defaultPathKey: string;
-  requestBody: any;
+  path: any;
 }
 
-const Sample = ({ host, method, defaultPathKey, requestBody }: SampleProps) => {
-  const body = !requestBody ? null : requestBody.content['application/json'];
+const Sample = ({ host, method, defaultPathKey, path }: SampleProps) => {
+  const body = path?.requestBody?.content['application/json'] || null;
+  const bodySchema = body?.schema || null;
 
-  const bodySchema = body ? body.schema : null;
-
-  let example = exampleBuilder(method, host, defaultPathKey, bodySchema);
+  let example = exampleBuilder(method, host, defaultPathKey, bodySchema, path);
 
   return (
     <Card>
