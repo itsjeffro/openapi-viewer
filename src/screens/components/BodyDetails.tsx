@@ -24,8 +24,8 @@ const buildSchema = (schema: any) => {
         '[]': {
           type: 'array',
           description: JSON.stringify(schema.items.properties),
-        }
-      }
+        },
+      },
     };
   }
 

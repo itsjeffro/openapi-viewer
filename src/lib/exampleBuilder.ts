@@ -8,12 +8,12 @@ const exampleBuilder = (method: string, host: string, endpoint: string, body: an
   }
 
   if (path?.requestBody?.content) {
-      const contentTypes = Object.keys(path.requestBody.content);
-      const contentType = contentTypes[0];
+    const contentTypes = Object.keys(path.requestBody.content);
+    const contentType = contentTypes[0];
 
-      if (contentType) {
-        request.push(`  -H Content-Type: ${contentType}`);
-      }
+    if (contentType) {
+      request.push(`  -H Content-Type: ${contentType}`);
+    }
   }
 
   if (path?.responses) {

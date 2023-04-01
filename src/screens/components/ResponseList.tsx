@@ -20,19 +20,18 @@ const getSchema = (status: any): any => {
 };
 
 const getResponse = (path: any) => {
-  return Object.keys(path.responses)
-    .map((httpCode: string) => {
-      const status = path.responses[httpCode];
+  return Object.keys(path.responses).map((httpCode: string) => {
+    const status = path.responses[httpCode];
 
-      const schema = getSchema(status);
+    const schema = getSchema(status);
 
-      return {
-        httpCode: httpCode,
-        description: status.description,
-        schema: schema,
-      };
-    });
-}
+    return {
+      httpCode: httpCode,
+      description: status.description,
+      schema: schema,
+    };
+  });
+};
 
 export const ResponseList = ({ path }: any) => {
   const responses = getResponse(path);

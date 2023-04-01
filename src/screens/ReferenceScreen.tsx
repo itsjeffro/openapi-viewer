@@ -110,6 +110,6 @@ const ReferenceScreen = () => {
       </Container>
     </>
   );
-}
+};
 
 export default ReferenceScreen;
