@@ -27,6 +27,14 @@ const exampleBuilder = (method: string, host: string, endpoint: string, body: an
     }
   }
 
+  if (path?.parameters) {
+    const parameters = path.parameters.filter((parameter: any) => parameter.in === 'header');
+
+    parameters.forEach((parameter: any) => {
+      request.push(`  -H ${parameter.name}: ${parameter?.schema?.type}`);
+    });
+  }
+
   request = request.concat(`  ${host}${endpoint}`);
 
   if (body !== null) {
