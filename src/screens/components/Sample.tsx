@@ -1,9 +1,9 @@
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { Card, CardHeader } from '../../../components/Card';
-import { Text } from '../../../components/Text';
-import { Badge } from '../../../components/Badge';
-import exampleBuilder from '../../../lib/exampleBuilder';
-import * as styles from '../../../styles';
+import { Card, CardHeader } from '../../components/Card';
+import { Text } from '../../components/Text';
+import { Badge } from '../../components/Badge';
+import exampleBuilder from '../../lib/exampleBuilder';
+import * as styles from '../../styles';
 
 interface SampleProps {
   host: string;
@@ -12,7 +12,7 @@ interface SampleProps {
   path: any;
 }
 
-const Sample = ({ host, method, defaultPathKey, path }: SampleProps) => {
+export const Sample = ({ host, method, defaultPathKey, path }: SampleProps) => {
   const body = path?.requestBody?.content['application/json'] || null;
   const bodySchema = body?.schema || null;
 
@@ -32,5 +32,3 @@ const Sample = ({ host, method, defaultPathKey, path }: SampleProps) => {
     </Card>
   );
 };
-
-export default Sample;

@@ -1,5 +1,5 @@
-import { Path } from '../../../lib/OpenApi/Paths';
-import { Text } from '../../../components/Text';
+import { Path } from '../../lib/OpenApi/Paths';
+import { Text } from '../../components/Text';
 
 interface Props {
   paths: Path[];

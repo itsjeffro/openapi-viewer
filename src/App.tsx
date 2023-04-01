@@ -1,5 +1,4 @@
 import { ThemeProvider } from '@emotion/react';
-import * as React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { GlobalStyle } from './components/GlobalStyle';
 import { Layout } from './components/Layout';

@@ -1,17 +1,17 @@
 import EnumList from './EnumList';
 import RequiredText from './RequiredText';
-import { List, ListItem } from '../../../components/List';
-import { Text } from '../../../components/Text';
-import { Flex } from '../../../components/Flex';
-import { Box } from '../../../components/Box';
-import { Divider } from '../../../components/Divider';
+import { List, ListItem } from '../../components/List';
+import { Text } from '../../components/Text';
+import { Flex } from '../../components/Flex';
+import { Box } from '../../components/Box';
+import { Divider } from '../../components/Divider';
 
 interface ParameterDetailsProps {
   heading: string;
   parameters: any[];
 }
 
-const ParameterDetails = ({ heading, parameters }: ParameterDetailsProps) => {
+export const ParameterDetails = ({ heading, parameters }: ParameterDetailsProps) => {
   return (
     <List style={{ display: parameters.length === 0 ? 'none' : 'block' }}>
       <Text as="h5">{heading}</Text>
@@ -37,5 +37,3 @@ const ParameterDetails = ({ heading, parameters }: ParameterDetailsProps) => {
     </List>
   );
 };
-
-export default ParameterDetails;

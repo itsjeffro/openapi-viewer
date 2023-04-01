@@ -1,24 +1,24 @@
 import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { Box } from '../../components/Box';
-import { Container } from '../../components/Container';
-import { Divider } from '../../components/Divider';
-import { Flex } from '../../components/Flex';
-import { Header } from '../../components/Header';
-import { Text } from '../../components/Text';
-import Sample from './components/Sample';
-import GeneralDescription from './components/GeneralDescription';
-import ParameterDetails from './components/ParameterDetails';
-import BodyDetails from './components/BodyDetails';
-import ResponseList from './components/ResponseList';
-import useFetchSpec from '../../hooks/useFetchSpec';
-import OpenApi from '../../lib/OpenApi';
-import { Path } from '../../lib/OpenApi/Paths';
-import { groupParams } from '../../lib/parameters';
-import { slugify, ucfirst } from '../../lib/string';
-import { StateContext } from '../../state/stateProvider';
+import { Box } from '../components/Box';
+import { Container } from '../components/Container';
+import { Divider } from '../components/Divider';
+import { Flex } from '../components/Flex';
+import { Header } from '../components/Header';
+import { Text } from '../components/Text';
+import { Sample } from './components/Sample';
+import { GeneralDescription } from './components/GeneralDescription';
+import { ParameterDetails } from './components/ParameterDetails';
+import { BodyDetails } from './components/BodyDetails';
+import { ResponseList } from './components/ResponseList';
+import useFetchSpec from '../hooks/useFetchSpec';
+import OpenApi from '../lib/OpenApi';
+import { Path } from '../lib/OpenApi/Paths';
+import { groupParams } from '../lib/parameters';
+import { slugify, ucfirst } from '../lib/string';
+import { StateContext } from '../state/stateProvider';
 
-function ReferenceScreen() {
+const ReferenceScreen = () => {
   const { endpoint } = useParams();
   const { state } = useContext(StateContext);
 

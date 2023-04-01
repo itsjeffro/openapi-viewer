@@ -1,4 +1,4 @@
-import { Text } from '../../../components/Text';
+import { Text } from '../../components/Text';
 
 interface EnumListProps {
   enums: string[];

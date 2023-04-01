@@ -1,9 +1,9 @@
 import EnumList from './EnumList';
-import { List, ListItem } from '../../../components/List';
-import { Text } from '../../../components/Text';
-import { Flex } from '../../../components/Flex';
-import { Box } from '../../../components/Box';
-import { Divider } from '../../../components/Divider';
+import { List, ListItem } from '../../components/List';
+import { Text } from '../../components/Text';
+import { Flex } from '../../components/Flex';
+import { Box } from '../../components/Box';
+import { Divider } from '../../components/Divider';
 import RequiredText from './RequiredText';
 
 interface Props {
@@ -33,7 +33,7 @@ const buildSchema = (schema: any) => {
   return allOf;
 };
 
-const BodyDetails = ({ requestBody }: Props) => {
+export const BodyDetails = ({ requestBody }: Props) => {
   const bodyContent = !requestBody ? {} : requestBody.content['application/json'];
   const bodySchema = bodyContent ? buildSchema(bodyContent.schema) : null;
   const bodyParameters = bodySchema ? bodySchema.properties || {} : {};
@@ -68,5 +68,3 @@ const BodyDetails = ({ requestBody }: Props) => {
     </List>
   );
 };
-
-export default BodyDetails;
