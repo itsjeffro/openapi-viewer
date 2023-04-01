@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { Card, CardHeader } from '../../components/Card';
 import { Flex } from '../../components/Flex';
@@ -19,22 +19,31 @@ const getSchema = (status: any): any => {
   return statusContent?.schema || {};
 };
 
-export const ResponseList = ({ responses }: any) => {
-  responses = Object.keys(responses).map((httpCode: string) => {
-    const status = responses[httpCode];
+const getResponse = (path: any) => {
+  return Object.keys(path.responses)
+    .map((httpCode: string) => {
+      const status = path.responses[httpCode];
 
-    const schema = getSchema(status);
+      const schema = getSchema(status);
 
-    return {
-      httpCode: httpCode,
-      description: status.description,
-      schema: schema,
-    };
-  });
+      return {
+        httpCode: httpCode,
+        description: status.description,
+        schema: schema,
+      };
+    });
+}
 
+export const ResponseList = ({ path }: any) => {
+  const responses = getResponse(path);
   const responseHttpCodes = responses.map((response: any) => response.httpCode);
+
   const [selectedHttpCode, setSelectedHttpCode] = useState(responseHttpCodes[0]);
   const [selectedResponseTab, setSelectedResponseTab] = useState('example');
+
+  useEffect(() => {
+    setSelectedHttpCode(responseHttpCodes[0]);
+  }, [path.name]);
 
   return (
     <Card>

@@ -100,7 +100,7 @@ const ReferenceScreen = () => {
                       path={path}
                     />
                     <Text as="h5">Responses</Text>
-                    <ResponseList responses={path.responses} />
+                    <ResponseList path={path} />
                   </Box>
                 </Flex>
               </Box>
