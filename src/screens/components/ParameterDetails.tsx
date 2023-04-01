@@ -1,5 +1,5 @@
-import EnumList from './EnumList';
-import RequiredText from './RequiredText';
+import { EnumList } from './EnumList';
+import { RequiredText } from './RequiredText';
 import { List, ListItem } from '../../components/List';
 import { Text } from '../../components/Text';
 import { Flex } from '../../components/Flex';

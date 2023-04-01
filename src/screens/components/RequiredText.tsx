@@ -4,7 +4,7 @@ interface Props {
   isRequired?: boolean;
 }
 
-const RequiredText = ({ isRequired }: Props) => {
+export const RequiredText = ({ isRequired }: Props) => {
   const styles = {
     color: '#d63a07',
     display: isRequired ? 'inline-block' : 'none',
@@ -12,5 +12,3 @@ const RequiredText = ({ isRequired }: Props) => {
 
   return <Text style={styles}>Required.</Text>;
 };
-
-export default RequiredText;

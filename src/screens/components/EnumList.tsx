@@ -4,7 +4,7 @@ interface EnumListProps {
   enums: string[];
 }
 
-const EnumList = ({ enums }: EnumListProps) => {
+export const EnumList = ({ enums }: EnumListProps) => {
   const total = enums.length;
 
   return (
@@ -23,5 +23,3 @@ const EnumList = ({ enums }: EnumListProps) => {
     </Text>
   );
 };
-
-export default EnumList;

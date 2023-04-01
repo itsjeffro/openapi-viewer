@@ -1,10 +1,10 @@
-import EnumList from './EnumList';
+import { EnumList } from './EnumList';
 import { List, ListItem } from '../../components/List';
 import { Text } from '../../components/Text';
 import { Flex } from '../../components/Flex';
 import { Box } from '../../components/Box';
 import { Divider } from '../../components/Divider';
-import RequiredText from './RequiredText';
+import { RequiredText } from './RequiredText';
 
 interface Props {
   requestBody: any;
