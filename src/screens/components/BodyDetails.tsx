@@ -17,6 +17,18 @@ const buildSchema = (schema: any) => {
     return schema;
   }
 
+  // TODO: Improve how we display sub properties if the field type is an array.
+  if (schema?.type === 'array' && schema.items) {
+    return {
+      properties: {
+        '[]': {
+          type: 'array',
+          description: JSON.stringify(schema.items.properties),
+        }
+      }
+    };
+  }
+
   ((schema && schema.allOf) || []).map((item: any) => {
     if (item.type === 'object' && !allOf) {
       allOf = {};
